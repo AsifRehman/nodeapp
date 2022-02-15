@@ -468,8 +468,9 @@ var jvFunctions = {
 	}
 };
 var getAccountBalance = function(account_code){
-	$.post('db/get-account-balance',{supplierAccCode:account_code},function(data){
+	$.post('db/get-account-balance',{account_code :account_code},function(data){
 		//data = $.parseJSON(data);
+		console.log(data)
 		$(".insertAccTitle").text(" Balance : "+data['BALANCE']).stDigits();
 	});
 };

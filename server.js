@@ -12,6 +12,12 @@ const indexRouter = require('./routes/index')
 const authorRouter = require('./routes/authors')
 const bookRouter = require('./routes/books')
 const jvRouter = require('./routes/jvs')
+const dbRouter = require('./routes/db')
+const level1Router = require('./routes/level1')
+const level2Router = require('./routes/level2')
+const level3Router = require('./routes/level3')
+const level4Router = require('./routes/level4')
+const level5Router = require('./routes/level5')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -32,19 +38,12 @@ app.use('/', indexRouter)
 app.use('/authors', authorRouter)
 app.use('/books', bookRouter)
 app.use('/jvs', jvRouter)
+app.use('/level1', level1Router)
+app.use('/level2', level2Router)
+app.use('/level3', level3Router)
+app.use('/level4', level4Router)
+app.use('/level5', level5Router)
 
-// app.get('/db/get-account-balance/:id', (req, res)=> {
-//   res.json({"BALANCE": "10,0000 CR.", "AMOUNT": "10,0000", "ID": req.params.id})
-// })
-
-app.post('/db/get-account-balance', (req, res)=> {
-  console.log(req.body)
-  res.json({"BALANCE": "10,0000 CR.", "AMOUNT": "10,0000"})
-})
-
-app.post('/test', (req, res) => {
-  console.log('Got body:', req.body);
-  res.sendStatus(200);
-});
+app.use('/db', dbRouter)
 
 app.listen(process.env.PORT || 3000)

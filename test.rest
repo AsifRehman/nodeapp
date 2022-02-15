@@ -1,8 +1,17 @@
-GET http://localhost:3000
+GET http://localhost:3000/level5/parties
 
 
 ###
 POST http://localhost:3000/db/get-account-balance
 Content-Type: application/json
 
-{ "name": "ABC" }
+{ 
+    "account_code": 111010001
+}
+
+
+###
+PATCH http://localhost:3000/level3/620bc300e12e9b0c2866b576
+Content-Type: application/json
+
+{"level2_code": 21 }

@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const JV = require('../models/jv')
+const Level5 = require('../models/level5')
 
 // All Authors Route
 router.get('/', async (req, res) => {
@@ -10,8 +11,10 @@ router.get('/', async (req, res) => {
   }
   try {
     const jvs = await JV.find(searchOptions)
+    const level5s = await Level5.find().select({ "level5_code": 1, "level5_title": 1,"_id": 0});
     res.render('jvs/index', {
       jvs: jvs,
+      level5: level5s,
       searchOptions: req.query
     })
   } catch {
