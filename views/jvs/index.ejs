@@ -1,0 +1,605 @@
+<div class="content-box-top" style="overflow:visible;">
+    <div class="summery_body">
+        <div class="content-box-header">
+            <p>Journal Voucher</p>
+            <div class="clear"></div>
+        </div><!-- End .content-box-header -->
+        <div id="bodyTab1">
+            <div id="form">
+                <div class="caption" style="width:50px;">JV #</div>
+                <div class="field_1" style="width:100px;">
+                    <input class="form-control" name="jvNum" type="text" value="3443"
+                        style="width:100px;text-align:center;" readonly />
+                </div>
+                <div class="caption" style="width:50px;">Date</div>
+                <div class="field_1">
+                    <input class="form-control datepicker" type="text" name="jvDate" value="07-02-2022" />
+                </div>
+                <div class="caption" style="width:50px;">PO #:</div>
+                <div class="field_1" style="width:150px;">
+                    <input class="form-control" type="text" name="pon" value="" style="text-align:center;" />
+                </div>
+
+                <!-- NOT IN USED -->
+                <div class="caption" style="width:100px;display: none;">Reference</div>
+                <div class="field_1" style="width:150px;">
+                    <input class="form-control" style="display: none;" type="text" name="jvReference" value="" />
+                </div>
+                <!-- ---- -->
+                <div class="clear"></div>
+                <div class="clear" style="height:10px;"></div>
+                <div class="panel panel-default" style="width:100%;margin:0px auto;">
+                    <table class="tableStyle" cellspacing="0" style="width:100%;">
+                        <thead>
+                            <th class="bg-color text-center col-xs-3" style="vertical-align:middle;" colspan="2">
+                                Account
+                                <a href="#" onclick="refresh_accounts();" class="btn btn-default btn-xs"><i
+                                        class="fa fa-refresh" style="color:#06C;margin:0px;padding:0px;"></i></a>
+                                <a href="accounts-management.php" target="_blank" class="btn btn-default btn-xs"><i
+                                        class="fa fa-plus" style="color:#06C;margin:0px;padding:0px;"></i></a>
+                            </th>
+                            <th class="bg-color col-xs-6 text-left">Narration</th>
+                            <th class="bg-color col-xs-1">Debit</th>
+                            <th class="bg-color col-xs-1">Credit</th>
+                            <th class="bg-color col-xs-1">Action</th>
+                        </thead>
+                        <tbody id="d">
+                            <tr class="entry_row">
+                                <td colspan="2">
+                                    <select class="accCodeSelector show-tick form-control" data-style="btn-default"
+                                        data-live-search="true" style="border:none">
+                                        <option selected value="0"></option>
+                                        <option value="0301030029" data-subtext='0301030029'>
+                                            Factory(Packing) Rent Haji Khalid Sb</option>
+                                        <option value="0401010012" data-subtext='0401010012'>AA DAYEING
+                                        </option>
+                                        <option value="0101040060" data-subtext='0101040060'>AB Traders
+                                        </option>
+                                        <option value="0401040005" data-subtext='0401040005'>Abdul Ghaffar
+                                            Gujjar</option>
+                                        <option value="0102020004" data-subtext='0102020004'>AC</option>
+                                        <option value="0101040015" data-subtext='0101040015'>Afeef Pasha
+                                        </option>
+                                        <option value="0401010002" data-subtext='0401010002'>AFZAL BHOLA SB
+                                        </option>
+                                        <option value="0101040025" data-subtext='0101040025'>Agst Chq
+                                        </option>
+                                        <option value="0401010062" data-subtext='0401010062'>AHMAD ABUBAKAR
+                                            DYEING</option>
+                                        <option value="0101040059" data-subtext='0101040059'>Ahmad Centre
+                                        </option>
+                                        <option value="0401010017" data-subtext='0401010017'>Ahmad
+                                            Embroidery Warisha Textiles</option>
+                                        <option value="0401040001" data-subtext='0401040001'>Ahmad Rana
+                                        </option>
+                                        <option value="0401010067" data-subtext='0401010067'>Ahsan Mudasir
+                                            Grey</option>
+                                        <option value="0401010015" data-subtext='0401010015'>AKS (Malik Ayaz
+                                            Sb)</option>
+                                        <option value="0401010018" data-subtext='0401010018'>AL REYAN EMB
+                                        </option>
+                                        <option value="0101040003" data-subtext='0101040003'>Ali Dawood Sb
+                                        </option>
+                                        <option value="0101040051" data-subtext='0101040051'>Ali Fabrics
+                                        </option>
+                                        <option value="0401010060" data-subtext='0401010060'>Aqsa Arts
+                                            Rainbow Ink</option>
+                                        <option value="0101040001" data-subtext='0101040001'>AR SONS
+                                        </option>
+                                        <option value="0401010037" data-subtext='0401010037'>AR SONS
+                                            (PURCHASES) </option>
+                                        <option value="0101040072" data-subtext='0101040072'>AS Arts
+                                        </option>
+                                        <option value="0401040007" data-subtext='0401040007'>ASAD SB
+                                        </option>
+                                        <option value="0101100001" data-subtext='0101100001'>ASAD SB
+                                            Recovery A/C</option>
+                                        <option value="0401010041" data-subtext='0401010041'>Ashraf
+                                            Computers</option>
+                                        <option value="0401010031" data-subtext='0401010031'>Ashraf Zia Tex
+                                            Ind</option>
+                                        <option value="0101040037" data-subtext='0101040037'>ASIF FEBRICS
+                                        </option>
+                                        <option value="0401010038" data-subtext='0401010038'>ASIF FEBRICS
+                                            (PURCHASE A/C)</option>
+                                        <option value="0401010048" data-subtext='0401010048'>Aymen Impex
+                                        </option>
+                                        <option value="0401040008" data-subtext='0401040008'>Aziz-ur-Rahman
+                                            Designer</option>
+                                        <option value="0301020010" data-subtext='0301020010'>Backhander
+                                        </option>
+                                        <option value="0401010045" data-subtext='0401010045'>Bao Gee Textile
+                                        </option>
+                                        <option value="0101040008" data-subtext='0101040008'>Be Be Jee
+                                        </option>
+                                        <option value="0401010027" data-subtext='0401010027'>BEST EMB
+                                        </option>
+                                        <option value="0401010057" data-subtext='0401010057'>Bilal Sagheer
+                                            Sb </option>
+                                        <option value="0101040023" data-subtext='0101040023'>BILAL SB
+                                            (PERSONAL)</option>
+                                        <option value="0301020007" data-subtext='0301020007'>BILAL SB
+                                            DRWAINGS</option>
+                                        <option value="0101040057" data-subtext='0101040057'>Bin Ijaz
+                                        </option>
+                                        <option value="0101040002" data-subtext='0101040002'>BIN MARYAM
+                                        </option>
+                                        <option value="0101040077" data-subtext='0101040077'>BIN MARYAM 2022
+                                        </option>
+                                        <option value="0401010043" data-subtext='0401010043'>BIN MARYAM
+                                            PURCHASE A/C</option>
+                                        <option value="0101040007" data-subtext='0101040007'>BIN NAEEM
+                                        </option>
+                                        <option value="0401010054" data-subtext='0401010054'>Bismillah
+                                            Dyeing</option>
+                                        <option value="0102030002" data-subtext='0102030002'>BRAVO 1ST
+                                            MACHINE</option>
+                                        <option value="0401010003" data-subtext='0401010003'>BRAVO INK
+                                        </option>
+                                        <option value="0102030001" data-subtext='0102030001'>BRAVO NEW
+                                            MACHINE</option>
+                                        <option value="0101010004" data-subtext='0101010004'>Cash In Hand
+                                            A/c Adil Grey</option>
+                                        <option value="010101001" data-subtext='010101001'>Cash in Hand A/c
+                                            Admin</option>
+                                        <option value="0101010002" data-subtext='0101010002'>Cash in Hand
+                                            A/c Naeem </option>
+                                        <option value="0101010003" data-subtext='0101010003'>Cash In Hand
+                                            Tayyab Account </option>
+                                        <option value="020101001" data-subtext='020101001'>CASH SALE
+                                        </option>
+                                        <option value="0301020009" data-subtext='0301020009'>CEO's Kids Fee
+                                        </option>
+                                        <option value="0102050001" data-subtext='0102050001'>CEO's Motor
+                                            Vehicles</option>
+                                        <option value="0301030017" data-subtext='0301030017'>CHEMICAL EXP
+                                        </option>
+                                        <option value="0401010050" data-subtext='0401010050'>City Cafe
+                                        </option>
+                                        <option value="0301030015" data-subtext='0301030015'>COMMISSION
+                                            (BROOKERY)</option>
+                                        <option value="030101002" data-subtext='030101002'>Commission Sale
+                                            Exp</option>
+                                        <option value="0101030001" data-subtext='0101030001'>Committee Bilal
+                                            Anjum Sb</option>
+                                        <option value="0102020001" data-subtext='0102020001'>COMPUTER
+                                        </option>
+                                        <option value="0301030012" data-subtext='0301030012'>CONSTRACTION
+                                        </option>
+                                        <option value="030104001" data-subtext='030104001'>Cost of Sales A/c
+                                        </option>
+                                        <option value="0301030011" data-subtext='0301030011'>Courier &
+                                            Postage</option>
+                                        <option value="0201010003" data-subtext='0201010003'>CREDIT SALE
+                                        </option>
+                                        <option value="0201010004" data-subtext='0201010004'>CUT PICES SALES
+                                        </option>
+                                        <option value="0101040024" data-subtext='0101040024'>Daniyal Shafiq
+                                        </option>
+                                        <option value="0401010044" data-subtext='0401010044'>DANYAL SHAFIQUE
+                                            PURCHASE A/C</option>
+                                        <option value="0101010005" data-subtext='0101010005'>Dasti Account
+                                            (CEO)</option>
+                                        <option value="0301030009" data-subtext='0301030009'>DIESEL</option>
+                                        <option value="0301030013" data-subtext='0301030013'>DONATION
+                                        </option>
+                                        <option value="0101040006" data-subtext='0101040006'>DW Arts
+                                        </option>
+                                        <option value="0101040066" data-subtext='0101040066'>Ehsan Zeeshan
+                                            C/o Nouman Shoukat</option>
+                                        <option value="0401010071" data-subtext='0401010071'>Eman Dyeing
+                                        </option>
+                                        <option value="0301030024" data-subtext='0301030024'>EMB</option>
+                                        <option value="030105001" data-subtext='030105001'>Employees Salary
+                                            Exp</option>
+                                        <option value="0301030001" data-subtext='0301030001'>ENTERTAINMENT
+                                        </option>
+                                        <option value="030102002" data-subtext='030102002'>Entertanment
+                                        </option>
+                                        <option value="0301030018" data-subtext='0301030018'>Errection of
+                                            new Machinary Exp</option>
+                                        <option value="0401010056" data-subtext='0401010056'>Evelyn Water
+                                        </option>
+                                        <option value="0401010032" data-subtext='0401010032'>Ever Green
+                                        </option>
+                                        <option value="0301030016" data-subtext='0301030016'>Factory Rent
+                                            (Haji Ghulam Nabi )</option>
+                                        <option value="0101040054" data-subtext='0101040054'>Faheem Sb (FA
+                                            Traders)</option>
+                                        <option value="0101040061" data-subtext='0101040061'>Faiq Tariq Sb
+                                            (Brokerage) </option>
+                                        <option value="0101040074" data-subtext='0101040074'>Fair Deal
+                                            Textiles</option>
+                                        <option value="0101040055" data-subtext='0101040055'>FARAZ SB
+                                        </option>
+                                        <option value="0301030007" data-subtext='0301030007'>FESCO BILL
+                                        </option>
+                                        <option value="0401020001" data-subtext='0401020001'>FESCO PAYABLE
+                                        </option>
+                                        <option value="0101040047" data-subtext='0101040047'>Fiaz Shah W1
+                                        </option>
+                                        <option value="0101100002" data-subtext='0101100002'>Fix Advances
+                                        </option>
+                                        <option value="0301030002" data-subtext='0301030002'>Freight & Cargo
+                                        </option>
+                                        <option value="0102020002" data-subtext='0102020002'>FURNITURE
+                                        </option>
+                                        <option value="0101040058" data-subtext='0101040058'>Gifts & Samples
+                                        </option>
+                                        <option value="0401010022" data-subtext='0401010022'>GULZAR KAMOKA
+                                            RIKSHA DRIVER</option>
+                                        <option value="0401010051" data-subtext='0401010051'>H.A.R. Fibers
+                                        </option>
+                                        <option value="0101040009" data-subtext='0101040009'>HASEEB ARTS
+                                        </option>
+                                        <option value="0401010046" data-subtext='0401010046'>HASEEB ARTS
+                                            PURCHASE A/C</option>
+                                        <option value="0401010025" data-subtext='0401010025'>HASEEB COMPUTER
+                                        </option>
+                                        <option value="0101040010" data-subtext='0101040010'>HASSAN ARTS
+                                        </option>
+                                        <option value="0101040017" data-subtext='0101040017'>HASSAN FAYAZ
+                                        </option>
+                                        <option value="0101040011" data-subtext='0101040011'>Hassan Hussain
+                                            Enterprises</option>
+                                        <option value="0401010020" data-subtext='0401010020'>Hilal Fabrics
+                                        </option>
+                                        <option value="0101040022" data-subtext='0101040022'>HOME P 203
+                                        </option>
+                                        <option value="0301020008" data-subtext='0301020008'>HOME P 203
+                                            EXPENCES</option>
+                                        <option value="0101040073" data-subtext='0101040073'>Humayun Sohail
+                                            Sb</option>
+                                        <option value="0101040071" data-subtext='0101040071'>Ibrahim Center
+                                        </option>
+                                        <option value="0401010024" data-subtext='0401010024'>IMRAN ISHAQ
+                                        </option>
+                                        <option value="020102001" data-subtext='020102001'>Income A/c other
+                                            Revenue</option>
+                                        <option value="020201001" data-subtext='020201001'>Income A/c
+                                            Services</option>
+                                        <option value="0401040006" data-subtext='0401040006'>Inderyas
+                                        </option>
+                                        <option value="0301030026" data-subtext='0301030026'>INK</option>
+                                        <option value="010106003" data-subtext='010106003'>Inventory on rent
+                                            A/c</option>
+                                        <option value="0101040062" data-subtext='0101040062'>IQBAL LAHORE
+                                        </option>
+                                        <option value="0401010058" data-subtext='0401010058'>Irfan Suleman
+                                        </option>
+                                        <option value="0101040035" data-subtext='0101040035'>IRSAL SB
+                                        </option>
+                                        <option value="0101020006" data-subtext='0101020006'>ISSUED CHQ
+                                        </option>
+                                        <option value="0101040050" data-subtext='0101040050'>Jahanzaib
+                                        </option>
+                                        <option value="0101040069" data-subtext='0101040069'>Jalal Arts
+                                        </option>
+                                        <option value="0101040075" data-subtext='0101040075'>Jalal Arts 2022
+                                        </option>
+                                        <option value="0401010070" data-subtext='0401010070'>Jubilee
+                                            Textiles</option>
+                                        <option value="0101040013" data-subtext='0101040013'>KAMAL FEBRICS
+                                        </option>
+                                        <option value="0401010026" data-subtext='0401010026'>KASHIF SB
+                                        </option>
+                                        <option value="0101040049" data-subtext='0101040049'>Khalifa Asif
+                                        </option>
+                                        <option value="0101040031" data-subtext='0101040031'>Khurram Shafiq
+                                        </option>
+                                        <option value="0101090001" data-subtext='0101090001'>Lala Mushtaque
+                                        </option>
+                                        <option value="0401010052" data-subtext='0401010052'>M Tariq Grey
+                                        </option>
+                                        <option value="0401010023" data-subtext='0401010023'>MA </option>
+                                        <option value="0101040065" data-subtext='0101040065'>MA Dyeing Sales
+                                        </option>
+                                        <option value="0102030003" data-subtext='0102030003'>Machine UPS
+                                        </option>
+                                        <option value="0101020001" data-subtext='0101020001'>MEEZAN BANK
+                                            (BILAL SB)</option>
+                                        <option value="0401010004" data-subtext='0401010004'>MF BRO</option>
+                                        <option value="0102040001" data-subtext='0102040001'>MISC ASSETS ETC
+                                        </option>
+                                        <option value="0301030005" data-subtext='0301030005'>Misc Exp
+                                        </option>
+                                        <option value="0301030030" data-subtext='0301030030'>Mobile Bills
+                                        </option>
+                                        <option value="0101040027" data-subtext='0101040027'>MOON ARTS
+                                        </option>
+                                        <option value="0401010021" data-subtext='0401010021'>MUBASHAR NASEEM
+                                        </option>
+                                        <option value="0401010016" data-subtext='0401010016'>Musaddiq
+                                            Embroidery </option>
+                                        <option value="0101040034" data-subtext='0101040034'>MUZAMAL IJAZ
+                                        </option>
+                                        <option value="0401010007" data-subtext='0401010007'>NADEEM LOADER
+                                        </option>
+                                        <option value="0401010040" data-subtext='0401010040'>Nadeem Waseem
+                                            Lahore Purchase</option>
+                                        <option value="0101040029" data-subtext='0101040029'>NADEEM WASEEM
+                                            LHR</option>
+                                        <option value="0401040003" data-subtext='0401040003'>Naveed Ansari
+                                        </option>
+                                        <option value="0101040039" data-subtext='0101040039'>NUMAN EMB FSD
+                                        </option>
+                                        <option value="0101040026" data-subtext='0101040026'>NUMAN SHOUKAT
+                                            SB</option>
+                                        <option value="0401010029" data-subtext='0401010029'>ONYX (SECURITY
+                                            COMPANY)</option>
+                                        <option value="0101040063" data-subtext='0101040063'>Osama Saleem
+                                        </option>
+                                        <option value="0101040038" data-subtext='0101040038'>Owais Manzor Sb
+                                        </option>
+                                        <option value="050101001" data-subtext='050101001'>Owner Equity
+                                        </option>
+                                        <option value="0301040002" data-subtext='0301040002'>Packing
+                                            Contractor Fateh Ali </option>
+                                        <option value="010111002" data-subtext='010111002'>Parking a/c rent
+                                            receivable</option>
+                                        <option value="0101020002" data-subtext='0101020002'>Party Slip Chq
+                                            Hawala</option>
+                                        <option value="0401020003" data-subtext='0401020003'>PAYABLE PTCL
+                                        </option>
+                                        <option value="0401040009" data-subtext='0401040009'>PAYABLE
+                                            SALARIES</option>
+                                        <option value="0401020002" data-subtext='0401020002'>PAYABLE WASA
+                                        </option>
+                                        <option value="030102006" data-subtext='030102006'>Petrol</option>
+                                        <option value="0301030019" data-subtext='0301030019'>Petrol</option>
+                                        <option value="0301030031" data-subtext='0301030031'>Petty Resrves
+                                        </option>
+                                        <option value="0301030021" data-subtext='0301030021'>POLY THIN BAG
+                                        </option>
+                                        <option value="0301030023" data-subtext='0301030023'>POST</option>
+                                        <option value="0301030022" data-subtext='0301030022'>PREE </option>
+                                        <option value="050102001" data-subtext='050102001'>Profit & Loss A/c
+                                        </option>
+                                        <option value="0301030008" data-subtext='0301030008'>PTCL BILL
+                                        </option>
+                                        <option value="010106001" data-subtext='010106001'>PURCHASE</option>
+                                        <option value="020101002" data-subtext='020101002'>Purchase Discount
+                                        </option>
+                                        <option value="030106001" data-subtext='030106001'>Purchase Freight
+                                        </option>
+                                        <option value="0401010053" data-subtext='0401010053'>Purchase Jalal
+                                            Arts</option>
+                                        <option value="010106002" data-subtext='010106002'>Purchase Returns
+                                        </option>
+                                        <option value="0101040070" data-subtext='0101040070'>Qaiser Sb
+                                            Karachi</option>
+                                        <option value="0101040040" data-subtext='0101040040'>QASIM SB
+                                        </option>
+                                        <option value="0401010005" data-subtext='0401010005'>Rainbow Inks
+                                            Pvt Ltd</option>
+                                        <option value="0101040028" data-subtext='0101040028'>RAMZAN SB
+                                        </option>
+                                        <option value="0401010019" data-subtext='0401010019'>REHAN IBRAHIM
+                                            EMB</option>
+                                        <option value="010111001" data-subtext='010111001'>Rent Receivable
+                                            A/c</option>
+                                        <option value="0301030006" data-subtext='0301030006'>REPAIR AND
+                                            MAINTENANCE</option>
+                                        <option value="0401010065" data-subtext='0401010065'>Rikshaw Ather
+                                        </option>
+                                        <option value="0401010010" data-subtext='0401010010'>Rikshaw Faisal
+                                        </option>
+                                        <option value="0401010035" data-subtext='0401010035'>Rikshaw Haider
+                                        </option>
+                                        <option value="0401010069" data-subtext='0401010069'>Rikshaw Sajjad
+                                            Khan</option>
+                                        <option value="0401010066" data-subtext='0401010066'>RIKSHWA ATHAR
+                                            ZAMAN</option>
+                                        <option value="0101040053" data-subtext='0101040053'>RizTex</option>
+                                        <option value="0401010047" data-subtext='0401010047'>RIZWAN USMAN
+                                            TRADERS</option>
+                                        <option value="0101040052" data-subtext='0101040052'>Rumi Collection
+                                        </option>
+                                        <option value="0301030004" data-subtext='0301030004'>Salaries &
+                                            Wages</option>
+                                        <option value="030101001" data-subtext='030101001'>Sales Discount
+                                        </option>
+                                        <option value="020101003" data-subtext='020101003'>Sales Return A/c
+                                        </option>
+                                        <option value="040105001" data-subtext='040105001'>Sales Tax Payable
+                                        </option>
+                                        <option value="010108001" data-subtext='010108001'>Sales Tax
+                                            Receivable</option>
+                                        <option value="0401010059" data-subtext='0401010059'>Salman Yousaf
+                                            Rizwan Arts</option>
+                                        <option value="0301030028" data-subtext='0301030028'>Samad Pro
+                                            Services</option>
+                                        <option value="0401010011" data-subtext='0401010011'>SAMI ASHRAF
+                                        </option>
+                                        <option value="0101040067" data-subtext='0101040067'>SAMI ASHRAF SB
+                                            SALES A/C</option>
+                                        <option value="0301030020" data-subtext='0301030020'>SAMPLING EXP
+                                        </option>
+                                        <option value="0101040005" data-subtext='0101040005'>SHAFI SB
+                                        </option>
+                                        <option value="0401010068" data-subtext='0401010068'>Shahbaz Sb Grey
+                                        </option>
+                                        <option value="0101040044" data-subtext='0101040044'>SHAHID BROCKER
+                                            ( SALES A/C)</option>
+                                        <option value="0401060001" data-subtext='0401060001'>SHAHID BROCKER
+                                            (COMMISSION)</option>
+                                        <option value="0401010055" data-subtext='0401010055'>Sheikh Ahmad
+                                            Raza Grey</option>
+                                        <option value="0301010004" data-subtext='0301010004'>Shop Rent
+                                        </option>
+                                        <option value="0401010061" data-subtext='0401010061'>Shuja-ud-Din
+                                            UPS</option>
+                                        <option value="0401010042" data-subtext='0401010042'>SS TRADERS
+                                            (UMAIR SB) PURCHASE A/C</option>
+                                        <option value="0101040056" data-subtext='0101040056'>SS Traders
+                                            Umair Sb</option>
+                                        <option value="0301030003" data-subtext='0301030003'>STATIONERY
+                                        </option>
+                                        <option value="0401010030" data-subtext='0401010030'>SUSPENSE
+                                            ACCOUNT</option>
+                                        <option value="0101040032" data-subtext='0101040032'>Tehreem
+                                            Collection</option>
+                                        <option value="0401010036" data-subtext='0401010036'>Tehreem
+                                            Collection Purchases</option>
+                                        <option value="0101040030" data-subtext='0101040030'>Top Tex
+                                        </option>
+                                        <option value="030102003" data-subtext='030102003'>Travelling
+                                        </option>
+                                        <option value="0101040079" data-subtext='0101040079'>UMAIR ZEESHAN
+                                            (EHSAN ZEESHAN)</option>
+                                        <option value="0101040042" data-subtext='0101040042'>UNKNOWN
+                                            CUSTOMERS</option>
+                                        <option value="0102020003" data-subtext='0102020003'>UPS</option>
+                                        <option value="0101040033" data-subtext='0101040033'>USMAN CLOTH
+                                            HOUSE</option>
+                                        <option value="0101040045" data-subtext='0101040045'>USMAN KHALID
+                                        </option>
+                                        <option value="0101040046" data-subtext='0101040046'>USMAN LAHORE
+                                        </option>
+                                        <option value="030102001" data-subtext='030102001'>Utility Bills
+                                        </option>
+                                        <option value="0401010006" data-subtext='0401010006'>UTM</option>
+                                        <option value="0101040064" data-subtext='0101040064'>UTM Sales
+                                        </option>
+                                        <option value="0101040016" data-subtext='0101040016'>VARIETY CENTER
+                                        </option>
+                                        <option value="0401010034" data-subtext='0401010034'>Wahab Fabrics
+                                            C/o Nouman Shuakat</option>
+                                        <option value="010105001" data-subtext='010105001'>Walking Customers
+                                            Receivable</option>
+                                        <option value="0301030014" data-subtext='0301030014'>WAPDA
+                                            MAINTENANCE</option>
+                                        <option value="0401010063" data-subtext='0401010063'>Waqas Islam
+                                            Grey</option>
+                                        <option value="0401010009" data-subtext='0401010009'>WARISHA 1
+                                        </option>
+                                        <option value="0401010008" data-subtext='0401010008'>WARISHA 2
+                                        </option>
+                                        <option value="0401010039" data-subtext='0401010039'>WARISHA 2
+                                            (PURCHASE A/C)</option>
+                                        <option value="0301030027" data-subtext='0301030027'>WASA BILL
+                                        </option>
+                                        <option value="0401010049" data-subtext='0401010049'>Wasif Chemical
+                                        </option>
+                                        <option value="010112001" data-subtext='010112001'>WIP Account
+                                        </option>
+                                        <option value="010108002" data-subtext='010108002'>With Holding Tax
+                                        </option>
+                                        <option value="0301030025" data-subtext='0301030025'>WORKER ADVANCE
+                                        </option>
+                                        <option value="0401010028" data-subtext='0401010028'>YASEEN AMEEN
+                                            DYEING</option>
+                                        <option value="0101040043" data-subtext='0101040043'>Zain G Arts
+                                        </option>
+                                        <option value="0401010072" data-subtext='0401010072'>Zainab Fatima
+                                            Arts</option>
+                                        <option value="0101040078" data-subtext='0101040078'>Zainab Fatima
+                                            c/o Shahzad Sb</option>
+                                        <option value="0301010003" data-subtext='0301010003'>Zaqat Expenses
+                                        </option>
+                                        <option value="0401050002" data-subtext='0401050002'>Zaqat Payable
+                                        </option>
+                                        <option value="0101040048" data-subtext='0101040048'>Zeeshan ARTS
+                                        </option>
+                                        <option value="0101040076" data-subtext='0101040076'>ZYLISH 2022
+                                        </option>
+                                        <option value="0101040019" data-subtext='0101040019'>Zylish Sadaqat
+                                            Arts</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="form-control narration" /></td>
+                                <td><input type="text" transactionType="Dr" class="form-control debit"
+                                        style="text-align:right;color: #036;" /></td>
+                                <td><input type="text" transactionType="Cr" class="form-control credit"
+                                        style="text-align:right;color: #036;" /></td>
+                                <td><input type="button" class="btn btn-default cdr_btn btn-block" value="Enter" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="display:none;height:15px;padding:1px;padding-left:10px;font-size:14px;"
+                                    class="insertAccTitle"></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr class="transactions" style="display:none;"></tr>
+                            <tr style="background-color:#F8F8F8;height: 30px;">
+                                <td colspan="3" style="text-align:center;"> Total/Difference </td>
+                                <td class="debitTotal" style="text-align:center;color:#042377;" title="Debit">0.00</td>
+                                <td class="creditTotal" style="text-align:center;color:#042377;" title="Credit">0.00
+                                </td>
+                                <td class="drCrDiffer" style="text-align:center;color:#042377;" title="Diffrence"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="underTheTable pull-right" style="padding:10px;margin:10px;">
+                        <input type="hidden" value="0" class="jVoucher_id" />
+
+                        <button class="button pull-right save_voucher">Post</button>
+
+                        <input type="button" class="button pull-right mr-10"
+                            onclick="window.location.href = 'create-voucher.php';" value="New Voucher">
+
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <!--content-box-content-->
+            </div>
+            <!--form-->
+            <div style="clear:both;"></div>
+        </div>
+    </div> <!-- End summer -->
+</div>
+
+
+
+<script type="text/javascript">
+    $(window).load(function () {
+        $('.accCodeSelector').selectpicker();
+        $("div.accCodeSelector button").focus();
+        $(".narration").setFocusTo(".debit");
+        $(".debit").setFocusToIfVal(".credit");
+        $(".narration").escFocusTo("button.dropdown-toggle");
+        $(".debit").escFocusTo(".narration");
+        $(".credit").escFocusTo(".debit");
+        $(".debit").keyup(function (e) {
+            if (e.keyCode == 13) {
+                $(this).quickSubmitDrCr();
+            }
+        });
+        $(".credit").keyup(function (e) {
+            if (e.keyCode == 13) {
+                $(this).quickSubmitDrCr();
+            }
+        });
+        $(".cdr_btn").on('click', function (e) {
+            $(this).quickSubmitDrCr();
+        });
+        $("div.accCodeSelector button").keyup(function (e) {
+            if (e.keyCode == 13) {
+                if ($("select.accCodeSelector option:selected").val() != 0) {
+                    var account_code = $("select.accCodeSelector option:selected").val();
+                    getAccountBalance(account_code);
+                    $(".insertAccTitle").fadeIn();
+                    $(".narration").focus();
+                }
+            }
+        });
+        $(".save_voucher").click(function () {
+            $(this).saveJournal();
+        });
+        $(window).keyup(function (e) {
+            if (e.altKey == true && e.keyCode == 83) {
+                e.preventDefault();
+                $("#form").click();
+                $(".save_voucher").click();
+                return false;
+            }
+        });
+        $("#datepicker").setFocusTo("div.accCodeSelector button");
+        $(document).showDifference();
+        $(".deleteVoucher").click(function () {
+            $(this).deleteVoucher();
+        });
+    });
+</script>

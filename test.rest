@@ -1,0 +1,8 @@
+GET http://localhost:3000
+
+
+###
+POST http://localhost:3000/db/get-account-balance
+Content-Type: application/json
+
+{ "name": "ABC" }

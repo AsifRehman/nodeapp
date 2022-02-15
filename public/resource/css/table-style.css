@@ -1,0 +1,77 @@
+ /*Table Style*/
+
+ table.tableStyle th{
+ 	font-size: 14px !important;
+ 	text-transform: uppercase !important;
+ 	color: black !important;
+ 	font-weight: 900 !important;
+ 	padding-left: 7px !important;
+ }
+ table.tableStyle td{
+ 	font-size: 14px !important;
+ 	color: black !important;
+ 	font-weight: 400 !important;
+ }
+ table.tableFooter td{
+ 	font-size: 16px !important;
+ 	color: black !important;
+ 	font-weight: 700 !important;
+ }
+ /*input{
+ 	color: black !important;
+ 	font-weight: 700 !important;	
+ }
+ textarea{
+ 	color: black !important;
+ 	font-weight: 700 !important;	
+ }*/
+
+.billTitle{
+	font-weight:700; 
+	text-align:left; 
+	font-size:24px !important;
+	background-color: white !important;
+	padding: 7px;
+}
+
+
+table.tableStyle_bdr0 .groupTitle{
+ 	font-size: 20px;
+ 	font-weight: 700;
+ 	border-bottom: 1px dotted grey !important;
+ }
+
+table.tableStyle_bdr0 tbody{
+ 	border: 0px !important;
+ }
+
+table.tableStyle_bdr0{
+ 	border: 0px !important;
+ 	border-bottom: 0px !important;
+ }
+
+table.tableStyle_bdr0 th{
+ 	border: 0px;
+ 	font-size: 14px;
+ 	color: black;
+ 	font-weight: 900;
+ 	text-align: left;
+ 	background-color: white;
+ 	padding: 5px;
+ }
+
+ table.tableStyle_bdr0 td{
+ 	font-size: 14px;
+ 	color: black;
+ 	font-weight: 400;
+ 	text-align: left;
+ 	border: 0px;
+ 	padding: 5px;
+ }
+ table.tableFooter_bdr0 td{
+ 	font-size: 14px;
+ 	color: black;
+ 	font-weight: 700;
+ 	border: 0px;
+ }
+ 

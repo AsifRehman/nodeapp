@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SIT Solutions</title>
+    <link rel="stylesheet" href="resource/css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="resource/css/style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="resource/css/invalid.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="resource/css/form.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="resource/css/tabs.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="resource/css/reports.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="resource/css/scrollbar.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="resource/css/font-awesome.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="resource/css/jquery-ui/jquery-ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="resource/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="resource/css/bootstrap-select.css" />
+    <link rel="stylesheet" href="resource/css/table-style.css" type="text/css" />
+    <style type="text/css">
+        tr td,
+        tr th {
+            padding: 5px !important;
+            height: auto !important
+        }
+    </style>
+    <script type="text/javascript" src="resource/scripts/jquery.1.11.min.js"></script>
+    <script type="text/javascript" src="resource/scripts/bootstrap-select.js"></script>
+    <script type="text/javascript" src="resource/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="resource/scripts/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="resource/scripts/configuration.js"></script>
+    <script type="text/javascript" src="resource/scripts/ledger.configuration.js"></script>
+    <script type="text/javascript" src="resource/scripts/tab.js"></script>
+    <script type="text/javascript" src="resource/scripts/sideBarFunctions.js"></script>
+
+</head>
+
+<body>
+
+    <input type="hidden" class="config_pnl_date" value="2020-04-02">
+
+    <div id="body-wrapper">
+        <div id="sidebar">
+            <input type="hidden" value="create-voucher.php" class="this_file_name" />
+            <input type="hidden" value="0101010003" class="cash_default" />
+            <div class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="hamburger hamburger--3dx-r pull-left toggleSideBar"><span class="hamburger-box"><span
+                                    class="hamburger-inner"></span></span></a>
+                        <a href="dashboard.php" class="navbar-brand">
+                            <img alt="Company logo" class="logo_small" src="resource/images/sitsbook-logo/logo.png" />
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+
+
+                            <li><a class="notification-icons" href="change-password.php">
+                                    <i class="fa fa-user"></i> <span>Tayab Account </span> </a>
+                            </li>
+                            <li><a class="notification-icons" href="logout.php?out" data-toggle="tooltip"
+                                    title="Logout"><i class="fa fa-sign-out"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <aside>
+                <nav class='site-nav'>
+                    <ul id="main-nav">
+                        <li><a href="dashboard.php" class="nav-top-item no-submenu"><i class="fa fa-dashboard"></i>
+                                Dashboard</a></li>
+                        <li><a class="nav-top-item"><i class="fa fa-book"></i> Cash / Cheque</a>
+                            <ul>
+                                <li><a href="create-voucher">Journal Voucher</a></li>
+                                <li><a href="cash-book-voucher.php">Cash Book</a></li>
+                                <li><a href="cash-receipt.php">Cash Receipt</a></li>
+                                <li><a href="cash-payment.php">Cash Payment</a></li>
+                                <li><a href="bank-receipt.php">Bank Receipt</a></li>
+                                <li><a href="bank-payment.php">Bank Payment</a></li>
+                                <li><a href="posted-enteries.php">Search Vouchers</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="nav-top-item"><i class="fa fa-shopping-cart"></i> Purchases</a>
+                            <ul>
+                                <li><a href="purchase-details.php">Purchases</a></li>
+                                <li><a href="purchase-return-details.php">Purchase Returns</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a class="nav-top-item"><i class="fa fa-angle-double-right"></i> Sales</a>
+                            <ul>
+                                <!-- <li><a href="sale-orders.php">Sale Orders</a></li> -->
+                                <li><a href="sale-details.php">Sales</a></li>
+                                <li><a href="sales-return-details.php">Sale Returns</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li><a class="nav-top-item"><i class="fa fa-angle-double-right"></i> Embroidery</a>
+                            <ul>
+                            </ul>
+                        </li>
+
+                        <li><a href="cheques-details.php" class="nav-top-item no-submenu"><i class="fa fa-check"></i>
+                                Cheques</a></li>
+
+                        <li><a href="financial-reports.php" class="nav-top-item no-submenu"><i
+                                    class="fa fa-calculator"></i> Reports</a></li>
+                        <li><a href="settings.php" class="nav-top-item no-submenu"><i class="fa fa-cog"></i>
+                                Settings</a></li>
+
+                        <li><a href="logout.php?out" class="nav-top-item no-submenu"><i class="fa fa-sign-out"></i> Sign
+                                Out</a></li>
+                    </ul> <!-- End #main-nav -->
+                </nav>
+            </aside>
+            <div class="clear"></div>
+        </div><!-- End #sidebar -->
+        <div id="bodyWrapper">
+            <%- body %>
+        </div>
+        <!--body-wrapper-->
+    </div>
+    <!--body-wrapper-->
+</body>
+
+</html>
