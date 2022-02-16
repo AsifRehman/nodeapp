@@ -7,10 +7,13 @@ const Level5 = require("../models/level5");
 router.get("/", async (req, res) => {
   let searchOptions = {};
   if (req.query.id != null && req.query.id !== "") {
-    searchOptions.jvNum = req.query.id
+    searchOptions.jvNum = req.query.id;
   }
   try {
-    const jvs = await JV.find(searchOptions);
+    const jv = {};
+    if (searchOptions.jvNum > 0) jvs = await JV.find(searchOptions);
+    else jvs = new JV([{ jvNum: 1212, jvDate: Date.now(), transactions: [] }]);
+
     const level5s = await Level5.find().select({
       level5_code: 1,
       level5_title: 1,
@@ -21,26 +24,38 @@ router.get("/", async (req, res) => {
       level5: level5s,
       searchOptions: req.query,
     });
-  } catch {
+  } catch (err) {
+    console.log(err.message);
     res.redirect("/");
   }
-});
-
-// New Author Route
-router.get("/new", (req, res) => {
-  res.render("jvs/new", { jv: new JV() });
 });
 
 // Create Author Route
 router.post("/", async (req, res) => {
   try {
-    const jv = new JV({
-      jvNum: req.body.jvNum,
-      jvDate: req.body.jvDate,
-      transactions: req.body.transactions,
-    });
-    const newJV = await jv.save();
-    res.status(200).redirect(`jvs/${jv.jvNum}`);
+    console.log(req.body.transactions);
+    if (req.body.jvNum > 0) {
+      const jv = await JV.findOne({ jvNum: req.body.jvNum }).exec();
+      //console.log(jv)
+      jv.jvNum = req.body.jvNum;
+      jv.jvDate = req.body.jvDate;
+      jv.transactions = req.body.transactions;
+
+      const freshJv = await jv.save();
+      console.log(freshJv);
+      res.status(200).redirect(`jvs/${freshJv.jvNum}`);
+    }
+    else {
+      const jv = new JV({
+        jvNum: req.body.jvNum,
+        jvDate: req.body.jvDate,
+        transactions: req.body.transactions,
+      });
+
+      const freshJv = await jv.save();
+      res.status(200).redirect(`jvs/${freshJv.jvNum}`);      
+    }
+
   } catch (err) {
     console.log(err);
     res.send(err);
@@ -49,8 +64,7 @@ router.post("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const jvs = await JV.find({jvNum: req.params.id}).exec();
-    console.log(jvs)
+    const jvs = await JV.find({ jvNum: req.params.id }).exec();
     const level5s = await Level5.find().select({
       level5_code: 1,
       level5_title: 1,
@@ -58,7 +72,7 @@ router.get("/:id", async (req, res) => {
     });
     res.render("jvs/index", {
       jvs: jvs,
-      level5: level5s
+      level5: level5s,
     });
   } catch {
     res.redirect("/");

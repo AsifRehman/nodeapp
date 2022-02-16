@@ -150,7 +150,7 @@ $(document).ready(function () {
     $(".amountRow").each(function (index, element) {
       accCode = $(this).children(".accCode").text();
       accTitle = $(this).children(".accTitle").text();
-      narration = window.btoa($(this).children(".narration").text());
+      narration = $(this).children(".narration").text();
       debit = $(this).children(".debitColumn").text();
       credit = $(this).children(".creditColumn").text();
       row_id = $(this).attr("row-id");
