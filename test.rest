@@ -1,8 +1,8 @@
-GET http://localhost:3000/level5/parties
+GET http://localhost:3000/jvs/parties
 
 
 ###
-POST http://localhost:3000/db/get-account-balance
+POST http://localhost:3000/jvs/
 Content-Type: application/json
 
 { 
