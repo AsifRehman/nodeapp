@@ -1,102 +1,111 @@
-const express = require('express')
-const router = express.Router()
-const JV = require('../models/jv')
-const Level5 = require('../models/level5')
+const express = require("express");
+const router = express.Router();
+const JV = require("../models/jv");
+const Level5 = require("../models/level5");
 
 // All Authors Route
-router.get('/', async (req, res) => {
-  let searchOptions = {}
-  if (req.query.name != null && req.query.name !== '') {
-    searchOptions.name = new RegExp(req.query.name, 'i')
+router.get("/", async (req, res) => {
+  let searchOptions = {};
+  if (req.query.id != null && req.query.id !== "") {
+    searchOptions.jvNum = req.query.id
   }
   try {
-    const jvs = await JV.find(searchOptions)
-    const level5s = await Level5.find().select({ "level5_code": 1, "level5_title": 1,"_id": 0});
-    res.render('jvs/index', {
+    const jvs = await JV.find(searchOptions);
+    const level5s = await Level5.find().select({
+      level5_code: 1,
+      level5_title: 1,
+      _id: 0,
+    });
+    res.render("jvs/index", {
       jvs: jvs,
       level5: level5s,
-      searchOptions: req.query
-    })
+      searchOptions: req.query,
+    });
   } catch {
-    res.redirect('/')
+    res.redirect("/");
   }
-})
+});
 
 // New Author Route
-router.get('/new', (req, res) => {
-  res.render('jvs/new', { jv: new JV() })
-})
+router.get("/new", (req, res) => {
+  res.render("jvs/new", { jv: new JV() });
+});
 
 // Create Author Route
-router.post('/', async (req, res) => {
-  const jv = new JV({
-    name: req.body.name
-  })
+router.post("/", async (req, res) => {
   try {
-    const newJV = await jv.save()
-    res.redirect(`jvs/${jv.id}`)
-  } catch {
-    res.render('jvs/new', {
-      jv: jv,
-      errorMessage: 'Error creating Author'
-    })
+    const jv = new JV({
+      jvNum: req.body.jvNum,
+      jvDate: req.body.jvDate,
+      transactions: req.body.transactions,
+    });
+    const newJV = await jv.save();
+    res.status(200).redirect(`jvs/${jv.jvNum}`);
+  } catch (err) {
+    console.log(err);
+    res.send(err);
   }
-})
+});
 
-router.get('/:id', async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const jv = await JV.findById(req.params.id)
-//    const books = await Book.find({ author: author.id }).limit(6).exec()
-    res.render('jvs/show', {
-      jv: jv
-//      booksByAuthor: books
-    })
+    const jvs = await JV.find({jvNum: req.params.id}).exec();
+    console.log(jvs)
+    const level5s = await Level5.find().select({
+      level5_code: 1,
+      level5_title: 1,
+      _id: 0,
+    });
+    res.render("jvs/index", {
+      jvs: jvs,
+      level5: level5s
+    });
   } catch {
-    res.redirect('/')
+    res.redirect("/");
   }
-})
+});
 
-router.get('/:id/edit', async (req, res) => {
+router.get("/:id/edit", async (req, res) => {
   try {
-    const jv = await JV.findById(req.params.id)
-    res.render('jvs/edit', { jv: jv })
+    const jv = await JV.findById(req.params.id);
+    res.render("jvs/edit", { jv: jv });
   } catch {
-    res.redirect('/jvs')
+    res.redirect("/jvs/index");
   }
-})
+});
 
-router.put('/:id', async (req, res) => {
-  let jv
+router.put("/:id", async (req, res) => {
+  let jv;
   try {
-    jv = await JV.findById(req.params.id)
-    jv.name = req.body.name
-    await jv.save()
-    res.redirect(`/jvs/${jv.id}`)
+    jv = await JV.findById(req.params.id);
+    jv.name = req.body.name;
+    await jv.save();
+    res.redirect(`/jvs/${jv.id}`);
   } catch {
     if (jv == null) {
-      res.redirect('/')
+      res.redirect("/");
     } else {
-      res.render('jvs/edit', {
+      res.render("jvs/edit", {
         jv: jv,
-        errorMessage: 'Error updating JV'
-      })
+        errorMessage: "Error updating JV",
+      });
     }
   }
-})
+});
 
-router.delete('/:id', async (req, res) => {
-  let jv
+router.delete("/:id", async (req, res) => {
+  let jv;
   try {
-    jv = await JV.findById(req.params.id)
-    await jv.remove()
-    res.redirect('/jvs')
+    jv = await JV.findById(req.params.id);
+    await jv.remove();
+    res.redirect("/jvs");
   } catch {
     if (jv == null) {
-      res.redirect('/')
+      res.redirect("/");
     } else {
-      res.redirect(`/jvs/${jv.id}`)
+      res.redirect(`/jvs/${jv.id}`);
     }
   }
-})
+});
 
-module.exports = router
+module.exports = router;
