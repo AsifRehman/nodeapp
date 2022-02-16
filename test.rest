@@ -1,4 +1,4 @@
-GET http://localhost:3000/jvs/parties
+GET http://localhost:3000/jvs/test
 
 
 ###

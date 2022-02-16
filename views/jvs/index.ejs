@@ -13,7 +13,7 @@
             class="form-control"
             name="jvNum"
             type="text"
-            value="3443"
+            value="<%= jvs.jvNum %>"
             style="width: 100px; text-align: center"
             readonly
           />
@@ -148,7 +148,7 @@
               <tr class="transactions" style="display: none"></tr>
 
               <!--  -->
-              <% if (jvs) { %>
+              <% if (jvs.jvNum == 0) { %>
                
               <% jvs.forEach(e => { %> <% e.transactions.forEach(t => { %>
               <tr class="transactions amountRow" row-id="0">

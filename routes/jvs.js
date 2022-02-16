@@ -30,6 +30,11 @@ router.get("/", async (req, res) => {
   }
 });
 
+async function getNewJvNum() {
+  const newJvNum = await JV.find({}).select({"jvNum": 1, _id: 0}).sort({"jvNum" : -1}).limit(1).exec();
+    return ((newJvNum[0].jvNum || 0) + 1);
+}
+
 // Create Author Route
 router.post("/", async (req, res) => {
   try {
@@ -43,11 +48,15 @@ router.post("/", async (req, res) => {
 
       const freshJv = await jv.save();
       console.log(freshJv);
-      res.status(200).redirect(`jvs/${freshJv.jvNum}`);
+      res.status(200).redirect(`/jvs/${freshJv.jvNum}`);
     }
     else {
+      let newJvNum = await getNewJvNum();
+
+      console.log(newJvNum);
+
       const jv = new JV({
-        jvNum: req.body.jvNum,
+        jvNum: newJvNum,
         jvDate: req.body.jvDate,
         transactions: req.body.transactions,
       });
@@ -65,6 +74,7 @@ router.post("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const jvs = await JV.find({ jvNum: req.params.id }).exec();
+    console.log(jvs);
     const level5s = await Level5.find().select({
       level5_code: 1,
       level5_title: 1,
