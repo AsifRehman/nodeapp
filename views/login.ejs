@@ -1,81 +1,85 @@
-
-		<div class="main" style="display: none;">
-			<div class="login-form">
-				<div class="head">
-					<a href="https://cosoftconsulting.com" target="_blank">
-						<script data-pagespeed-no-defer>//<![CDATA[
-(function(){for(var g="function"==typeof Object.defineProperties?Object.defineProperty:function(b,c,a){if(a.get||a.set)throw new TypeError("ES3 does not support getters and setters.");b!=Array.prototype&&b!=Object.prototype&&(b[c]=a.value)},h="undefined"!=typeof window&&window===this?this:"undefined"!=typeof global&&null!=global?global:this,k=["String","prototype","repeat"],l=0;l<k.length-1;l++){var m=k[l];m in h||(h[m]={});h=h[m]}var n=k[k.length-1],p=h[n],q=p?p:function(b){var c;if(null==this)throw new TypeError("The 'this' value for String.prototype.repeat must not be null or undefined");c=this+"";if(0>b||1342177279<b)throw new RangeError("Invalid count value");b|=0;for(var a="";b;)if(b&1&&(a+=c),b>>>=1)c+=c;return a};q!=p&&null!=q&&g(h,n,{configurable:!0,writable:!0,value:q});var t=this;function u(b,c){var a=b.split("."),d=t;a[0]in d||!d.execScript||d.execScript("var "+a[0]);for(var e;a.length&&(e=a.shift());)a.length||void 0===c?d[e]?d=d[e]:d=d[e]={}:d[e]=c};function v(b){var c=b.length;if(0<c){for(var a=Array(c),d=0;d<c;d++)a[d]=b[d];return a}return[]};function w(b){var c=window;if(c.addEventListener)c.addEventListener("load",b,!1);else if(c.attachEvent)c.attachEvent("onload",b);else{var a=c.onload;c.onload=function(){b.call(this);a&&a.call(this)}}};var x;function y(b,c,a,d,e){this.h=b;this.j=c;this.l=a;this.f=e;this.g={height:window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight,width:window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth};this.i=d;this.b={};this.a=[];this.c={}}function z(b,c){var a,d,e=c.getAttribute("data-pagespeed-url-hash");if(a=e&&!(e in b.c))if(0>=c.offsetWidth&&0>=c.offsetHeight)a=!1;else{d=c.getBoundingClientRect();var f=document.body;a=d.top+("pageYOffset"in window?window.pageYOffset:(document.documentElement||f.parentNode||f).scrollTop);d=d.left+("pageXOffset"in window?window.pageXOffset:(document.documentElement||f.parentNode||f).scrollLeft);f=a.toString()+","+d;b.b.hasOwnProperty(f)?a=!1:(b.b[f]=!0,a=a<=b.g.height&&d<=b.g.width)}a&&(b.a.push(e),b.c[e]=!0)}y.prototype.checkImageForCriticality=function(b){b.getBoundingClientRect&&z(this,b)};u("pagespeed.CriticalImages.checkImageForCriticality",function(b){x.checkImageForCriticality(b)});u("pagespeed.CriticalImages.checkCriticalImages",function(){A(x)});function A(b){b.b={};for(var c=["IMG","INPUT"],a=[],d=0;d<c.length;++d)a=a.concat(v(document.getElementsByTagName(c[d])));if(a.length&&a[0].getBoundingClientRect){for(d=0;c=a[d];++d)z(b,c);a="oh="+b.l;b.f&&(a+="&n="+b.f);if(c=!!b.a.length)for(a+="&ci="+encodeURIComponent(b.a[0]),d=1;d<b.a.length;++d){var e=","+encodeURIComponent(b.a[d]);131072>=a.length+e.length&&(a+=e)}b.i&&(e="&rd="+encodeURIComponent(JSON.stringify(B())),131072>=a.length+e.length&&(a+=e),c=!0);C=a;if(c){d=b.h;b=b.j;var f;if(window.XMLHttpRequest)f=new XMLHttpRequest;else if(window.ActiveXObject)try{f=new ActiveXObject("Msxml2.XMLHTTP")}catch(r){try{f=new ActiveXObject("Microsoft.XMLHTTP")}catch(D){}}f&&(f.open("POST",d+(-1==d.indexOf("?")?"?":"&")+"url="+encodeURIComponent(b)),f.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),f.send(a))}}}function B(){var b={},c;c=document.getElementsByTagName("IMG");if(!c.length)return{};var a=c[0];if(!("naturalWidth"in a&&"naturalHeight"in a))return{};for(var d=0;a=c[d];++d){var e=a.getAttribute("data-pagespeed-url-hash");e&&(!(e in b)&&0<a.width&&0<a.height&&0<a.naturalWidth&&0<a.naturalHeight||e in b&&a.width>=b[e].o&&a.height>=b[e].m)&&(b[e]={rw:a.width,rh:a.height,ow:a.naturalWidth,oh:a.naturalHeight})}return b}var C="";u("pagespeed.CriticalImages.getBeaconData",function(){return C});u("pagespeed.CriticalImages.Run",function(b,c,a,d,e,f){var r=new y(b,c,a,e,f);x=r;d&&w(function(){window.setTimeout(function(){A(r)},0)})});})();pagespeed.CriticalImages.Run('/mod_pagespeed_beacon','https://wd.cosoftconsulting.info/login.php','82dtZm2p5Q',true,false,'P80NvwwMLz0');
-//]]></script><img id="logo" src="resource/images/login-logo.png" alt="Sits Book" title="About Sits Book Software" data-pagespeed-url-hash="750236847" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/>
-					</a>
+<div class="main" style="display: none;">
+	<div class="login-form">
+		<div class="head">
+			<a href="https://cosoftconsulting.com" target="_blank">
+				<img id="logo" src="resource/images/login-logo.png" alt="Sits Book" title="About Sits Book Software"/>
+			</a>
+		</div>
+		<div class="clear"></div>
+		<div class="form-container">
+			<form action="/login" method="post" class="login_fields">
+				<input type="text" class="text" value="" placeholder="User Name" name="UserName" required />
+				<input type="password" value="" placeholder="Password" name="Password" required />
+				<div class="clear"></div>
+				<div class="submit">
+					<a href="#" class="text-danger" onclick="forgot_password_init();">Forgot Password ?</a>
+					<input type="submit" class="btn btn-default" name="LogIn" value="LOGIN">
+					<div class="clear"></div>
 				</div>
 				<div class="clear"></div>
-				<div class="form-container">
-					<form method="post" class="login_fields">
-						<input type="text" class="text" value="" placeholder="User Name" name="UserName" required />
-						<input type="password" value="" placeholder="Password" name="Password" required />
-						<div class="clear"></div>
-						<div class="submit">
-														<a href="#" class="text-danger" onclick="forgot_password_init();">Forgot Password ?</a>
-														<input type="submit" class="btn btn-default" name="LogIn" value="LOGIN">
-							<div class="clear"></div>
-						</div>
-						<div class="clear"></div>
-					</form>
+			</form>
 
-										<form action="" method="post" class="forgot_fields">
-						<p class="forgot_form_msg margin-clear" style="margin-bottom: 20px; float:left; color:red; font-weight: bold;"></p>
-						<input type="text" id="forgot_user" class="text" value="" placeholder="User Name" name="forgot_user" autocomplete="off"/>
-						<p class="margin-clear" style="margin-left: 0px;margin-top: -10px;margin-bottom: 10px; float: left;">
-							<input type="radio" id="css-label-radio-1" class="css-checkbox" name="method" value="S" checked />
-							<label for="css-label-radio-1" class="css-label-radio">SMS</label>
-							<input type="radio" id="css-label-radio-2" class="css-checkbox" name="method" value="E"/>
-							<label for="css-label-radio-2" class="css-label-radio">Email</label>
-							<div class="clear"></div>
-						</p>
-						<div class="clear"></div>
-						<button type="button" class="pull-left btn btn-primary ml-10" onclick="forgot_password_send(this);"> <i class="fa fa-send"></i> Send Code</button>
-						
-						<!-- <button type="button" class="pull-right btn btn-primary ml-10" onclick="forgot_password_close();"> Login</button> -->
+			<form action="" method="post" class="forgot_fields">
+				<p class="forgot_form_msg margin-clear"
+					style="margin-bottom: 20px; float:left; color:red; font-weight: bold;"></p>
+				<input type="text" id="forgot_user" class="text" value="" placeholder="User Name" name="forgot_user"
+					autocomplete="off" />
+				<p class="margin-clear" style="margin-left: 0px;margin-top: -10px;margin-bottom: 10px; float: left;">
+					<input type="radio" id="css-label-radio-1" class="css-checkbox" name="method" value="S" checked />
+					<label for="css-label-radio-1" class="css-label-radio">SMS</label>
+					<input type="radio" id="css-label-radio-2" class="css-checkbox" name="method" value="E" />
+					<label for="css-label-radio-2" class="css-label-radio">Email</label>
+				<div class="clear"></div>
+				</p>
+				<div class="clear"></div>
+				<button type="button" class="pull-left btn btn-primary ml-10" onclick="forgot_password_send(this);"> <i
+						class="fa fa-send"></i> Send Code</button>
 
-						<span class="cancel-button pull-right btn btn-primary ml-10" onclick="forgot_password_close();"> Cancel</span>
-						<div class="clear"></div>
-					</form>
+				<span class="cancel-button pull-right btn btn-primary ml-10" onclick="forgot_password_close();">
+					Cancel</span>
+				<div class="clear"></div>
+			</form>
 
-					<!-- forget code form -->
-					<form action="" method="post" class="secret_fields" style="display:none;">
-						<p class="margin-clear">
-							<!-- <label> Code : <i class="fa fa-link"></i></label> -->
-							<input class="text-input" id="secret_code" value="" type="text" name="secret_code" placeholder="Enter Code" autocomplete="off" style="text-align:center;"/>
-						</p>
-						<div class="clear"></div>
-						<button type="button" class="pull-right btn btn-primary ml-10" onclick="confirm_code(this);">Confirm</button>
-						<span class="cancel-button" onclick="forgot_password_close();"> Cancel</span>
-						<div class="clear"></div>
-					</form>
-									</div>
-			</div>
+			<!-- forget code form -->
+			<form action="" method="post" class="secret_fields" style="display:none;">
+				<p class="margin-clear">
+					<!-- <label> Code : <i class="fa fa-link"></i></label> -->
+					<input class="text-input" id="secret_code" value="" type="text" name="secret_code"
+						placeholder="Enter Code" autocomplete="off" style="text-align:center;" />
+				</p>
+				<div class="clear"></div>
+				<button type="button" class="pull-right btn btn-primary ml-10"
+					onclick="confirm_code(this);">Confirm</button>
+				<span class="cancel-button" onclick="forgot_password_close();"> Cancel</span>
+				<div class="clear"></div>
+			</form>
 		</div>
-		<div class="ft-info" style="display:block;">
-			<span class="ft-ex left">
-        		Designed &amp; Developed By <a href="http://www.cosoftconsulting.com" target="_blank" class="sits-link-a" style="font-weight: bold;">COSOFT solutions</a>
-        		&nbsp;&nbsp;
-        		<i class="fa fa-envelope"></i> 
-        		<span class="ft-ex"> <a href="mailto:info@cosoftconsulting.com">info@cosoftconsulting.com</a> </span> 
-        		<span class="ft-ex"> UAN: +92 333 9933886</span> 
-        		[ <small>Version : 7.0.1</small> ] 
-			</span>
-			<span class="ft-ex right">
-        		<div class="pull-right" style="padding-right:10px;">
-        			<a href="https://facebook.com/cosoftconsultingBusinessSoftwares" class="ft-ex-social ft-ex-social-f" target="_blank"></a>
-        			<a href="https://plus.google.com/108334373454545379362/posts" class="ft-ex-social ft-ex-social-g" target="_blank"></a>
-        			<a href="https://twitter.com/cosoftconsulting" class="ft-ex-social ft-ex-social-t" target="_blank"></a>
-        		</div>
-        		<div class="pull-right" style="padding-top:5px;">
-	        		<a href="https://cosoftconsulting.com" target="_blank" class="ft-ex-links">FAQ </a> |
-	        		<a href="https://cosoftconsulting.com" target="_blank" class="ft-ex-links"> blog </a> |
-	        		<a href="https://cosoftconsulting.com" target="_blank" class="ft-ex-links">Forums </a>&nbsp;&nbsp;&nbsp;
-	        		<!-- <a href="http://cosoftconsulting.com/user-panel/user-login.php" target="_blank" class="ft-ex-links">Support</a> | -->
-	        		<!-- <a href="http://blog.cosoftconsulting.com" target="_blank" class="ft-ex-links"> News &amp; Events </a> -->
-	        	</div>
-        	</span>
+	</div>
+</div>
+<div class="ft-info" style="display:block;">
+	<span class="ft-ex left">
+		Designed &amp; Developed By <a href="http://www.cosoftconsulting.com" target="_blank" class="sits-link-a"
+			style="font-weight: bold;">COSOFT solutions</a>
+		&nbsp;&nbsp;
+		<i class="fa fa-envelope"></i>
+		<span class="ft-ex"> <a href="mailto:info@cosoftconsulting.com">info@cosoftconsulting.com</a> </span>
+		<span class="ft-ex"> UAN: +92 333 9933886</span>
+		[ <small>Version : 7.0.1</small> ]
+	</span>
+	<span class="ft-ex right">
+		<div class="pull-right" style="padding-right:10px;">
+			<a href="https://facebook.com/cosoftconsultingBusinessSoftwares" class="ft-ex-social ft-ex-social-f"
+				target="_blank"></a>
+			<a href="https://plus.google.com/108334373454545379362/posts" class="ft-ex-social ft-ex-social-g"
+				target="_blank"></a>
+			<a href="https://twitter.com/cosoftconsulting" class="ft-ex-social ft-ex-social-t" target="_blank"></a>
 		</div>
+		<div class="pull-right" style="padding-top:5px;">
+			<a href="https://cosoftconsulting.com" target="_blank" class="ft-ex-links">FAQ </a> |
+			<a href="https://cosoftconsulting.com" target="_blank" class="ft-ex-links"> blog </a> |
+			<a href="https://cosoftconsulting.com" target="_blank" class="ft-ex-links">Forums </a>&nbsp;&nbsp;&nbsp;
+			<!-- <a href="http://cosoftconsulting.com/user-panel/user-login.php" target="_blank" class="ft-ex-links">Support</a> | -->
+			<!-- <a href="http://blog.cosoftconsulting.com" target="_blank" class="ft-ex-links"> News &amp; Events </a> -->
+		</div>
+	</span>
+</div>
