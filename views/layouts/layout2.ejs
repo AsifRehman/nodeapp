@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>User Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="resource/css/login-style.css" rel='stylesheet' type='text/css'/>
+    <link href="resource/css/font-awesome.css" rel='stylesheet' type='text/css'/>
+    
+    <script src="resource/scripts/jquery.1.11.min.js" type="text/javascript"></script>
+    <script src="resource/scripts/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="resource/scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="resource/scripts/configuration.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <%- body %>
+</body>
+
+</html>
+
+<!-- connection close -->
+
+<script type="text/javascript">var forgot_password_init=function(){$(".login_fields").hide('fade',function(){$(".forgot_fields").show('fade');});};var forgot_password_close=function(){$(".forgot_fields").hide('fade',function(){$(".login_fields").show('fade');$("form.forgot_fields")[0].reset();$("form.forgot_fields button:disabled").prop('disabled',false);$(".secret_fields").hide('fade',function(){$(".login_fields").show('fade');});});};var forgot_password_send=function(elm){var forgot_user=$("input[name=forgot_user]").val();var method=$("input[name=method]:checked").length?$("input[name=method]:checked").val():"";if(forgot_user==''){$(".forgot_form_msg").html('Please enter your username.');return;}if(method==''){$(".forgot_form_msg").html('Please select recovery method.');return;}$.post("?",{forgot_user:forgot_user,method:method},function(data){if(data=='501'||data=='502'||data=='503'){var messag="";if(data=='501'){messag="User name '"+forgot_user+"' not exist!";}else if(data=='502'){messag="MOBILE No. not exist select another option.";}else if(data=='503'){messag="EMAIL not exist select another option.";}$(".forgot_form_msg").html(messag);return;}$(".forgot_fields").hide('fade',function(){$(".secret_fields").show('fade');});});};var confirm_code=function(elm){$(elm).prop("disabled",true);var code=$("input[name=secret_code]").val();$.post("?",{confirm_code:code},function(data){if(data=='N'){displayMessage("Error! Incorrect secret code.");return;}window.location.href="forget-password.php";$(elm).prop("disabled",false);});}
+$(document).ready(function(){forgot_password_close();$("input[name=forgot_user]").keydown(function(e){if(e.keyCode==13){forgot_password_send();e.preventDefault();return false;}});$("input[type=text]").keydown(function(e){if(e.keyCode==13){e.preventDefault();return false;}});$("input[name=method]").change(function(){var method=$("input[name=method]:checked").val();var user_name=$("input[name=forgot_user]").val();$.post("?",{get_method:method,user_name:user_name},function(data){method=(method=='S')?"mobile number.":"email address.";displayMessage("Confirmation code will be sent to "+data+"  "+method);});});$("input[name=forgot_user]").change(function(){var user_name=$(this).val();$.post("?",{forgot_method:user_name},function(data){});});$("input[name='UserName']").keydown(function(e){if(e.keyCode==13&&$("input[name='UserName']").val()!=''){e.preventDefault();$("input[name='Password']").focus();}});});$(window).load(function(){$("body").fadeIn(1000,function(){$("div.main").show();$("input[name='UserName']").focus();});});</script>

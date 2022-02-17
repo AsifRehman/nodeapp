@@ -95,7 +95,7 @@ $(document).ready(function () {
     // if($(".save_voucher").prop("disabled")==true){
     // 	return;
     // }
-    // $(".save_voucher").prop("disabled",true);
+    $(".save_voucher").prop("disabled",true);
 
     var difference = $(this).checkDifference();
     if (difference != 0) {
@@ -112,17 +112,6 @@ $(document).ready(function () {
     jvDate = jvDateProcess[2] + "-" + jvDateProcess[1] + "-" + jvDateProcess[0];
     if (new Date(jvDate) <= new Date(config_pnl_date)) {
       displayMessage("Date must be grater then date " + config_pnl_date);
-      return;
-    }
-
-    var order_taker_id =
-      parseInt($("select[name=order_taker_id] option:selected").val()) || 0;
-    var salesman_id =
-      parseInt($("select[name=salesman_id] option:selected").val()) || 0;
-
-    if (order_taker_id > 0 && salesman_id == 0) {
-      $(".save_voucher").prop("disabled", false);
-      displayMessage("Error! Please select salesman.");
       return;
     }
 
@@ -182,9 +171,6 @@ $(document).ready(function () {
         jvDate: jvDate,
         jvRef: jvRef,
         refDate: refDate,
-        deleted_transactions: deleted,
-        order_taker_id: order_taker_id,
-        salesman_id: salesman_id,
         transactions: transaction,
       },
       function (data) {
@@ -197,7 +183,7 @@ $(document).ready(function () {
           //$(".save_voucher").prop("disabled",false);
           displayMessage(data["MSG"]);
           $("#screenLocked").modal("hide");
-          window.location.href = "jvs/?jid=" + data["ID"];
+          window.location.href = "/jvs/" + data["ID"];
         }
       }
     );
@@ -543,7 +529,7 @@ var jvFunctions = {
 };
 var getAccountBalance = function (account_code) {
   $.post(
-    "db/get-account-balance",
+    "/db/get-account-balance",
     { account_code: account_code },
     function (data) {
       //data = $.parseJSON(data);

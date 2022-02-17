@@ -38,7 +38,7 @@ async function getNewJvNum() {
 // Create Author Route
 router.post("/", async (req, res) => {
   try {
-    console.log(req.body.transactions);
+    console.log(req.body.jvDate);
     if (req.body.jvNum > 0) {
       const jv = await JV.findOne({ jvNum: req.body.jvNum }).exec();
       //console.log(jv)
@@ -48,7 +48,8 @@ router.post("/", async (req, res) => {
 
       const freshJv = await jv.save();
       console.log(freshJv);
-      res.status(200).redirect(`/jvs/${freshJv.jvNum}`);
+      res.json({"ID": freshJv.jvNum, "MSG": "Saved Successfully" })
+      
     }
     else {
       let newJvNum = await getNewJvNum();
@@ -62,58 +63,34 @@ router.post("/", async (req, res) => {
       });
 
       const freshJv = await jv.save();
-      res.status(200).redirect(`jvs/${freshJv.jvNum}`);      
+      res.json({"ID": freshJv.jvNum, "MSG": "Updated Successfully" })
     }
 
   } catch (err) {
     console.log(err);
-    res.send(err);
+    res.json({"ID": 0, "MSG": err.message })
   }
 });
 
 router.get("/:id", async (req, res) => {
   try {
-    const jvs = await JV.find({ jvNum: req.params.id }).exec();
+    const jvs = await JV.findOne({ jvNum: req.params.id }).exec();
     console.log(jvs);
+    if(jvs == null) {
+      res.render("jvs")
+      return;
+    }
     const level5s = await Level5.find().select({
       level5_code: 1,
       level5_title: 1,
       _id: 0,
     });
-    res.render("jvs/index", {
+    res.render("jvs", {
       jvs: jvs,
       level5: level5s,
     });
   } catch {
-    res.redirect("/");
-  }
-});
-
-router.get("/:id/edit", async (req, res) => {
-  try {
-    const jv = await JV.findById(req.params.id);
-    res.render("jvs/edit", { jv: jv });
-  } catch {
-    res.redirect("/jvs/index");
-  }
-});
-
-router.put("/:id", async (req, res) => {
-  let jv;
-  try {
-    jv = await JV.findById(req.params.id);
-    jv.name = req.body.name;
-    await jv.save();
-    res.redirect(`/jvs/${jv.id}`);
-  } catch {
-    if (jv == null) {
-      res.redirect("/");
-    } else {
-      res.render("jvs/edit", {
-        jv: jv,
-        errorMessage: "Error updating JV",
-      });
-    }
+    res.redirect("jvs");
   }
 });
 
