@@ -1,11 +1,16 @@
 const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 
-function initialize(passport, getUserByEmail, getUserById) {
-  const authenticateUser = async (email, password, done) => {
-    const user = getUserByEmail(email)
+function initialize(passport, getUserByUserName, getUserById) {
+  console.log("initalized")
+  const authenticateUser = async (username, password, done) => {
+    console.log("authenticating")
+
+    console.log(username)
+    console.log(password)
+    const user = getUserByUserName(username)
     if (user == null) {
-      return done(null, false, { message: 'No user with that email' })
+      return done(null, false, { message: 'No user with that username' })
     }
 
     try {
@@ -19,10 +24,10 @@ function initialize(passport, getUserByEmail, getUserById) {
     }
   }
 
-  passport.use(new LocalStrategy({ usernameField: 'email' }, authenticateUser))
+  passport.use(new LocalStrategy({ usernameField: 'username' }, authenticateUser))
   passport.serializeUser((user, done) => done(null, user.id))
-  passport.deserializeUser((id, done) => {
-    return done(null, getUserById(id))
+  passport.deserializeUser((username, done) => {
+    return done(null, getUserById(user.id))
   })
 }
 

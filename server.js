@@ -16,7 +16,7 @@ const session = require('express-session')
 const initializePassport = require('./passport-config')
 initializePassport(
   passport,
-  email => users.find(user => user.email === email),
+  username => users.find(user => user.username === username),
   id => users.find(user => user.id === id)
 )
 
@@ -62,10 +62,11 @@ db.once('open', () => console.log('Connected to Mongoose'))
 app.use('/', indexRouter)
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
+  console.log(users)
   res.render('login.ejs', {layout: 'layouts/layout2'})
 })
 
-app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+app.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login',
   failureFlash: true
@@ -78,9 +79,10 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 app.post('/register', checkNotAuthenticated, async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10)
+
     users.push({
       id: Date.now().toString(),
-      name: req.body.name,
+      username: req.body.username,
       email: req.body.email,
       password: hashedPassword
     })
@@ -128,6 +130,6 @@ app.use('/db', dbRouter)
 var server = app.listen(process.env.PORT || 3000, ()=> {
   console.log("Calling app.listen's callback function.");
   var port = server.address().port;
-  console.log('Example app listening at http://localhost:%s', port);
+  console.log('Example app listening at http://localhost:%s/jvs', port);
 
 })
