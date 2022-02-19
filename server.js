@@ -96,6 +96,7 @@ app.delete('/logout', (req, res) => {
 })
 
 function checkAuthenticated(req, res, next) {
+  console.log(req.isAuthenticated())
   if (req.isAuthenticated()) {
     return next()
   }
@@ -104,6 +105,7 @@ function checkAuthenticated(req, res, next) {
 }
 
 function checkNotAuthenticated(req, res, next) {
+  console.log(req.isAuthenticated(), "not authenticated")
   if (req.isAuthenticated()) {
     return res.redirect('/')
   }
@@ -114,7 +116,7 @@ function checkNotAuthenticated(req, res, next) {
 
 app.use('/authors', authorRouter)
 app.use('/books', bookRouter)
-app.use('/jvs', jvRouter)
+app.use('/jvs', checkAuthenticated, jvRouter)
 app.use('/level1', level1Router)
 app.use('/level2', level2Router)
 app.use('/level3', level3Router)
