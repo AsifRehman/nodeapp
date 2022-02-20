@@ -3,10 +3,7 @@ const res = require("express/lib/response");
 const router = express.Router();
 const CR = require("../models/cr");
 const Level5 = require("../models/level5");
-router.get("/test", (req, res)=>{
-  res.render("crs/index")
-  return  
-})
+
 // All Authors Route
 router.get("/", async (req, res) => {
   let searchOptions = {};
@@ -23,9 +20,18 @@ router.get("/", async (req, res) => {
       level5_title: 1,
       _id: 0,
     });
+
+
+    const cashAcs = await Level5.find({level4_code: 24502}).select({
+      level5_code: 1,
+      level5_title: 1,
+      _id: 0,
+    });
+
     res.render("crs/index", {
       crs: crs,
       level5: level5s,
+      cashAcs: cashAcs,
       searchOptions: req.query,
     });
   } catch (err) {
@@ -39,8 +45,11 @@ async function getNewCrNum() {
     return ((newCrNum[0].crNum || 0) + 1);
 }
 
+
 // Create Author Route
 router.post("/", async (req, res) => {
+  res.json(req.body.transactions[0].account_title)
+  return;
   try {
     console.log(req.body.crDate);
     if (req.body.crNum > 0) {

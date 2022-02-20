@@ -7,6 +7,7 @@
   <div class="summery_body">
     <div class="content-box-header">
       <p>Cash Receipt Panel</p>
+      
       <div class="clear"></div>
     </div>
     <!-- End .content-box-header -->
@@ -75,15 +76,17 @@
 
         <div class="caption" style="width: 100px">Cash A/c</div>
         <div class="field">
-          <select class="cash_accounts_list" name="cash_accounts_list">
-            <option value="0101010004">Cash In Hand A/c Adil Grey</option>
-            <option value="010101001">Cash in Hand A/c Admin</option>
-            <option value="0101010002">Cash in Hand A/c Naeem</option>
-            <option value="0101010003" selected>
-              Cash In Hand Tayyab Account
-            </option>
-            <option value="0101010005">Dasti Account (CEO)</option>
-          </select>
+          <select class="cash_accounts_list" name="cash_accounts_list" >
+            <option value="0"></option>
+            <% cashAcs.forEach(element => { %>
+              <option
+              <%= element.level5_title %> 
+                data-subtext="<%= element.level5_code%>"
+              >
+                <%= element.level5_title %>
+              </option>
+              <% }) %>
+              </select>
         </div>
         <div class="clear"></div>
         <div style="display: none">
