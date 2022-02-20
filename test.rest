@@ -8,7 +8,18 @@ Content-Type: application/json
 { 
     "account_code": 111010001
 }
+###
 
+GET http://localhost:3000/crs/test
+
+
+###
+POST http://localhost:3000/crs/
+Content-Type: application/json
+
+{ 
+    "account_code": 111010001
+}
 
 ###
 PATCH http://localhost:3000/level3/620bc300e12e9b0c2866b576

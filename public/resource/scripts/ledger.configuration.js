@@ -106,6 +106,13 @@ $(document).ready(function () {
     var jvNum = $("input[name='jvNum']").val();
     var jvDate = $("input[name='jvDate']").val();
     var jvRef = $("input[name='jvReference']").val();
+  //cr
+
+  var cr_id = $(".jVoucher_id").val();
+    var crNum = $("input[name='crNum']").val();
+    var crDate = $("input[name='crDate']").val();
+    var crRef = $("input[name='crReference']").val();
+
 
     var config_pnl_date = $("input.config_pnl_date").val();
     var jvDateProcess = jvDate.split("-");
@@ -184,6 +191,32 @@ $(document).ready(function () {
           displayMessage(data["MSG"]);
           $("#screenLocked").modal("hide");
           window.location.href = "/jvs/" + data["ID"];
+        }
+      }
+    );
+    //cr
+    $.post(
+      "/crs",
+      {
+        newCr: true,
+        cr_id: cr_id,
+        crNum: crNum,
+        crDate: crDate,
+        crRef: crRef,
+        refDate: refDate,
+        transactions: transaction,
+      },
+      function (data) {
+        //data = $.parseJSON(data);
+        if (data["ID"] == 0) {
+          $(".save_voucher").prop("disabled", false);
+          $("#screenLocked").modal("hide");
+          displayMessage(data["MSG"]);
+        } else {
+          //$(".save_voucher").prop("disabled",false);
+          displayMessage(data["MSG"]);
+          $("#screenLocked").modal("hide");
+          window.location.href = "/crs/" + data["ID"];
         }
       }
     );
@@ -345,6 +378,191 @@ $(document).ready(function () {
   };
 });
 var jvFunctions = {
+  messageText: "Are you Sure?",
+  yesButton: "Y",
+  yesButtonText: "Confirm",
+  noButton: "Y",
+  noButtonText: "Cancel",
+  centerThisDiv: function (elementSelector) {
+    var win_hi = $(window).height() / 2;
+    var win_width = $(window).width() / 2;
+    var elemHeight = $(elementSelector).height() / 2;
+    var elemWidth = $(elementSelector).width() / 2;
+    var posTop = win_hi - elemHeight;
+    var posLeft = win_width - elemWidth;
+    $(elementSelector).css({
+      position: "fixed",
+      top: posTop,
+      left: posLeft,
+      margin: "0px",
+    });
+    $(elementSelector).fadeIn();
+  },
+  showMessage: function () {
+    var popUpDiv =
+      "<div id='popUpDel'><p class='confirm'>" + this.messageText + "</p>";
+    if (this.yesButton == "Y") {
+      popUpDiv +=
+        "<a class='dodelete btn btn-danger'>" + this.yesButtonText + "</a>";
+    }
+    if (this.noButton == "Y") {
+      popUpDiv +=
+        "<a class='nodelete btn btn-info'>" + this.noButtonText + "</a>";
+    }
+    popUpDiv += "</div>";
+    $("body").append(popUpDiv);
+    $("#popUpDel").hide();
+    $("#fade").fadeIn();
+    $("#popUpDel").fadeIn();
+    this.centerThisDiv("#popUpDel");
+  },
+  closePopUp: function () {
+    $("#fade").fadeOut();
+    if ($("#popUpForm").length) {
+      $("#popUpForm").fadeOut(function () {
+        $(this).remove();
+      });
+    }
+    if ($("#popUpDel").length) {
+      $("#popUpDel").remove();
+    }
+  },
+  showDifference: function () {
+    if ($("td.debitTotal").text() != "" && $("td.creditTotal").text() != "") {
+      var debitColumn = parseFloat($("td.debitTotal").text() || 0);
+      var creditColumn = parseFloat($("td.creditTotal").text() || 0);
+      if (debitColumn > creditColumn) {
+        $("td.drCrDiffer").text(debitColumn - creditColumn);
+      } else {
+        $("td.drCrDiffer").text(creditColumn - debitColumn);
+      }
+    }
+  },
+  showUpdater: function (thisElm) {
+    var row_id = $(thisElm).parent().parent().attr("row-id");
+    var thisRow = $(thisElm).parent().parent();
+
+    var accCode = thisRow.find("td.accCode").text();
+    var accTitle = thisRow.find("td.accTitle").text();
+    var narration = thisRow.find("td.narration").text();
+    var debitColumn = parseFloat(thisRow.find("td.debitColumn").text()) || 0;
+    var creditColumn = parseFloat(thisRow.find("td.creditColumn").text()) || 0;
+    if (debitColumn != 0) {
+      var type = "Dr";
+      var amount = debitColumn;
+    } else if (creditColumn != 0) {
+      var type = "Cr";
+      var amount = creditColumn;
+    }
+    var main = this;
+    if (row_id != "") {
+      $("body").append('<div id="popUpForm"></div>');
+      $.post(
+        "pop-up-form/update-voucher-detail.php",
+        { jDetail: row_id },
+        function (data) {
+          if (data != "") {
+            $("#popUpForm").html(data);
+            var AccCodeOptionList = $(".accCodeSelector").html();
+            $("#popUpForm")
+              .find("select.accCodePopup")
+              .append(AccCodeOptionList);
+            $("#popUpForm").find("input[name='jv_detail_id']").val(row_id);
+
+            $("#popUpForm")
+              .find("select[name='accCode'] option")
+              .prop("selected", false);
+            $("#popUpForm")
+              .find("select[name='accCode'] option[value='" + accCode + "']")
+              .prop("selected", true);
+
+            $("#popUpForm").find("input[name='narration']").val(narration);
+
+            $("#popUpForm")
+              .find("input[type='radio']")
+              .each(function (i, v) {
+                if ($(this).val() == type) {
+                  $(this).prop("checked", true);
+                } else {
+                  $(this).prop("checked", false);
+                }
+              });
+
+            $("#popUpForm").find("input[name='amount']").val(amount);
+            $("#popUpForm").find("select.accCodePopup").selectpicker();
+            main.centerThisDiv("#popUpForm");
+            $("#fade").fadeIn();
+            $("#popUpForm").fadeIn();
+          }
+        }
+      );
+    }
+  },
+  updateJvDetails: function () {
+    var main = this;
+    if ($("#popUpForm").length) {
+      var jv_id = $("#popUpForm").find("input[name='jv_id']").val();
+      var jv_detail_id = $("#popUpForm")
+        .find("input[name='jv_detail_id']")
+        .val();
+      var accCode = $("#popUpForm")
+        .find("select[name='accCode'] option:selected")
+        .val();
+      var accTitle = $("#popUpForm")
+        .find("select[name='accCode'] option:selected")
+        .text();
+      var narration = $("#popUpForm").find("input[name='narration']").val();
+      var type = $("#popUpForm").find("input[name='type']:checked").val();
+      var amount = $("#popUpForm").find("input[name='amount']").val();
+
+      $("tr").each(function (index, element) {
+        var row_id = parseInt($(this).attr("row-id")) || 0;
+        var thisRow = $(this);
+        if (row_id == jv_detail_id) {
+          thisRow.find("td.accCode").text(accCode);
+          thisRow.find("td.accTitle").text(accTitle);
+          thisRow.find("td.narration").text(narration);
+          if (type == "Dr") {
+            thisRow.find("td.debitColumn").text(amount);
+            thisRow.find("td.creditColumn").text("");
+          } else if (type == "Cr") {
+            thisRow.find("td.creditColumn").text(amount);
+            thisRow.find("td.debitColumn").text("");
+          }
+        }
+      });
+      $(".debitColumn").sumColumn(".debitTotal");
+      $(".creditColumn").sumColumn(".creditTotal");
+      main.showDifference();
+      main.closePopUp();
+    }
+  },
+  deleteRow: function (thisElm) {
+    var row_id = parseInt($(thisElm).parent().parent().attr("row-id")) || 0;
+    var thisRow = $(thisElm).parent().parent();
+    var main = this;
+    main.messageText = "Do you want to Delete?";
+    main.showMessage();
+    $(".dodelete").click(function () {
+      thisRow.remove();
+      $("body").append(
+        '<input type="hidden" class="deleted_transaction" value="' +
+          row_id +
+          '">'
+      );
+      $(".debitColumn").sumColumn(".debitTotal");
+      $(".creditColumn").sumColumn(".creditTotal");
+      main.showDifference();
+      main.closePopUp();
+    });
+    $(".nodelete").click(function () {
+      main.closePopUp();
+    });
+  },
+};
+//crs
+
+var crFunctions = {
   messageText: "Are you Sure?",
   yesButton: "Y",
   yesButtonText: "Confirm",
