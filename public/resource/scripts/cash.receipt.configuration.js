@@ -138,13 +138,22 @@ $(document).ready(function () {
         transactions: transaction,
       },
       function (data) {
-        console.log(data);
+        //data = $.parseJSON(data);
+        if (data["ID"] == 0) {
+          $(".save_voucher").prop("disabled", false);
+          $("#screenLocked").modal("hide");
+          displayMessage(data["MSG"]);
+        } else {
+          //$(".save_voucher").prop("disabled",false);
+          displayMessage(data["MSG"]);
+          $("#screenLocked").modal("hide");
+          window.location.href = "/crs/" + data["ID"];
+        }
         return;
 
-        //data = $.parseJSON(data);
         displayMessage(data["MSG"]);
 
-        if (data["OK"] == "Y") {
+        if (data["OK"] !== "xxxx") {
           $(".saveJournal").hide();
           var $print_button =
             '<a class="button pull-right" target="_blank" href="voucher-cash-received.php?id=' +

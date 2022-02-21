@@ -2,8 +2,8 @@ const express = require("express");
 const res = require("express/lib/response");
 const router = express.Router();
 const CR = require("../models/cr");
-const JV = require("../models/jv");
 const Level5 = require("../models/level5");
+const shared = require("./shared")
 
 // All Authors Route
 router.get("/", async (req, res) => {
@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
       _id: 0,
     });
 
-    res.render("crs/index", {
+    res.render("crs/crv", {
       crs: crs,
       level5: level5s,
       cashAcs: cashAcs,
@@ -40,19 +40,6 @@ router.get("/", async (req, res) => {
     res.redirect("/");
   }
 });
-
-async function getNewCrNum() {
-  const newCrNum = await CR.findOne().select({"crNum": 1, _id: 0}).sort({"crNum" : -1}).limit(1).exec();
-  return newCrNum == null ? 0 : newCrNum.crNum + 1;
-}
-
-async function getNewJvNum() {
-  const newJvNum1 = await JV.findOne().select({"jvNum": 1, _id: 0}).sort({"jvNum" : -1}).limit(1).exec();
-  const newJvNum2 = await CR.findOne().select({"jvNum": 1, _id: 0}).sort({"jvNum" : -1}).limit(1).exec();
-  let v1 = newJvNum1 == null ? 0 : newJvNum1.jvNum + 1;
-  let v2 = newJvNum2 == null ? 0 : newJvNum2.jvNum + 1;
-  return Math.max(v1,v2);
-}
 
 // Create Author Route
 router.post("/", async (req, res) => {
@@ -72,8 +59,8 @@ router.post("/", async (req, res) => {
       
     }
     else {
-      let newCrNum = await getNewCrNum();
-      let newJvNum = await getNewJvNum();
+      let newCrNum = await shared.getNewCrNum();
+      let newJvNum = await shared.getNewJvNum();
 
       const cr = new CR({
         jvNum: newJvNum,
@@ -84,7 +71,7 @@ router.post("/", async (req, res) => {
       });
 
       const freshCr = await cr.save();
-      res.json({"ID": freshcr.crNum, "MSG": "Updated Successfully" })
+      res.json({"ID": freshCr.jvNum, "MSG": "Updated Successfully" })
     }
 
   } catch (err) {
@@ -95,7 +82,7 @@ router.post("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const crs = await CR.findOne({ crNum: req.params.id }).exec();
+    const crs = await CR.findOne({ jvNum: req.params.id }).exec();
     console.log(crs);
     if(crs == null) {
       res.render("crs")
@@ -106,8 +93,16 @@ router.get("/:id", async (req, res) => {
       level5_title: 1,
       _id: 0,
     });
-    res.render("crs", {
+
+    const cashAcs = await Level5.find({level4_code: 24502}).select({
+      level5_code: 1,
+      level5_title: 1,
+      _id: 0,
+    });
+
+    res.render("crs/crv", {
       crs: crs,
+      cashAcs: cashAcs,
       level5: level5s,
     });
   } catch {

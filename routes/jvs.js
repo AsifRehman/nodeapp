@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
       level5_title: 1,
       _id: 0,
     });
-    res.render("jvs/index", {
+    res.render("jvs/jvv", {
       jvs: jvs,
       level5: level5s,
       searchOptions: req.query,

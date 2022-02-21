@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 ###
 
-GET http://localhost:3000/crs/max
+GET http://localhost:3000/crs/1
 
 
 ###
