@@ -127,7 +127,6 @@ $(document).ready(function () {
       transaction[index].narration = $(this).children(".narration").text();
       transaction[index].credit = $(this).children(".creditColumn").text();
     });
-    transaction = JSON.stringify(transaction);
     console.log("abc");
     $.post(
       "/crs",
@@ -140,6 +139,7 @@ $(document).ready(function () {
       },
       function (data) {
         console.log(data);
+        return;
 
         //data = $.parseJSON(data);
         displayMessage(data["MSG"]);

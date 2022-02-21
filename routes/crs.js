@@ -43,12 +43,8 @@ router.get("/", async (req, res) => {
 
 async function getNewCrNum() {
   const newCrNum = await CR.findOne().select({"crNum": 1, _id: 0}).sort({"crNum" : -1}).limit(1).exec();
-  return newCrNum == null ? 0 : newCrNum.jvNum + 1;
+  return newCrNum == null ? 0 : newCrNum.crNum + 1;
 }
-router.get('/max', async (req,res) => {
-  v = await getNewJvNum()
-  res.send(v.toString())
-});
 
 async function getNewJvNum() {
   const newJvNum1 = await JV.findOne().select({"jvNum": 1, _id: 0}).sort({"jvNum" : -1}).limit(1).exec();
@@ -68,17 +64,7 @@ router.post("/", async (req, res) => {
       cr.crNum = req.body.crNum;
       cr.cashAc = req.body.cashAc;
       cr.jvDate = req.body.jvDate;
-
-      req.body.transactions.forEach(e => {
-        e.row_id = 0;
-        e.account_code = e.account_code;
-        e.account_title = e.account_title;
-        e.narration = e.narration;
-        cr.transactions.push(e)
-        console.log(e)
-      });
-
-      return;
+      cr.transactions = req.body.transactions;
 
       const freshCr = await cr.save();
       console.log(freshCr);
@@ -92,17 +78,9 @@ router.post("/", async (req, res) => {
       const cr = new CR({
         jvNum: newJvNum,
         crNum: newCrNum,
-        cashAc: 245020001,
+        cashAc: req.body.cashAc,
         jvDate: req.body.jvDate,
-      });
-
-      req.body.transactions.forEach(e => {
-        e.row_id = 0;
-        e.account_code = e.account_code;
-        e.account_title = e.account_title;
-        e.narration = e.narration;
-        cr.transactions.push(e)
-        console.log(e)
+        transactions: req.body.transactions
       });
 
       const freshCr = await cr.save();

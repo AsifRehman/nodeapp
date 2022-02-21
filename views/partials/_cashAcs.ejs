@@ -1,9 +1,8 @@
 <div class="caption" style="width: 100px">Cash A/c</div>
 <div class="field">
   <select class="cash_accounts_list" name="cash_accounts_list">
-    <option value="245020001"></option>
     <% cashAcs.forEach(element => { %>
-      <option value="<%= element.level5_code %>"
+      <option value="<%= element.level5_code %>" class="selected"
         data-subtext="<%= element.level5_code%>"
       >
         <%= element.level5_title %>
