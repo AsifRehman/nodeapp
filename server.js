@@ -134,6 +134,6 @@ app.use('/db', dbRouter)
 var server = app.listen(process.env.PORT || 3000, ()=> {
   console.log("Calling app.listen's callback function.");
   var port = server.address().port;
-  console.log('Example app listening at http://localhost:%s/cps', port);
+  console.log('Example app listening at http://localhost:%s/crs', port);
 
 })

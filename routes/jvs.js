@@ -10,7 +10,6 @@ router.get("/", async (req, res) => {
     searchOptions.jvNum = req.query.id;
   }
   try {
-    const jv = {};
     if (searchOptions.jvNum > 0) jvs = await JV.find(searchOptions);
     else jvs = new JV([{ jvNum: 1212, jvDate: Date.now(), transactions: [] }]);
 

@@ -194,32 +194,7 @@ $(document).ready(function () {
         }
       }
     );
-    //cr
-    $.post(
-      "/crs",
-      {
-        newCr: true,
-        cr_id: cr_id,
-        crNum: crNum,
-        crDate: crDate,
-        crRef: crRef,
-        refDate: refDate,
-        transactions: transaction,
-      },
-      function (data) {
-        //data = $.parseJSON(data);
-        if (data["ID"] == 0) {
-          $(".save_voucher").prop("disabled", false);
-          $("#screenLocked").modal("hide");
-          displayMessage(data["MSG"]);
-        } else {
-          //$(".save_voucher").prop("disabled",false);
-          displayMessage(data["MSG"]);
-          $("#screenLocked").modal("hide");
-          window.location.href = "/crs/" + data["ID"];
-        }
-      }
-    );
+
   };
   $.fn.showUpdateFox = function () {
     var idValue = $(this).attr("do");
@@ -750,8 +725,6 @@ var getAccountBalance = function (account_code) {
     "/db/get-account-balance",
     { account_code: account_code },
     function (data) {
-      //data = $.parseJSON(data);
-      console.log(data);
       $(".insertAccTitle")
         .text(" Balance : " + data["BALANCE"])
         .stDigits();

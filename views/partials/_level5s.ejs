@@ -1,0 +1,16 @@
+<select
+  class="accCodeSelector show-tick form-control"
+  data-style="btn-default"
+  data-live-search="true"
+  style="border: none"
+>
+  <option selected value="0"></option>
+  <% level5.forEach(element => { %>
+  <option
+    value="<%= element.level5_code%>"
+    data-subtext="<%= element.level5_code%>"
+  >
+    <%= element.level5_title %>
+  </option>
+  <% }) %>
+</select>

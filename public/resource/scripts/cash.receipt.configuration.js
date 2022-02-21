@@ -84,20 +84,16 @@ $(document).ready(function () {
 
     // $("#screenLocked").modal('show');
 
-    var cash_in_hand = "010101001";
+    var cashAc = "245020001";
     if ($("select.cash_accounts_list").length) {
-      cash_in_hand = $("select.cash_accounts_list option:selected").val();
+      cashAc = $("select.cash_accounts_list option:selected").val();
     } else {
-      cash_in_hand = $("input.cash-in-hand").val();
+      cashAc = $("input.cash-in-hand").val();
     }
 
-    var jv_id = $("input[name='jv_id']").val();
     var crNum = $("input[name='crNum']").val();
     var jvNum = $("input[name='jvNum']").val();
     var jvDate = $("input[name='jvDate']").val();
-    var jvRef = $("input[name='jvReference']").val();
-    var refDate = $("input[name='refDate']").val();
-    var invoiceNo = $("input[name='invoiceNo']").val();
 
     var config_pnl_date = $("input.config_pnl_date").val();
     var jvDateProcess = jvDate.split("-");
@@ -108,20 +104,6 @@ $(document).ready(function () {
     }
     console.log("jvdate");
 
-    // var service = '';
-    var serviceId = $("input[name=serviceId]").val();
-    var repairJobId = $("input[name=repairJobId]").val();
-    var instalmentId = $("input[name=instalmentId]").val();
-
-    var order_taker_id =
-      parseInt($("select[name='order_taker_id'] option:selected").val()) || 0;
-    var salesman_id =
-      parseInt($("select[name='salesman_id'] option:selected").val()) || 0;
-    if (jv_id > 0) {
-      displayMessage("Error! Updation not allowed.");
-      // $(".saveJournal").prop("disabled",false);
-      return false;
-    }
     if (jvDate == "") {
       displayMessage("Error! voucher date is missing.");
       // $(".saveJournal").prop("disabled",false);
@@ -139,9 +121,9 @@ $(document).ready(function () {
     console.log("transactions");
     $(".amountRow").each(function (index, element) {
       transaction[index] = {};
-      transaction[index].accCode = $(this).children(".accCode").text();
-      transaction[index].accTitle = $(this).children(".accTitle").text();
-      transaction[index].billNo = $(this).children(".billNo").text() || 0;
+      transaction[index].row_id = 0;
+      transaction[index].account_code = $(this).children(".accCode").text();
+      transaction[index].account_title = $(this).children(".accTitle").text();
       transaction[index].narration = $(this).children(".narration").text();
       transaction[index].credit = $(this).children(".creditColumn").text();
     });
@@ -150,20 +132,10 @@ $(document).ready(function () {
     $.post(
       "/crs",
       {
-        invoiceNo: invoiceNo,
-        jv_id: jv_id,
-        cash_in_hand: cash_in_hand,
+        cashAc: cashAc,
         crNum: crNum,
         jvNum: jvNum,
         jvDate: jvDate,
-        jvRef: jvRef,
-        refDate: refDate,
-        // service:service,
-        serviceId: serviceId,
-        repairJobId: repairJobId,
-        instalmentId: instalmentId,
-        order_taker_id: order_taker_id,
-        salesman_id: salesman_id,
         transactions: transaction,
       },
       function (data) {
@@ -173,7 +145,6 @@ $(document).ready(function () {
         displayMessage(data["MSG"]);
 
         if (data["OK"] == "Y") {
-          $("input.jv_id").val(data["ID"]);
           $(".saveJournal").hide();
           var $print_button =
             '<a class="button pull-right" target="_blank" href="voucher-cash-received.php?id=' +
@@ -307,10 +278,10 @@ $(document).ready(function () {
 });
 var getAccountBalance = function (account_code, element) {
   $.post(
-    "db/get-account-balance.php",
-    { supplierAccCode: account_code },
+    "/db/get-account-balance",
+    { account_code: account_code },
     function (data) {
-      data = $.parseJSON(data);
+      console.log(data);
       $(element)
         .text(" Balance : " + data["BALANCE"])
         .stDigits()
@@ -353,18 +324,19 @@ var getBillsListOfAccounts = function (account_code) {
 };
 
 var getCashBalance = function () {
-  var cash_in_hand = "010101001";
   if ($("select.cash_accounts_list").length) {
     cash_in_hand = $("select.cash_accounts_list option:selected").val();
   } else {
     cash_in_hand = $("input.cash-in-hand").val();
   }
   $.post(
-    "db/get-account-balance.php",
-    { supplierAccCode: cash_in_hand },
+    "/db/get-account-balance",
+    { account_code: cash_in_hand },
     function (data) {
-      data = $.parseJSON(data);
-      $(".cashBalance").val(data["BALANCE"]).stDigits();
+      $(".insertAccTitle")
+        .text(" Balance : " + data["BALANCE"])
+        .stDigits()
+        .show();
     }
   );
 };

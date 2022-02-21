@@ -26,8 +26,8 @@
           <input
             class="form-control datepicker"
             type="text"
-            name="jvDate"
-            value="<%= jvs.jvDate == null ? new Date().getDate().toString().padStart(2,'0') + '-' + (new Date().getMonth()+1).toString().padStart(2,'0') + '-' + new Date().getFullYear().toString(): jvs.jvDate.getDate().toString().padStart(2,'0') + '-' + (jvs.jvDate.getMonth()+1).toString().padStart(2,'0') + '-' + jvs.jvDate.getFullYear().toString() %>"
+            name="jvDate"<%= jvs.jvDate == null ? new Date().getDate().toString().padStart(2,'0') + '-' + (new Date().getMonth()+1).toString().padStart(2,'0') + '-' + new Date().getFullYear().toString(): jvs.jvDate.getDate().toString().padStart(2,'0') + '-' + (jvs.jvDate.getMonth()+1).toString().padStart(2,'0') + '-' + jvs.jvDate.getFullYear().toString() %>
+            value=""
           />
         </div>
         <div class="caption" style="width: 50px">PO #:</div>

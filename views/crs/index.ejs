@@ -7,27 +7,19 @@
   <div class="summery_body">
     <div class="content-box-header">
       <p>Cash Receipt Panel</p>
-      
+
       <div class="clear"></div>
     </div>
     <!-- End .content-box-header -->
     <div id="bodyTab1">
       <div id="form">
-        <input type="hidden" name="jv_id" class="jv_id" value="0" />
-        <input type="hidden" name="invoiceNo" value="0" />
-        <input type="hidden" name="serviceId" value="" />
-        <input type="hidden" name="repairJobId" value="" />
-        <input type="hidden" name="instalmentId" value="" />
-
-        <!-- for sale bill amount notification -->
-
         <div class="caption" style="margin-left: 0px; width: 50px">JV #</div>
         <div class="field_1" style="width: 100px">
           <input
             class="form-control"
             name="jvNum"
             type="text"
-            value="3443"
+            value="<%= crs.jvNum || 0 %>"
             style="width: 100px"
             readonly
           />
@@ -39,7 +31,7 @@
             class="form-control"
             name="crNum"
             type="text"
-            value="161"
+            value="<%= crs.crNum || 0 %>"
             style="width: 100px; text-align: center"
             readonly
           />
@@ -51,7 +43,7 @@
             class="form-control datepicker"
             type="text"
             name="jvDate"
-            value="07-02-2022"
+            value="<%= crs.jvDate == null ? new Date().getDate().toString().padStart(2,'0') + '-' + (new Date().getMonth()+1).toString().padStart(2,'0') + '-' + new Date().getFullYear().toString(): crs.jvDate.getDate().toString().padStart(2,'0') + '-' + (crs.jvDate.getMonth()+1).toString().padStart(2,'0') + '-' + crs.jvDate.getFullYear().toString() %>"
             style="width: 150px; text-align: center"
           />
         </div>
@@ -74,20 +66,8 @@
           />
         </div>
 
-        <div class="caption" style="width: 100px">Cash A/c</div>
-        <div class="field">
-          <select class="cash_accounts_list" name="cash_accounts_list" >
-            <option value="0"></option>
-            <% cashAcs.forEach(element => { %>
-              <option
-              <%= element.level5_title %> 
-                data-subtext="<%= element.level5_code%>"
-              >
-                <%= element.level5_title %>
-              </option>
-              <% }) %>
-              </select>
-        </div>
+        <%- include('../partials/_cashAcs', { cashAcs: cashAcs }) %>
+
         <div class="clear"></div>
         <div style="display: none">
           <div class="caption size_caption_alt" style="width: 100px">
@@ -126,7 +106,7 @@
           style="width: 100%; margin: 0px auto; border-radius: 0px !important"
         >
           <!--<span class="legend">Journal Voucher</span>-->
-          <table style="width: 100%" align="left" class="voucherDrCrTable">
+          <table style="width: 100%" class="voucherDrCrTable">
             <thead>
               <th class="bg-color">
                 <span style="float: left; margin: 10px">G/L Account</span>
@@ -156,22 +136,7 @@
             <tbody id="d">
               <tr class="entry_row">
                 <td width="21%" style="padding: 2px 2px">
-                  <select
-                    class="accCodeSelector show-tick form-control"
-                    data-style="btn-default"
-                    data-live-search="true"
-                    style="border: none"
-                  >
-                    <option selected value="0"></option>
-                    <% level5.forEach(element => { %>
-                    <option
-                      value="<%= element.level5_code%>"
-                      data-subtext="<%= element.level5_code%>"
-                    >
-                      <%= element.level5_title %>
-                    </option>
-                    <% }) %>
-                  </select>
+                  <%- include('../partials/_level5s', { level5: level5 }) %>
                 </td>
                 <td width="41%">
                   <input
@@ -232,6 +197,19 @@
             <tbody>
               <tr class="transactions" style="display: none"></tr>
 
+              <% if (crs.jvNum !== 0) { %> <% crs.transactions.forEach(t => { %>
+              <tr class="transactions amountRow" row-id="0">
+                <td style="text-align: right" class="accCode"><%= t.account_code %></td>
+                <td style="text-align: left" class="accTitle"><%= t.account_title %></td>
+                <td style="text-align: left" class="narration"><%= t.narration %></td>
+                <td style="text-align: center" class="creditColumn"><%= t.credit %></td>
+                <td style="text-align: center">
+                  <a class="pointer" title="Delete">
+                    <i class="fa fa-times"></i>
+                  </a>
+                </td>
+              </tr>
+              <% }) %> <% } %>
               <tr style="background-color: #f8f8f8; height: 30px">
                 <td colspan="3" class="text-center">Total:</td>
                 <td
@@ -266,25 +244,26 @@
     $("select").selectpicker();
     $("input[name='jvReference']").focus();
     $(".receiptNum,.amount").numericFloatOnly();
-    $("input[name='jvReference']").setFocusTo("input[name='refDate']");
-    $("input[name='refDate']").setFocusTo("div.accCodeSelector button");
     $("select.accCodeSelector").change(function () {});
     $("select.accCodeSelector").change(function (e) {
       setTimeout(function () {
         if ($("select.accCodeSelector option:selected").val() != "") {
           var account_code = $("select.accCodeSelector option:selected").val();
-          if ($("input.admin").val() == "Y") {
-            getAccountBalance(account_code, ".insertAccTitle");
-          }
-          if (account_code.startsWith("010104") == true) {
-            getBillsListOfAccounts(account_code);
-          }
-          if ($("select.billNoSelector").length) {
-            $("select.billNoSelector").focus();
-            $("select.billNoSelector").refresh();
-          } else {
-            $(".narration").focus();
-          }
+          getAccountBalance(account_code, ".insertAccTitle");
+          $(".narration").focus();
+
+          // if ($("input.admin").val() == "Y") {
+          //   getAccountBalance(account_code, ".insertAccTitle");
+          // }
+          // if (account_code.startsWith("010104") == true) {
+          //   getBillsListOfAccounts(account_code);
+          // }
+          // if ($("select.billNoSelector").length) {
+          //   $("select.billNoSelector").focus();
+          //   $("select.billNoSelector").refresh();
+          // } else {
+          //   $(".narration").focus();
+          // }
         }
       }, 100);
     });
