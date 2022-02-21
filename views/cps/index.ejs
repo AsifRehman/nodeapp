@@ -1,0 +1,232 @@
+<script type="text/javascript" src="resource/scripts/cash.payment.configuration.js"></script>
+
+
+<div class="content-box-top" style="overflow:visible;">
+    <div class="summery_body">
+        <div class="content-box-header">
+            <p>Cash Payment Panel</p>
+            <div class="clear"></div>
+        </div><!-- End .content-box-header -->
+        <div id="bodyTab1">
+            <div id="form">
+                <input type="hidden" name="jv_id" class="jv_id" value="0" />
+
+                <input type="hidden" name="invoiceNo" value="0" />
+
+                <div class="caption" style="margin-left:0px;width:50px;">JV #</div>
+                <div class="field_1" style="width:100px;">
+                    <input class="form-control" name="jvNum" type="text" value="3429"
+                        style="width:100px;text-align:center;" readonly />
+                </div>
+
+                <div class="caption" style="margin-left:0px;width:50px;">CP #</div>
+                <div class="field_1" style="width:100px;">
+                    <input class="form-control" name="crNum" type="text" value="372"
+                        style="width:100px;text-align:center;" readonly />
+                </div>
+
+
+                <div class="caption" style="width:50px;line-height:26px;">Date</div>
+                <div class="field_1">
+                    <input class="form-control datepicker" type="text" name="jvDate" value="06-02-2022"
+                        style="width: 150px;" />
+                </div>
+
+                <!-- <div class = "caption" style="width:50px;">PO #:</div>
+             <div class = "field_1" style="width:150px;">
+               <input class="form-control" type="text" name="pon" value="" style="text-align:center;" />
+             </div> -->
+
+
+                <!-- <div class="clear"></div> -->
+
+                <div class="caption" style="margin-left:0px;width:50px;">Cash</div>
+                <div class="field_1">
+                    <input class="form-control cashBalance" type="text" value="" readonly />
+                </div>
+
+                <div class="caption" style="width: 80px;">Cash A/c</div>
+                <div class="field">
+                    <select class="cash_accounts_list" name="cash_accounts_list">
+                        <option value="0101010004">Cash In Hand A/c Adil Grey</option>
+                        <option value="010101001">Cash in Hand A/c Admin</option>
+                        <option value="0101010002">Cash in Hand A/c Naeem </option>
+                        <option value="0101010003" selected>Cash In Hand Tayyab Account </option>
+                        <option value="0101010005">Dasti Account (CEO)</option>
+                    </select>
+                </div>
+                <div class="clear"></div>
+                <div style="display:none;">
+                    <div class="caption" style="width:100px;">Reference</div>
+                    <div class="field_1" style="width:160px;">
+                        <input class="form-control" style="width:160px;" type="text" name="jvReference"
+                            value="" />
+                    </div>
+                    <div class="caption" style="margin-left:0px;width:150px;">Reference Date</div>
+                    <div class="field_1" style="width:150px">
+                        <input class="form-control datepicker" type="text" name="refDate" value=""
+                            style="width: 150px;" />
+                    </div>
+                </div>
+                <div style="clear:both; height:10px;"></div>
+                <fieldset class="panel panel-default"
+                    style="width:100%;margin:0px auto;border-radius: 0px !important;">
+                    <!--<span class="legend">Journal Voucher</span>-->
+                    <table style="width:100%;" align="left" class="voucherDrCrTable">
+
+                        <thead>
+                            <th class="bg-color" width="20%">
+                                <span style="float:left;margin:10px;">G/L Account</span>
+                                <a href="#" onclick="refresh_accounts();"
+                                    class="btn btn-default pull-right"><i class="fa fa-refresh"
+                                        style="color:#06C;margin:0px;padding:0px;"></i></a>
+                                <a href="accounts-management.php" target="_blank"
+                                    class="btn btn-default pull-right"><i class="fa fa-plus"
+                                        style="color:#06C;margin:0px;padding:0px;"></i></a>
+                            </th>
+                            <th class="bg-color" width="35%">Narration</th>
+                            <th class="bg-color" width="15%" class="text-center">Amount</th>
+                            <th class="bg-color" width="10%" class="text-center">Action</th>
+                        </thead>
+                        <tbody id="d">
+                            <tr class="entry_row">
+                                <td style="padding:2px 2px">
+                                    <select class="accCodeSelector show-tick form-control"
+                                        data-style="btn-default" data-live-search="true"
+                                        style="border:none">
+                                        <option selected value=""></option>
+                                        <option value="0301030029" data-subtext='0301030029'>
+                                            Factory(Packing) Rent Haji Khalid Sb</option>
+                                        
+                                    </select>
+                                </td>
+                                <td><input type="text" class="form-control narration"
+                                        value="Amount paid in cash" /></td>
+                                <td><input type="text" class="form-control amount"
+                                        style="text-align:right;" /></td>
+                                <td><input type="button" class="btn btn-default cdr_btn btn-block"
+                                        value="Enter" /></td>
+                                <input type="hidden" value="" class="accountTitle" />
+                                <input type="hidden" value="" class="accountCode" />
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="display:none;height:15px;padding:1px;padding-left:10px;font-size:14px;"
+                                    class="insertAccTitle"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="field" style="margin-left:10px"></div>
+                    <div class="clear"></div>
+                </fieldset>
+            </div>
+            <!--form-->
+            <div class="clear"></div>
+            <div id="form">
+                <div class="panel panel-default"
+                    style="width:100%;margin:0px auto;border-radius: 0px !important;">
+                    <div class="clear"></div>
+                    <table cellspacing="0" align="center" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th width="15%" class="text-left bg-color">GL/Account Code</th>
+                                <th width="15%" class="text-left bg-color">A/C Title</th>
+                                <th width="40%" class="text-left bg-color">Narrtion</th>
+                                <th width="10%" class="text-center bg-color">Amount</th>
+                                <th width="10%" class="text-center bg-color">Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="transactions" style="display:none;"></tr>
+
+                            <tr style="background-color:#F8F8F8;height: 30px;">
+                                <td colspan="3" class="text-center"> Total: </td>
+                                <td class="creditTotal" style="text-align:center;color:#BD0A0D;"></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="underTheTable" style="padding:10px;margin-bottom:10px;">
+                        <button class="button pull-right saveJournal">Post</button>
+                        <button class="button pull-right mr-10"
+                            onclick="window.location.href = 'cash-payment.php';">New Voucher</button>
+                        <div class="clear"></div>
+                    </div>
+                    <div style="clear:both"><input type="hidden" class="cashball" /></div>
+                </div>
+                <!--content-box-content-->
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div><!-- End summer -->
+</div> <!-- End .content-box-top -->
+
+
+
+<script>
+    $(document).ready(function () {
+      $("select").selectpicker();
+      $("input[name='jvReference']").focus();
+      $(".receiptNum,.amount").numericFloatOnly();
+      $("input[name='jvReference']").setFocusTo("input[name='refDate']");
+      $("input[name='refDate']").setFocusTo("div.accCodeSelector button");
+      $("select.accCodeSelector").change(function () {});
+      $("select.accCodeSelector").change(function (e) {
+        setTimeout(function () {
+          if ($("select.accCodeSelector option:selected").val() != "") {
+            var account_code = $("select.accCodeSelector option:selected").val();
+            if ($("input.admin").val() == "Y") {
+              getAccountBalance(account_code, ".insertAccTitle");
+            }
+            if (account_code.startsWith("010104") == true) {
+              getBillsListOfAccounts(account_code);
+            }
+            if ($("select.billNoSelector").length) {
+              $("select.billNoSelector").focus();
+              $("select.billNoSelector").refresh();
+            } else {
+              $(".narration").focus();
+            }
+          }
+        }, 100);
+      });
+      $("select.billNoSelector").change(function (e) {
+        var val = $("select.billNoSelector option:selected").html();
+        var array = val.split("Amt:");
+        $("input[name=billAmount]").val(array[1]);
+      });
+      $("input.narration").keyup(function (e) {
+        if (e.keyCode == 13 && $(this).val() != "") {
+          $("input.amount").focus();
+        }
+      });
+      $("input.amount").keyup(function (e) {
+        if (e.keyCode == 13 && $(this).val() != "") {
+          $(this).quickSubmitDrCr();
+        }
+      });
+      $(".saveJournal").click(function () {
+        $(this).saveJournal();
+      });
+      $(window).keyup(function (e) {
+        if (e.altKey == true && e.keyCode == 83) {
+          e.preventDefault();
+          $("#form").click();
+          $(".saveJournal").click();
+          return false;
+        }
+      });
+      $(".cdr_btn").on("click", function () {
+        $(this).quickSubmitDrCr();
+      });
+      $(".cdr_btn").on("keydown", function (e) {
+        if (e.keyCode == 13) {
+          $(this).quickSubmitDrCr();
+        }
+      });
+      getCashBalance();
+      $("select.cash_accounts_list").change(getCashBalance);
+    });
+  </script>
+  
