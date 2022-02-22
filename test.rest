@@ -1,4 +1,4 @@
-GET http://localhost:3000/jvs/test
+GET http://localhost:3000/printv/3445
 
 
 ###

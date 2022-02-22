@@ -1,5 +1,4 @@
 const express = require("express");
-const res = require("express/lib/response");
 const router = express.Router();
 const CR = require("../models/cr");
 const Level5 = require("../models/level5");

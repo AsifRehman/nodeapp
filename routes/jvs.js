@@ -76,7 +76,7 @@ router.get("/:id", async (req, res) => {
     const jvs = await JV.findOne({ jvNum: req.params.id }).exec();
     console.log(jvs);
     if(jvs == null) {
-      res.render("jvs")
+      res.render("jvs") 
       return;
     }
     const level5s = await Level5.find().select({

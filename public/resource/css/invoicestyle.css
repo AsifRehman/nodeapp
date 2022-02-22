@@ -1,0 +1,1130 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face{
+	font-family: 'OpenSans-Light';
+	src: url('../fonts/OpenSans-Light.ttf');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu'), url('../fonts/sDGTilo5QRsfWu6Yc11AXg.woff2') format('woff2'), url('../fonts/_xyN3apAT_yRRDeqB3sPRg.woff') format('woff');
+}
+body{
+	font-family: 'Ubuntu';
+	color:  #000 !important;
+	font-size:  14px;
+}
+@page{
+	size: portrait;
+	margin: 0.5cm;
+}
+*{
+	-webkit-print-color-adjust: exact;
+}
+.repoBottom,.repoTop{
+	-webkit-print-color-adjust: exact;
+}
+.printBody{
+	position: absolute !important;
+	top: 150px !important;
+	width: 100% !important;
+}
+.voucherBox{
+	position: relative;
+	page-break-inside:avoid !important;
+	page-break-after:auto !important;
+}
+.noPrint{
+	display: none;
+}
+.clear{
+	clear: both;
+}
+.pull-right{
+	float:right;
+}
+.pull-left{
+	float:left;
+}
+.printTable{
+	font-family: 'Ubuntu';
+}
+p{
+	font-family: 'OpenSans-Light';
+}
+*{
+	font-family: 'Ubuntu';
+}
+#form .caption{
+	font-family: OpenSans-Light;
+	float: left;
+	width: 150px;
+	height: 15px;
+	margin-left: 20px;
+	margin-right: 11px;
+	margin-top: 10px;
+	text-align: right;
+	font-size: 14px;
+	color: #333333;
+	line-height: 10px;
+}
+#form .fieldDisplay {
+	font-size: 12px;
+	float: left;
+	width: 400px;
+	border: 1px solid #DDDDDD;
+	padding: 5px;
+	height: 20px;
+	/* -webkit-box-shadow: #F4F4F4 0 0 0 2px; */
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+}
+table{
+	font-family: 'Ubuntu';
+	margin:0;
+	width:100%;
+	margin:0 auto;
+	-webkit-print-color-adjust: exact;
+}
+table th{
+	height:27px;
+	border:1px solid #222222 !important;
+	margin-bottom:20px;
+	font-size:14px;
+	font-weight: 700;
+	padding:5px 10px 5px 10px;
+	color: #000 !important;
+	text-align: center;
+	background-color: white;
+	text-transform: uppercase;
+}
+table th.bg-color{
+	height:0px;
+	border:1px solid #222222 !important;
+	margin-bottom:20px;
+	background-color:#e6e6e6;
+	font-size:14px !important;
+	font-weight: normal !important;
+	padding:5px 10px 5px 10px;
+}
+table th.bg-color-1{
+	height:0px;
+	border:1px solid #222222 !important;
+	margin-bottom:20px;
+	background-color:#F3F3F3;
+	font-size:14px;
+	padding:5px 10px 5px 10px;
+}
+.font16x{
+	font-size: 16px !important;
+}
+table th.bg-color-x{
+	height:0px;
+	border:1px solid #222222 !important;
+	margin-bottom:20px;
+	font-size:16px;
+	padding:5px 10px 5px 10px;
+}
+
+
+table td{
+	padding: 5px 5px;
+	font-size:14px;
+	border-top:0;
+	border:1px solid #222222 !important;
+	color: #000 !important;
+	text-align: center !important;
+	font-weight: 500;
+}
+
+table td{
+	/*font-size:14px;
+	border: 1px solid #EEEEEE;
+	height:0px;
+	font-weight: 600;*/
+
+	/*padding: 5px 5px;
+    font-size:12px;
+	border-top:0;
+	border-bottom:1px solid #222222;
+	border-right:1px solid #222222;
+	color: #000;*/
+
+}
+
+
+table td:hover{
+	height:0px;
+}
+table td a.hover{
+	font-weight:bold;
+	text-decoration:none;
+	color:#0080FF
+}
+table td a.hover:hover{
+	text-decoration:underline;
+}
+table tr{
+	background-color:#fff;
+	width:100%;
+}
+table tr.entry_row:hover{
+	background:#FFF
+
+}
+table td img{
+	border:0;
+	margin:0px 5px;
+}
+
+table tr th.th{
+	padding-top:0;
+	text-align: center !important;
+}
+.lol{
+	background:#f5f5f5;
+}
+.tbl1{
+	width:70%;
+}
+.notAtPrint{
+	display: none;
+}
+
+/*------------ Reports -------------*/
+
+
+
+table{
+	border-collapse: collapse;
+}
+table th{
+	/*font-size:18px;
+	font-weight: 700;
+	color:#1f4671;
+	background-color:#FFF;
+	text-align: center !important;*/
+}
+
+
+table td:hover{
+	height:0px;
+}
+
+  table tr{
+	background-color:#FFF;
+}
+
+
+table tr:nth-child(odd) {background: #FFF}
+
+table td img{
+	border:0;
+	margin-right:10px;
+}
+table tr th.th{
+	padding-top:0;
+	width:16%;
+}
+table tr td.td{
+	padding-left:0;
+	padding-top:0;
+	text-align:left;
+}
+#deletePanel{
+	text-align:center;
+	padding:3px;
+	color:#F03;
+	font-size:14px;
+	font-weight:bold;
+}
+#deletePanel a{
+	text-decoration:none;
+	color:#F03;
+}
+#deletePanel a:hover{
+	color:#F03;
+}
+div.cashBookTotals{
+	font-family: 'Ubuntu';
+	text-align:right;
+	font-weight: bold;
+	font-size: 14px;
+}
+p.reportTopHeading{
+	font-weight: bold !important;
+	font-size: 20px !important;
+	padding: 0px !important;
+	margin: 0px !important;
+}
+p.reportTopPara{
+	margin: 0px !important;
+	padding: 5px !important;
+}
+table{
+	margin:0;
+	width:100%;
+	margin:0 auto;
+}
+table th{
+	/*height:27px;
+	border-bottom:1px solid #222222;
+	border-right:1px solid #222222;
+	margin-bottom:20px;
+	font-size:14px;
+	padding:5px 10px 5px 10px;*/
+
+}
+table th.bg-color{
+	height:0px;
+	border-bottom:1px solid #222222;
+	border-right:1px solid #222222;
+	margin-bottom:20px;
+	font-size:14px !important;
+	font-weight: normal !important;
+	padding:5px 10px 5px 10px;
+}
+table th.bg-color-1{
+	height:0px;
+	border-bottom:1px solid #222222;
+	border-right:1px solid #222222;
+	margin-bottom:20px;
+	font-size:14px;
+	padding:5px 10px 5px 10px;
+}
+.font16x{
+	font-size: 16px !important;
+}
+table th.bg-color-x{
+	height:0px;
+	border-bottom:1px solid #222222;
+	border-right:1px solid #222222;
+	margin-bottom:20px;
+	font-size:16px;
+	padding:5px 10px 5px 10px;
+}
+
+
+table td{
+	/*padding: 5px 5px;
+    font-size:12px;
+	border-top:0;
+	border-bottom:1px solid #222222;
+	border-right:1px solid #222222;
+	color: #000;*/
+
+}
+
+table td:hover{
+	height:0px;
+}
+table td a.hover{
+	font-weight:bold;
+	text-decoration:none;
+	color:#0080FF
+}
+table td a.hover:hover{
+	text-decoration:underline;
+}
+table tr{
+	background-color:#fff;
+	width:100%;
+}
+table tr.entry_row:hover{
+	background:#FFF
+
+}
+table td img{
+	border:0;
+	margin:0px 5px;
+}
+table tr th.th{
+	padding-top:0;
+	width:16%;
+}
+.lol{
+	background:#f5f5f5;
+}
+.tbl1{
+	width:70%;
+}
+.button2{
+	font-family: Verdana, Arial, sans-serif;
+	display: inline-block;
+	background:#F00;
+	border: 1px solid #459300 !important;
+	padding: 4px 7px 4px 7px !important;
+	color: #fff !important;
+	font-size: 11px !important;
+	cursor: pointer;
+}
+.button:hover2{
+    text-decoration: underline;
+}
+.chart{
+	margin:10px auto;
+	border:1px solid #e3e3e3;
+	border-radius:5px;
+}
+.chart img{
+	opacity:0.5;
+}
+.chart th{
+	width:100%;
+	background:#f2f2f2;
+	color:#999999;
+	border:none;
+}
+.chart tr{
+	border:none;
+	background:#F2F2F2;
+}
+.stf_head_th{
+	height: 10px;
+	font-weight: bold;
+}
+.stf_td{
+	height: 10px;
+}
+.stf_th{
+	height: 10px;
+}
+
+.summary_form_sheet{
+	border: 1px solid #666;
+	border-radius: 10px;
+	padding: 10px;
+}
+.main_col_heading{
+	width: 20%;
+	font-size: 16px;
+	padding:10px;
+	text-decoration:underline;
+}
+.title_top{
+	clear:both;
+	margin: 0px 50px 20px 50px;
+	padding-bottom: 10px;
+	border-bottom:solid 1px #9ca09e;
+	font-size:18px;
+	font-weight:bold;
+	color:#474b49;
+	line-height:10px
+}
+.main_title_1{
+	width: 50%;
+	font-size: 18px;
+	padding: 10px 5px 5px 10px;
+}
+.main_title_2{
+	font-size: 16px;
+	margin-left: 5%;
+	padding:5px;
+}
+.main_title_3{
+	font-size: 16px;
+	margin-left: 10%;
+	padding:5px;
+}
+.main_col_amount{
+	width: 20%;
+	font-size: 16px;
+	padding: 5px;
+	text-align:center;
+	background-color: #F5F5F5;
+}
+.main_col_total{
+	width: 20%;
+	font-size: 16px;
+	padding: 5px;
+	text-align:center;
+	font-weight:bold;
+	background-color: #F1F1F1;
+}
+.main_col_total span{
+	border-bottom: 5px double #666;
+}
+
+.invoiceTable{
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: 16px;
+}
+.invoiceTable td{
+	font-size: 14px !important;
+}
+.invoiceTable td.totals{
+	border-bottom: none;
+	border-left: none;
+	text-align:right;
+}
+
+.invoiceTable td.totalAmounts{
+	background-color: #ffffff;
+    border-bottom: 1px solid #222222;
+    border-right: 1px solid #222222;
+    font-size: 14px;
+    height: 27px;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+	text-align:right;
+}
+.patientNameInvoice{
+	float:left;
+	margin: 10px 10px 10px 60px;
+	border: 1px solid #999;
+	padding: 10px;
+	min-width: 150px;
+}
+.dateOfInvoice{
+	float:right;
+	margin: 10px 60px 10px 10px;
+	border: 1px solid #999;
+	padding: 10px;
+}
+.docReportSize{
+	position: relative;
+	margin: 0px;
+	height: 1030px;
+	width: 100%;
+	border: 1px solid #444;
+	page-break-after: avoid !important;
+	page-break-inside: avoid !important;
+	page-break-before: avoid !important;
+}
+.title{
+	clear:both;
+	margin:20px 50px 20px 50px;
+	border-bottom:solid 1px #9ca09e;
+	font-size:22px;
+	font-weight:bold;
+	color:#474b49;
+	padding-bottom:10px;
+}
+
+.repoCaption{
+	float:left;
+	width:300px;
+	height: 35px;
+	font-size:16px;
+	margin: 5px 10px;
+	padding: 0px 5px !important;
+	color: #444 !important;
+	font-weight: normal;
+	transition: all 200ms;
+}
+.repoCaptonPrice{
+	float: right;
+	width:100px;
+	height: 35px;
+	text-align:right;
+	font-size:16px;
+	margin: 5px 10px;
+	padding: 0px 5px !important;
+	color: #444 !important;
+	font-weight: normal;
+	transition: all 200ms;
+}
+.printBody{
+	position: absolute;
+	top: 200px;
+	width: 100%;
+}
+.docLetterHeadSize{
+	position: relative;
+	margin: 0px;
+	height: 1095px !important;
+	width: 100%;
+	border: 1px solid #444;
+	page-break-after: avoid !important;
+	page-break-inside: avoid !important;
+	page-break-before: avoid !important;
+}
+.repoTop{
+	position: absolute;
+	top: 0px;
+	left:0px;
+	height: 200px;
+	width: 100%;
+	background-image:url(../images/print/dr-top.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: top left;
+	-webkit-print-color-adjust: exact;
+	border: none;
+}
+.printStethoScope{
+	position: absolute;
+	top: 400px;
+	left: 50px;
+	width: 100%;
+	height: 500px;
+	background-image:url('../images/Stethoscope.jpg');
+	background-size: 500px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-print-color-adjust: exact;
+	opacity: 0.4;
+	border: none;
+}
+
+.printStethoScope .diagnosisSeprator{
+	position: absolute;
+	top: -150px;
+	left: 130px;
+	height: 750px;
+	width: 20px;
+	border-right: 1px solid #333;
+}
+.patientInfoLetterHead{
+	position: absolute;
+	top: 150px;
+	left: 0px;
+	width: 100%;
+	height: 30px;
+	border-bottom: 1px solid #666;
+	padding-bottom: 10px;
+}
+.headInfoCaption{
+	float: left;
+	width: 150px;
+	font-size: 16px;
+	font-weight:normal;
+	padding-left: 20px;
+	padding-top: 10px;
+}
+.hasBgLabImage:after{
+	background-image:url('../images/print/lab.jpg');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: bottom left;
+	-webkit-print-color-adjust: exact;
+}
+.repoBottom{
+	position: absolute;
+	bottom:0px;
+	left:0px;
+	height: 50px;
+	width: 100%;
+	background-image:url(../images/print/dr-bottom.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: bottom left;
+	-webkit-print-color-adjust: exact;
+	border: none;
+}
+
+
+table.ultraSoundTable{
+	border: none;
+}
+table.ultraSoundTable tr{
+	border: none;
+}
+table.ultraSoundTable td{
+	border: none;
+	font-size: 16px;
+}
+.radioPropertyOrTest{
+	cursor: pointer;
+}
+.repo_heading{
+	background-color: #999;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: bold;
+    margin: auto 31px;
+    padding: 6px 10px;
+    text-align: center;
+}
+.repo_sub_heading{
+	font-family: 'OpenSans-Light';
+	background-color: #F5F5F5;
+    color: #69F;
+	text-shadow: 0px 0px 3px #EEE;
+	border-bottom: 1px solid #69F;
+    font-size: 18px !important;
+    margin: auto 31px;
+    padding: 6px 30px;
+    text-align: left;
+	position: relative;
+	overflow: hidden;
+}
+.repo_sub_heading .giveCaret{
+	position: absolute;
+	right: 40px;
+	top: -3px;
+	padding: 18px 1px;
+	transform: rotate(15deg);
+	background-color: #69F;
+}
+.repo_sub_heading .giveCaret2{
+	position: absolute;
+	right: 45px;
+	top: -3px;
+	padding: 18px 1px;
+	transform: rotate(15deg);
+	background-color: #69F;
+}
+
+.repoCaptionNew{
+	float:left;
+	width:300px;
+	height: 20px;
+	font-size:16px;
+	margin: 5px 10px;
+	padding: 5px 5px !important;
+	color: #444 !important;
+	font-weight: normal;
+	transition: all 200ms;
+	text-align: right;
+}
+.repoFieldNew{
+	float:left;
+	width:300px;
+	padding: 5px 20px;
+	border-left: 1px solid #CCC;
+	transition: all 200ms;
+}
+
+.input_size_repo{
+	float:left;
+	width: 100%;
+	height: 30px;
+	font-size: 16px;
+	padding-left: 5px;
+	border: 1px solid #999;
+	-webkit-box-shadow:#F4F4F4 0 0 0 2px;
+
+	border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+
+	-moz-border-radius-topleft:3px;
+    -moz-border-radius-topright:3px;
+    -moz-border-radius-bottomleft:3px;
+    -moz-border-radius-bottomright:5px;
+
+	-webkit-border-top-left-radius:3px;
+    -webkit-border-top-right-radius:3px;
+    -webkit-border-bottom-left-radius:3px;
+    -webkit-border-bottom-right-radius:3px;
+
+	box-shadow: 0 0 5px #ccc;
+	transition: box-shadow 300ms;
+	-webkit-transition: box-shadow 300ms;
+}
+.textInfoRight{
+	float: right;
+	margin: 5px 100px 5px 5px;
+	padding: 5px;
+	color: #00;
+}
+.printReportHeading{
+    color: #666;
+    font-size: 26px;
+    font-weight: normal;
+    margin: auto 31px;
+    padding: 6px 10px;
+    text-align: center;
+	border-bottom: 1px solid #DDD;
+}
+.printReportSubHeading{
+	margin: 0px 31px 5px 31px;
+    color: #333;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 6px 10px;
+    text-align: left;
+	background-color: #F5F5F5;
+	border-top: 1px solid #CCC;
+}
+.repoTestHeader{
+	float:left;
+	width:22%;
+	font-size:14px;
+	margin: 5px 0px;
+	padding: 0px 5px !important;
+	color: #000 !important;
+	font-weight: normal;
+	transition: all 200ms;
+}
+span.bar-code{
+	position: absolute;
+	bottom: -15px;
+	left: 25px;
+}
+.repoCaption2{
+	float:left;
+	width:22%;
+	font-size:16px;
+	margin: 2px 0px;
+	padding: 0px 5px !important;
+	color: #333 !important;
+	font-weight: normal;
+	transition: all 200ms;
+}
+.repoPatientHeads{
+	width: 150px;
+	font-size: 16px;
+	background-color: #FFF;
+	font-weight: normal;
+	border: none;
+	text-align: left;
+}
+.repoPatientInfos{
+	font-size: 16px;
+	background-color: #FFF;
+	font-weight: normal;
+	border: none;
+	text-align: left;
+}
+
+.miniCaption{
+	font-family: 'OpenSans-Light';
+	font-size: 14px;
+	float: left;
+	width: 80px;
+	text-align: right;
+	padding: 0px 5px;
+	margin-top: 5px;
+}
+.miniField{
+	font-family: 'OpenSans-Light';
+	font-size: 14px;
+	float: left;
+	width: 100px;
+	text-align: left;
+	padding: 0px 5px;
+	margin-top: 5px;
+}
+
+/* balance sheet & Profit N Loss */
+#summary_form{
+	font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	color: #000;
+	margin:10px;
+	padding-bottom:15px
+}
+.report_heading{
+	font-size:20px;
+	padding:0;
+	text-align:center;
+	font-weight:bold;
+}
+#summary_form .main_title_1{
+	margin:10px 0px;
+	font-size:24px;
+	color:#474b49;
+	line-height:0px;
+	padding: 20px 0px;
+	width: 100%;
+	text-align:center;
+	background-color: #F5F5F5;
+	border: 1px solid #EEE;
+}
+#summary_form .main_title_middle{
+	width:200px;
+	margin:10px 0px;
+	font-size:18px;
+	color:#474b49;
+	line-height:0px;
+	padding:20px 0px;
+	text-align:center;
+	background-color: #F5F5F5;
+	border: 1px solid #EEE;
+}
+#summary_form .main_title_amuont{
+	width:200px;
+	margin:10px 10px;
+	font-size:16px;
+	color:#474b49;
+	line-height:0px;
+	padding:20px 0px;
+	text-align:right;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.field_column{
+	 float:right;
+	 text-align: right;
+	 margin-right:180px;
+	 width:100px;
+	 padding: 0px !important;
+}
+.current_year{
+	 background-color:#F5F5F5;
+	 float:right;
+	 text-align:right;
+	 width:100px;
+	 padding:5px 0;
+}
+.previous_year{
+	 float:left;
+	 text-align: right;
+	 margin-left:30px;
+	 width:100px;
+	 padding:5px 0;
+}
+#form .bs_caption{
+	float:left;
+	width:200px;
+	height:15px;
+	margin-left:20px;
+	margin-right:11px;
+	margin-top:10px;
+	text-align:right;
+	font-size:14px;
+	color:#333333;
+	line-height:26px ;
+}
+/* ----- END ------- Balance Sheet & Profit N Loss  */
+
+.caption_P{
+	width: 300px;
+	margin-left: 70px;
+	padding: 2px;
+}
+
+
+.smallPrint{
+	width: 400px;
+	margin: 0 auto;
+}
+
+.smallPrint .leftCaption{
+	float: left;
+	margin-left: 10px;
+	padding: 5px 10px;
+	width: 170px;
+}
+
+.smallPrint .rightCaption{
+	float: right;
+	margin-right: 10px;
+	padding: 5px 10px;
+	width: 170px;
+	text-align: right;
+}
+
+.pageFoooter .pazeNum{
+	float: right;
+	padding: 0px 10px 0px 0px;
+	margin: 0px 0px 0px 0px
+}
+.invLogo{
+	/*width: 100px;*/
+	height: 100px;
+	/*border:  1px solid #CCC;*/
+	padding:  5px;
+	border-radius: 5px;
+}
+
+
+/* kashif coding end */
+.infoPanel{
+	min-height: 50px;
+	width: 49%;
+	padding: 5px 0px;
+	margin: 2px;
+	height: 114px;
+}
+.infoPanel .infoHead{
+	padding: 5px;
+	color: #000;
+	font-weight:  bold;
+	border-bottom: 1px dotted #666;
+	margin: 5px ;
+}
+.infoPanel span{
+	padding-left: 10px !important;
+}
+.infoPanel .bold{
+	font-weight: 700;
+}
+.invoPanel{
+	margin: 0px auto;
+	padding: 5px;
+	border: 1px solid #000;
+}
+.invoPanel .caption{
+	float: left;
+	text-align: right;
+	width: 60px;
+}
+.invoPanel .text_line{
+	float: left;
+	margin-left: 10px;
+	font-weight: bold;
+}
+.invoice_footer{
+	width: 100%;
+	padding: 30px 10px;
+}
+.invoice-developer-info{
+	border-top: 1px solid #000;
+	padding: 5px 0px;
+	text-align: center;
+}
+
+.text-center{
+	text-align: center !important;
+}
+.text-right{
+	text-align: right !important;
+}
+.text-left{
+	text-align: left !important;
+}
+
+.bold_table_tr td{
+    font-weight: bold;
+}
+
+.product_thumb{
+	float: left;
+	margin-left: 10px;
+	border: 1px solid #777;
+	padding: 4px;
+	overflow: hidden;
+}
+.product_thumb img{
+	height: 120px;
+	max-width: 150px;
+}
+.product_thumb span.caption_thumbg{
+	width: 100%;
+	text-align: center;
+	display: block;
+	padding-top: 10px;
+}
+.absoute_bottom_right{
+	position: absolute;
+	bottom: 40px;
+	right:  40px;
+}
+.opacity_zero{
+	opacity: 0.0 !important;
+}
+.bg-info {
+  background-color: #d9edf7;
+}
+.bg-danger {
+  background-color: #f2dede;
+}
+.towords{
+	font-weight: 900;
+	text-align: left;
+}
+
+/* kashif coding*/
+.voucherTitle{
+	text-transform: uppercase !important;
+	text-align:center !important;
+	font-size:18px !important;
+	font-weight: bold !important;
+	padding: 5px 0px !important;
+	margin: 0px auto !important;
+	border:1px solid lightgrey !important;
+	background-color: #f5f5f5 !important;
+}
+
+.logo{
+	/*max-width: 100px;*/
+	max-height: 100px;
+	/*border: 1px solid #CCC;*/
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+table.tableStyle th{
+ 	font-size: 14px !important;
+ 	text-transform: uppercase !important;
+ 	color: black !important;
+ 	font-weight: 900 !important;
+ }
+
+ table.tableStyle td{
+ 	font-size: 14px !important;
+ 	color: black !important;
+ 	font-weight: 400 !important;
+ }
+ table.tableFooter td{
+ 	font-size: 16px !important;
+ 	color: black !important;
+ 	font-weight: 700 !important;
+ }
+table thead th {
+    font-weight: normal;
+    font-size: 12px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle !important;
+}
+
+/*voucher and bill bottom signature setting*/
+.bottomSignatureTable{
+    border-bottom: 2px dotted black !important;
+    width: 100% !important;
+}
+.bottomSignatureBorder{
+    border:0px solid #000 !important;
+}
+
+
+
+table.tableStyle_bdr0 .groupTitle{
+ 	font-size: 20px;
+ 	font-weight: 700;
+ 	border-bottom: 1px dotted grey !important;
+ }
+
+table.tableStyle_bdr0 tbody{
+ 	border: 0px !important;
+ }
+
+table.tableStyle_bdr0{
+ 	border: 0px !important;
+ 	border-bottom: 0px !important;
+ }
+
+table.tableStyle_bdr0 th{
+ 	border: 0px;
+ 	font-size: 14px;
+ 	color: black;
+ 	font-weight: 900;
+ 	text-align: left;
+ 	background-color: white;
+ 	padding: 5px;
+ }
+
+ table.tableStyle_bdr0 td{
+ 	font-size: 14px;
+ 	color: black;
+ 	font-weight: 400;
+ 	text-align: left;
+ 	border: 0px;
+ 	padding: 5px;
+ }
+ table.tableFooter_bdr0 td{
+ 	font-size: 14px;
+ 	color: black;
+ 	font-weight: 700;
+ 	border: 0px;
+ }
+ 
