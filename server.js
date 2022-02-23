@@ -66,7 +66,7 @@ app.use('/', indexRouter)
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
   console.log(users)
-  res.render('login.ejs', {layout: 'layouts/layout2'})
+  res.render('login.ejs', { layout: 'layouts/layout2' })
 })
 
 app.post('/login', passport.authenticate('local', {
@@ -121,8 +121,8 @@ function checkNotAuthenticated(req, res, next) {
 
 app.use('/authors', authorRouter)
 app.use('/books', bookRouter)
-app.use('/jvs',  jvRouter)
-app.use('/cps',  cpRouter)
+app.use('/jvs', jvRouter)
+app.use('/cps', cpRouter)
 app.use('/crs', crRouter)
 app.use('/level1', level1Router)
 app.use('/level2', level2Router)
@@ -133,9 +133,9 @@ app.use('/printv', printvRouter)
 
 app.use('/db', dbRouter)
 
-var server = app.listen(process.env.PORT || 3000, ()=> {
+var server = app.listen(process.env.PORT || 3000, () => {
   console.log("Calling app.listen's callback function.");
   var port = server.address().port;
-  console.log('Example app listening at http://localhost:%s/crs', port);
+  console.log('Example app listening at http://localhost:%s/cps', port);
 
 })

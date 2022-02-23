@@ -1,13 +1,22 @@
 const mongoose = require('mongoose')
 
 const cpSchema = new mongoose.Schema({
+  jvNum: {
+    type: Number,
+    required: true,
+    unique: true
+  },
   cpNum: {
     type: Number,
     required: true,
     unique: true
   },
-  cpDate: {
+  jvDate: {
     type: Date,
+    required: true
+  },
+  cashAc: {
+    type: Number,
     required: true
   },
   transactions: [{
@@ -35,4 +44,4 @@ const cpSchema = new mongoose.Schema({
   }]
 })
 
-module.exports = mongoose.model('cp', cpSchema)
+module.exports = mongoose.model('cps', cpSchema)
