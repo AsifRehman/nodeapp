@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   try {
     const cp = {};
     if (searchOptions.jvNum > 0) cps = await CP.find(searchOptions);
-    else cps = new CP([{ jvNum: 0, cpNum: 0, crDate: Date.now(), transactions: [] }]);
+    else cps = new CP([{ jvNum: 0, cpNum: 0, cpDate: Date.now(), transactions: [] }]);
 
     const level5s = await Level5.find().select({
       level5_code: 1,
@@ -43,34 +43,36 @@ router.get("/", async (req, res) => {
 // Create Author Route
 router.post("/", async (req, res) => {
   try {
+    //    console.log(req.body)
+
     if (req.body.jvNum > 0) {
       const cp = await CP.findOne({ jvNum: req.body.jvNum }).exec();
-      //console.log(cr)
+      //console.log(cp)
       cp.jvNum = req.body.jvNum;
-      cp.crNum = req.body.cpNum;
+      cp.cpNum = req.body.cpNum;
       cp.cashAc = req.body.cashAc;
       cp.jvDate = req.body.jvDate;
       cp.transactions = req.body.transactions;
 
-      const freshCr = await cp.save();
-      console.log(freshCr);
-      res.json({ "ID": freshCr.jvNum, "MSG": "Saved Successfully" })
+      const freshCp = await cp.save();
+      console.log(freshCp);
+      res.json({ "ID": freshCp.jvNum, "MSG": "Saved Successfully" })
 
     }
     else {
-      let newcpNum = await shared.getNewCrNum();
-      let newJvNum = await shared.getNewJvNum();
-
-      const cp = new CR({
+      const newCpNum = await shared.getNewCpNum();
+      const newJvNum = await shared.getNewJvNum();
+      console.log(newCpNum)
+      const cp = new CP({
         jvNum: newJvNum,
-        cpNum: newcpNum,
+        cpNum: newCpNum,
         cashAc: req.body.cashAc,
         jvDate: req.body.jvDate,
         transactions: req.body.transactions
       });
 
-      const freshCr = await cp.save();
-      res.json({ "ID": freshCr.jvNum, "MSG": "Updated Successfully" })
+      const freshCp = await cp.save();
+      res.json({ "ID": freshCp.jvNum, "MSG": "Updated Successfully" })
     }
 
   } catch (err) {

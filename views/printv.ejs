@@ -1,116 +1,185 @@
-
 <!DOCTYPE html>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>SIT Solutions</title>
-    <link rel="stylesheet" href="/resource/css/reset.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/resource/css/style.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/resource/css/reports.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/resource/css/font-awesome.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/resource/css/bootstrap.min.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/resource/css/table-style.css" type="text/css"/>
+    <link rel="stylesheet" href="/resource/css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/resource/css/style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/resource/css/reports.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/resource/css/font-awesome.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/resource/css/bootstrap.min.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/resource/css/table-style.css" type="text/css" />
 
-    <style type="text/css">.voucherTitle{text-transform:uppercase!important;text-align:center!important;font-size:18px!important;font-weight:bold!important;padding:5px 0!important;margin:0 auto!important;border:1px solid #d3d3d3!important;background-color:#f5f5f5!important}.logo{max-width:100px;max-height:120px;padding:5px;border-radius:5px;margin-right:10px;margin-bottom:10px}</style>
-    
-    <script type="text/javascript" src="/resource/scripts/jquery.1.11.min.js"></script><!--its v1.11 jquery-->
+    <style type="text/css">
+        .voucherTitle {
+            text-transform: uppercase !important;
+            text-align: center !important;
+            font-size: 18px !important;
+            font-weight: bold !important;
+            padding: 5px 0 !important;
+            margin: 0 auto !important;
+            border: 1px solid #d3d3d3 !important;
+            background-color: #f5f5f5 !important
+        }
+
+        .logo {
+            max-width: 100px;
+            max-height: 120px;
+            padding: 5px;
+            border-radius: 5px;
+            margin-right: 10px;
+            margin-bottom: 10px
+        }
+    </style>
+
+    <script type="text/javascript" src="/resource/scripts/jquery.1.11.min.js"></script>
+    <!--its v1.11 jquery-->
     <script type="text/javascript" src="/resource/scripts/printThis.js"></script>
-	<script type="text/javascript" src="/resource/scripts/towords.js"></script>
+    <script type="text/javascript" src="/resource/scripts/towords.js"></script>
 
-    <script type="text/javascript">$(document).ready(function(){var amount=parseFloat($("th.debitTotal").text().replace(',',''))||0;amount=toWords(amount);$("th.towords").text(amount+" Rupees only");$(".printThis").click(function(){$(".printThisDiv").printThis({debug:false,importCSS:false,printContainer:true,loadCSS:'/resource/css/invoiceStyle.css',pageTitle:"Software Powered By SIT Solution",removeInline:false,printDelay:500,header:null});});$(".printThis").click();hide_transaction_type();});var hide_transaction_type=function(){};</script>
+    <script
+        type="text/javascript">$(document).ready(function () { var amount = parseFloat($("th.debitTotal").text().replace(',', '')) || 0; amount = toWords(amount); $("th.towords").text(amount + " Rupees only"); $(".printThis").click(function () { $(".printThisDiv").printThis({ debug: false, importCSS: false, printContainer: true, loadCSS: '/resource/css/invoiceStyle.css', pageTitle: "Software Powered By SIT Solution", removeInline: false, printDelay: 500, header: null }); }); $(".printThis").click(); hide_transaction_type(); }); var hide_transaction_type = function () { };</script>
 </head>
+
 <body style="background-image:url(/resource/images/25x.jpg);background-size:100%;background-repeat:no-repeat">
-<div class="panel panel-primary col-md-8" style="padding: 10px;margin: 50px auto;float: none;">
-	<div class="panel-heading">
-		<button class="btn btn-default printThis pull-right" title="Print"> <i class="fa fa-print"></i> Print </button>
-		<div class="clear"></div>
-    </div><!--header-->
-    <div style="height: 20px;"></div>
-
-	<div class="invoiceContainer">
-    	<div class="invoiceLeftPrint">
-        <div class="printThisDiv">
-            <div class="invoiceHead" style="width: 720px;margin: 0px auto;">
-            	<div class="LogoPanel">
-                	 
-                <img class="logo pull-left" src="/uploads/logo/company.jpg" data-pagespeed-url-hash="1247871539" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/>
-                	 
-            	</div>
-            	<div class="partyTitle" style="text-align:left;">
-            		<div style="font-size:26px;line-height: 40px;">
-            			WARISHA DIGITEX            		</div>
-            		Maqbool road , near Blessing Home School <br/>
-					+923008655550<br/>
-					Infowarishaind@gmail.com                </div>
-                <div style="clear: both;"></div>
-                <div class="partyTitle text-center voucherTitle">
-Cash Receipt Voucher                </div>
-                <input type="hidden" class="transaction-skip" value="Dr"></input>
-                <div class="clear" style="height: 5px;"></div>
-                <div class="partyTitle" style="font-size: 16px;">
-                	<span class="pull-right" style="padding:0px 0px;font-size:14px;">CR# 162</span>
-                	<div class="clear"></div>
-                	<span class="pull-left" style="padding:0px 0px;font-size:14px;">Voucher No. <%= jvs.jvNum %> </span>
-                    <span class="pull-right" style="padding:0px 0px;font-size:14px;">Date. 07-02-2022</span>
-                </div><!--partyTitle-->
-                <div class="clear" style="height: 5px;"></div>
-                <div class="clear"></div>
-            </div><!--invoiceHead-->
-            <% var totDebit = 0; var totCredit = 0; %>
-
+    <div class="panel panel-primary col-md-8" style="padding: 10px;margin: 50px auto;float: none;">
+        <div class="panel-heading">
+            <button class="btn btn-default printThis pull-right" title="Print"> <i class="fa fa-print"></i> Print
+            </button>
             <div class="clear"></div>
-            <div class="invoiceBody" style="width: 720px;margin: 0px auto;">
-                <table cellspacing="0" align="center" style="width:100%;" class="removeableTable tableBreak tableStyle">
-							<thead class="tHeader">
-	                             <tr>
-	                                <th width="10%" class="text-center">Code</th>
-	                                <th width="20%" class="text-left">Title</th>
-	                                <th width="30%" class="text-left">Narrtion</th>
-	                                <th width="10%" class="text-center" data-type='Dr'>Debit(Rs.)</th>
-	                                <th width="10%" class="text-center" data-type='Cr'>Credit(Rs.)</th>
-	                             </tr>
-                             </thead>
-                             <tbody>
-                                <tr class="transactions" style="display:none;"></tr>
-                            <tr class="transactions"><% if (jvs.jvNum !== 0) { %> <% jvs.transactions.forEach(t => { %>
-                                <td class="text-center"><%= t.account_code %>  </td>
-                                <td class="text-left"><%= t.account_title %></td>
-                                <td class="text-left"><%= t.narration %></td>
-                                <td class="text-center debitColumn" data-type='Dr'><%= t.debit == null ? null : t.debit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}); %> </td>
-                                <td class="text-center creditColumn" data-type='Cr'><%= t.credit == null ? null : t.credit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}); %> </td>
-                            </tr>
-                            <% totDebit += t.debit; totCredit += t.credit %>
-                            <% }) %> <% } %>
-							<tr style="background-color:#F8F8F8;height: 30px;">
-                                <th colspan="3" style="text-align:left;font-weight: bold;" class="towords">  </th>
-                                <th class="debitTotal" style="text-align:center;color:#042377;" data-type='Dr' title="Debit"><%= totDebit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}); %> </th>
-                                <th class="creditTotal" style="text-align:center;color:#BD0A0D;" data-type='Cr' title="Credit"><%= totCredit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}); %> </th>
-                            </tr>
-                         </tbody>
-                      </table>
-                <div class="clear"></div>
-				<p class="towords"></p>
-                <div class="clear" style="height: 35px;"></div>
-                <div class="voucherEndFooter">
-                	<div style="margin-bottom: 0px;"></div>
-					<table class="bottomSignatureTable">
-						<tr>
-							<td class="text-left bottomSignatureBorder">
-								Prepared By</td>
-							<td class="text-center bottomSignatureBorder">Checked By</td>
-							<td class="text-center bottomSignatureBorder">Approved By</td>
-							<td class="text-right bottomSignatureBorder">
-								Received By</td>
-						</tr>
-					</table>
-					<div style="margin-bottom: 90px;"></div>
-	            </div>
-                <div class="clear"></div>
-            </div><!--invoiceBody-->
-        </div><!--printThisDiv-->
-        </div><!--invoiceLeftPrint-->
-    </div><!--invoiceContainer-->
-</div><!--invoiceBody-->
-</body>
-</html>
+        </div>
+        <!--header-->
+        <div style="height: 20px;"></div>
 
+        <div class="invoiceContainer">
+            <div class="invoiceLeftPrint">
+                <div class="printThisDiv">
+                    <div class="invoiceHead" style="width: 720px;margin: 0px auto;">
+                        <div class="LogoPanel">
+
+                            <img class="logo pull-left" src="/uploads/logo/company.jpg"
+                                data-pagespeed-url-hash="1247871539"
+                                onload="pagespeed.CriticalImages.checkImageForCriticality(this);" />
+
+                        </div>
+                        <div class="partyTitle" style="text-align:left;">
+                            <div style="font-size:26px;line-height: 40px;">
+                                <%= comp.companyName %>
+                            </div>
+                            <%= comp.address %> <br />
+                                <%= comp.mobile %> <br />
+                                    <%= comp.email %>
+                        </div>
+                        <div style="clear: both;"></div>
+                        <div class="partyTitle text-center voucherTitle">
+                            <%= title %>
+                        </div>
+                        <input type="hidden" class="transaction-skip" value="Dr"></input>
+                        <div class="clear" style="height: 5px;"></div>
+                        <div class="partyTitle" style="font-size: 16px;">
+                            <span class="pull-right" style="padding:0px 0px;font-size:14px;">
+                                <% if (title=="Cash Receipt" ) { %>
+                                    CR# <%= jvs.crNum %>
+                                        <% } %>
+                                            <% if (title=="Cash Payment" ) { %>
+                                                CP# <%= jvs.cpNum %>
+                                                    <% } %>
+                            </span>
+                            <div class="clear"></div>
+                            <span class="pull-left" style="padding:0px 0px;font-size:14px;">Voucher No. <%= jvs.jvNum %>
+                            </span>
+                            <span class="pull-right" style="padding:0px 0px;font-size:14px;">Date. 07-02-2022</span>
+                        </div>
+                        <!--partyTitle-->
+                        <div class="clear" style="height: 5px;"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <!--invoiceHead-->
+                    <% var totDebit=0; var totCredit=0; %>
+
+                        <div class="clear"></div>
+                        <div class="invoiceBody" style="width: 720px;margin: 0px auto;">
+                            <table cellspacing="0" align="center" style="width:100%;"
+                                class="removeableTable tableBreak tableStyle">
+                                <thead class="tHeader">
+                                    <tr>
+                                        <th width="10%" class="text-center">Code</th>
+                                        <th width="20%" class="text-left">Title</th>
+                                        <th width="30%" class="text-left">Narrtion</th>
+                                        <th width="10%" class="text-center" data-type='Dr'>Debit(Rs.)</th>
+                                        <th width="10%" class="text-center" data-type='Cr'>Credit(Rs.)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="transactions" style="display:none;"></tr>
+                                    <tr class="transactions">
+                                        <% if (jvs.jvNum !==0) { %>
+                                            <% jvs.transactions.forEach(t=> { %>
+                                                <td class="text-center">
+                                                    <%= t.account_code %>
+                                                </td>
+                                                <td class="text-left">
+                                                    <%= t.account_title %>
+                                                </td>
+                                                <td class="text-left">
+                                                    <%= t.narration %>
+                                                </td>
+                                                <td class="text-center debitColumn" data-type='Dr'>
+                                                    <%= t.debit==null ? null : t.debit.toLocaleString(undefined,
+                                                        {minimumFractionDigits: 2, maximumFractionDigits: 2}); %>
+                                                </td>
+                                                <td class="text-center creditColumn" data-type='Cr'>
+                                                    <%= t.credit==null ? null : t.credit.toLocaleString(undefined,
+                                                        {minimumFractionDigits: 2, maximumFractionDigits: 2}); %>
+                                                </td>
+                                    </tr>
+                                    <% totDebit +=t.debit; totCredit +=t.credit %>
+                                        <% }) %>
+                                            <% } %>
+                                                <tr style="background-color:#F8F8F8;height: 30px;">
+                                                    <th colspan="3" style="text-align:left;font-weight: bold;"
+                                                        class="towords"> </th>
+                                                    <th class="debitTotal" style="text-align:center;color:#042377;"
+                                                        data-type='Dr' title="Debit">
+                                                        <%= totDebit.toLocaleString(undefined, {minimumFractionDigits:
+                                                            2, maximumFractionDigits: 2}); %>
+                                                    </th>
+                                                    <th class="creditTotal" style="text-align:center;color:#BD0A0D;"
+                                                        data-type='Cr' title="Credit">
+                                                        <%= totCredit.toLocaleString(undefined, {minimumFractionDigits:
+                                                            2, maximumFractionDigits: 2}); %>
+                                                    </th>
+                                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="clear"></div>
+                            <p class="towords"></p>
+                            <div class="clear" style="height: 35px;"></div>
+                            <div class="voucherEndFooter">
+                                <div style="margin-bottom: 0px;"></div>
+                                <table class="bottomSignatureTable">
+                                    <tr>
+                                        <td class="text-left bottomSignatureBorder">
+                                            Prepared By</td>
+                                        <td class="text-center bottomSignatureBorder">Checked By</td>
+                                        <td class="text-center bottomSignatureBorder">Approved By</td>
+                                        <td class="text-right bottomSignatureBorder">
+                                            Received By</td>
+                                    </tr>
+                                </table>
+                                <div style="margin-bottom: 90px;"></div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!--invoiceBody-->
+                </div>
+                <!--printThisDiv-->
+            </div>
+            <!--invoiceLeftPrint-->
+        </div>
+        <!--invoiceContainer-->
+    </div>
+    <!--invoiceBody-->
+</body>
+
+</html>

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const JV = require("../models/jv");
 const Level5 = require("../models/level5");
+const shared = require("./shared")
 
 // All Authors Route
 router.get("/", async (req, res) => {
@@ -29,11 +30,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-async function getNewJvNum() {
-  const newJvNum = await JV.find({}).select({"jvNum": 1, _id: 0}).sort({"jvNum" : -1}).limit(1).exec();
-    return ((newJvNum[0].jvNum || 0) + 1);
-}
-
 // Create Author Route
 router.post("/", async (req, res) => {
   try {
@@ -47,11 +43,11 @@ router.post("/", async (req, res) => {
 
       const freshJv = await jv.save();
       console.log(freshJv);
-      res.json({"ID": freshJv.jvNum, "MSG": "Saved Successfully" })
-      
+      res.json({ "ID": freshJv.jvNum, "MSG": "Saved Successfully" })
+
     }
     else {
-      let newJvNum = await getNewJvNum();
+      const newJvNum = await shared.getNewJvNum();
 
       console.log(newJvNum);
 
@@ -62,12 +58,12 @@ router.post("/", async (req, res) => {
       });
 
       const freshJv = await jv.save();
-      res.json({"ID": freshJv.jvNum, "MSG": "Updated Successfully" })
+      res.json({ "ID": freshJv.jvNum, "MSG": "Updated Successfully" })
     }
 
   } catch (err) {
     console.log(err);
-    res.json({"ID": 0, "MSG": err.message })
+    res.json({ "ID": 0, "MSG": err.message })
   }
 });
 
@@ -75,8 +71,8 @@ router.get("/:id", async (req, res) => {
   try {
     const jvs = await JV.findOne({ jvNum: req.params.id }).exec();
     console.log(jvs);
-    if(jvs == null) {
-      res.render("jvs") 
+    if (jvs == null) {
+      res.render("jvs")
       return;
     }
     const level5s = await Level5.find().select({
@@ -84,7 +80,7 @@ router.get("/:id", async (req, res) => {
       level5_title: 1,
       _id: 0,
     });
-    res.render("jvs", {
+    res.render("jvs/jvv", {
       jvs: jvs,
       level5: level5s,
     });
