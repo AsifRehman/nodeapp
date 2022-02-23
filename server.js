@@ -38,6 +38,7 @@ const bookRouter = require('./routes/books')
 const jvRouter = require('./routes/jvs')
 const cpRouter = require('./routes/cps')
 const crRouter = require('./routes/crs')
+const glRouter = require('./routes/gls')
 const dbRouter = require('./routes/db')
 const level1Router = require('./routes/level1')
 const level2Router = require('./routes/level2')
@@ -122,6 +123,7 @@ function checkNotAuthenticated(req, res, next) {
 app.use('/authors', authorRouter)
 app.use('/books', bookRouter)
 app.use('/jvs', jvRouter)
+app.use('/gls', glRouter)
 app.use('/cps', cpRouter)
 app.use('/crs', crRouter)
 app.use('/level1', level1Router)
@@ -136,6 +138,6 @@ app.use('/db', dbRouter)
 var server = app.listen(process.env.PORT || 3000, () => {
   console.log("Calling app.listen's callback function.");
   var port = server.address().port;
-  console.log('Example app listening at http://localhost:%s/cps', port);
+  console.log('Example app listening at http://localhost:%s/gls', port);
 
 })
