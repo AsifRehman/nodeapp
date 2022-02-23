@@ -1,23 +1,44 @@
 const express = require("express");
 const router = express.Router();
 const GL = require("../models/gl");
+const JV = require("../models/jv");
 const Level5 = require("../models/level5");
 const shared = require("./shared")
 
 router.get("/test", async (req, res) => {
-    res.send("123")
-    return;
+    var a = "31-12-2021"
+    
+    res.send(shared.revDate(a))
 })
 
 // All Authors Route
 router.get("/", async (req, res) => {
-    let searchOptions = {};
-    if (req.query.id != null && req.query.id !== "") {
-        searchOptions.jvNum = req.query.id;
+    let opt = {};
+    if (req.query.account_code != null && req.query.account_code !== "") {
+        opt.account_code = req.query.account_code;
     }
+    if (req.query.fromDate != null && req.query.fromDate !== "") {
+        opt.fromDate = req.query.fromDate;
+    }
+    if (req.query.toDate != null && req.query.toDate !== "") {
+        opt.toDate = req.query.toDate;
+    }
+
     try {
+
         const gl = {};
-        if (searchOptions.jvNum > 0) gls = await GL.find(searchOptions);
+        if (opt.account_code > 0) {
+            console.log(opt);
+
+//            gls = await JV.find({});
+            gls = await JV.find({
+                'transactions.account_code': opt.account_code,
+                'jvDate': {$gte: shared.revDate(opt.fromDate), $lte: shared.revDate(opt.toDate)}
+
+            });
+            res.send(gls)
+            return;
+        }
         else gls = new GL([{ jvNum: 0, glNum: 0, glDate: Date.now(), transactions: [] }]);
 
         const level5s = await Level5.find().select({
@@ -36,8 +57,7 @@ router.get("/", async (req, res) => {
         res.render("gls/glv", {
             gls: gls,
             level5: level5s,
-            cashAcs: cashAcs,
-            searchOptions: req.query,
+            opt: req.query,
         });
     } catch (err) {
         console.log(err.message);

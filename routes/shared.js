@@ -23,8 +23,13 @@ async function getNewJvNum() {
     return Math.max(v1, v2, v3);
 }
 
+function revDate(dt) {
+    return dt.split("-").reverse().join("-")
+}
+
 module.exports = {
     getNewCrNum: getNewCrNum,
     getNewCpNum: getNewCpNum,
-    getNewJvNum: getNewJvNum
+    getNewJvNum: getNewJvNum,
+    revDate: revDate
 }

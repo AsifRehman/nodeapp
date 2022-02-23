@@ -1,4 +1,4 @@
-GET http://localhost:3000/printv/3445
+GET http://localhost:3000/gls/test
 
 
 ###
