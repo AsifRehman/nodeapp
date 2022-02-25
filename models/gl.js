@@ -6,6 +6,21 @@ const glSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    companyName: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String
+    },
+    mobile: {
+        type: String
+    },
     glNum: {
         type: Number,
         required: true,

@@ -1,448 +1,350 @@
 <div class="content-box-top">
-    <div class="summery_body">
-        <div class="content-box-header">
-            <ul class="nav nav-wizard" style="float:left">
-                <li><a href="financial-reports.php"><i class="fa fa-database"></i> Reports</a></li>
-                <li class="active"><a href="#">General Ledger Reporting</a></li>
-            </ul>
-            <div class="clear"></div>
-        </div><!-- End .content-box-header -->
-        <div id="bodyTab1" style="margin-top:20px;">
-            <div class="clear"></div>
-            <div id="form" style="margin: 0 auto;">
-                <form method="get" action="">
-                    <div class="row">
-                        <div class="col-6">
-                            <div style="width:400px; float:left;">
-                                <div class="caption" style="width:120px;">Account Title :</div>
-                                <div class="field" style="width:220px;">
-                                    <%- include('../partials/_level5s', { level5: level5 }) %>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div style="width:400px;float:left;">
-                                <div class="caption" style="width:120px;"> PO #:</div>
-                                <div class="field" style="width:150px;">
-                                    <input type="text" name="po_no" class="form-control" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- <div class="clear"></div> -->
-                    <div class="row">
-                        <div class="col-6">
-                            <div style="width:400px; float:left;">
-                                <div class="caption" style="width:120px;">Start Date:</div>
-                                <div class="field" style="width:150px">
-                                    <input type="text" name="fromDate" value="" class="form-control datepicker"
-                                        style="width:145px;" />
-                                    <!-- <input type="date" name="fromDate" value="" class="form-control" style="width:160px;"> -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div style="width:400px; float:left;">
-                                <div class="caption" style="width:120px;">End Date:</div>
-                                <div class="field" style="width:150px">
-                                    <input type="text" name="toDate" value="23-02-2022" class="form-control datepicker"
-                                        style="width:145px;" />
-
-                                    <!-- <input type="date" name="toDate" value="2022-02-23" class="form-control" style="width:160px;"> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <div style="width:400px; float:left;">
-                                <div class="caption" style="width:120px;"></div>
-                                <div class="field" style="width:120px;">
-                                    <input type="submit" value="Generate" name="generalReport" class="button" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
+  <div class="summery_body">
+    <div class="content-box-header">
+      <div class="clear"></div>
+    </div>
+    <!-- End .content-box-header -->
+    <div id="bodyTab1" style="margin-top: 20px">
+      <div class="clear"></div>
+      <div id="form" style="margin: 0 auto">
+        <form method="get" action="">
+          <div class="row">
+            <div class="col-6">
+              <div style="width: 400px; float: left">
+                <div class="caption" style="width: 120px">Account Title :</div>
+                <div class="field" style="width: 220px">
+                  <%- include('../partials/_level5s', { level5: level5 }) %>
+                </div>
+              </div>
             </div>
-            <!--form-->
-            <div class="clear"></div>
 
-        </div> <!-- End bodyTab1 -->
-    </div> <!-- End .content-box-content -->
+            <div class="col-6">
+              <div style="width: 400px; float: left">
+                <div class="caption" style="width: 120px">PO #:</div>
+                <div class="field" style="width: 150px">
+                  <input type="text" name="po_no" class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
 
-    <hr />
-    <div style="clear:both;height:20px;"></div>
+          <!-- <div class="clear"></div> -->
+          <div class="row">
+            <div class="col-6">
+              <div style="width: 400px; float: left">
+                <div class="caption" style="width: 120px">Start Date:</div>
+                <div class="field" style="width: 150px">
+                  <input
+                    type="text"
+                    name="fromDate"
+                    value="<%=  %> "
+                    class="form-control datepicker"
+                    style="width: 145px"
+                  />
+                  <!-- <input type="date" name="fromDate" value="" class="form-control" style="width:160px;"> -->
+                </div>
+              </div>
+            </div>
 
+            <div class="col-6">
+              <div style="width: 400px; float: left">
+                <div class="caption" style="width: 120px">End Date:</div>
+                <div class="field" style="width: 150px">
+                  <input
+                    type="text"
+                    name="toDate"
+                    value="23-02-2022"
+                    class="form-control datepicker"
+                    style="width: 145px"
+                  />
 
-    <div class="col-xs-12">
-        <div class="content-box-content">
-            <span style="float:right;">
-                <button class="button printThis">Print</button>
-                <a target="_blank"
-                    href="ledger-details.php?accountCode=0401010012&po_no=&fromDate=01-01-2001&toDate=23-02-2022&generalReport=Generate&&csv"
-                    class="button">Export CSV</a>
+                  <!-- <input type="date" name="toDate" value="2022-02-23" class="form-control" style="width:160px;"> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <div style="width: 400px; float: left">
+                <div class="caption" style="width: 120px"></div>
+                <div class="field" style="width: 120px">
+                  <input
+                    type="submit"
+                    value="Generate"
+                    name="generalReport"
+                    class="button"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!--form-->
+      <div class="clear"></div>
+    </div>
+    <!-- End bodyTab1 -->
+  </div>
+  <!-- End .content-box-content -->
+
+  <hr />
+  <div style="clear: both; height: 20px"></div>
+
+  <div class="col-xs-12">
+    <div class="content-box-content">
+      <span style="float: right">
+        <button class="button printThis">Print</button>
+        <a
+          target="_blank"
+          href="ledger-details.php?accountCode=0401010012&po_no=&fromDate=01-01-2001&toDate=23-02-2022&generalReport=Generate&&csv"
+          class="button"
+          >Export CSV</a
+        >
+      </span>
+      <div id="bodyTab" class="printTable" style="margin: 0 auto">
+        <div class="LogoPanel">
+          <img
+            class="logo pull-left"
+            src=""
+            data-pagespeed-url-hash="1247871539"
+            onload="pagespeed.CriticalImages.checkImageForCriticality(this);"
+          />
+        </div>
+        <div class="partyTitle" style="text-align: left">
+          <div style="font-size: 26px; line-height: 40px">
+            <%= comp.companyName %>
+          </div>
+          <%= comp.address %> <br />
+          <%= comp.mobile %> <br />
+          <%= comp.email %>
+        </div>
+
+        <div style="clear: both"></div>
+
+        <div style="text-align: left; margin-bottom: 20px" class="pageHeader">
+          <p class="voucherTitle" style="font-size: 18px">
+            <%= account_title %> (<%= account_code %> )
+          </p>
+
+          <p style="font-size: 12px; padding: 0; text-align: center">
+            <span class="pull-left">
+              LedgerFrom: <u> <%= opt.fromDate %> </u> TO: <u> <%= opt.toDate %>  </u>
             </span>
-            <div id="bodyTab" class='printTable' style="margin: 0 auto;">
+            <span class="pull-right"> ReportGenerated Date: 23-Feb 2022 </span>
+          </p>
 
-                <div class="LogoPanel">
-
-                    <img class="logo pull-left" src="uploads/logo/06187797531d809bd69ddd5e8c127214.jpg"
-                        data-pagespeed-url-hash="1247871539"
-                        onload="pagespeed.CriticalImages.checkImageForCriticality(this);" />
-
-                </div>
-                <div class="partyTitle" style="text-align:left;">
-                    <div style="font-size:26px;line-height: 40px;">
-                        WARISHA DIGITEX </div>
-                    Maqbool road , near Blessing Home School <br />
-                    +923008655550<br />
-                    Infowarishaind@gmail.com
-                </div>
-                <div style="clear: both;"></div>
-
-                <div style="text-align:left;margin-bottom:20px;" class="pageHeader">
-
-                    <p class="voucherTitle" style="font-size:18px;">AA DAYEING (0401010012) </p>
-
-
-                    <p style="font-size:12px;padding:0;text-align:center;">
-                        <span class="pull-left">
-                            LedgerFrom: <u> 01-Jan 2001</u> TO: <u> 23-Feb 2022</u>
-                        </span>
-                        <span class="pull-right">
-                            ReportGenerated Date: 23-Feb 2022 </span>
-
-                    </p>
-
-                    <!-- <p style="float:left; margin-left:0px; font-size:14px" class="repoGen">
+          <!-- <p style="float:left; margin-left:0px; font-size:14px" class="repoGen">
                     </p> -->
-                </div>
-                <div style="clear:both; height:1;"></div>
+        </div>
+        <div style="clear: both; height: 1"></div>
 
-                <div class="table-responsive">
-                    <table style="margin:0 0px; width:100%;" cellspacing="0" class="tableBreak tableStyle">
-                        <thead class="tHeader">
-                            <tr>
-                                <th width="8%" colspan="2" style="text-align:center;border:1px solid #ddd;">
-                                    Ref</th>
-                                <th width="10%" style="border:1px solid #ddd;">Date</th>
-                                <th width="45%" style="border:1px solid #ddd;">Description</th>
-                                <th width="10%" style="text-align:center;border:1px solid #ddd;">Debit</th>
-                                <th width="10%" style="text-align:center;border:1px solid #ddd;">Credit</th>
-                                <th width="15%" style="text-align:center;border:1px solid #ddd;">Balance
-                                </th>
-                            </tr>
-                        </thead>
+        <div class="table-responsive">
+          <table
+            style="margin: 0 0px; width: 100%"
+            cellspacing="0"
+            class="tableBreak tableStyle"
+          >
+            <thead class="tHeader">
+              <tr>
+                <th
+                  width="8%"
+                  colspan="2"
+                  style="text-align: center; border: 1px solid #ddd"
+                >
+                  Ref
+                </th>
+                <th width="10%" style="border: 1px solid #ddd">Date</th>
+                <th width="45%" style="border: 1px solid #ddd">Description</th>
+                <th
+                  width="10%"
+                  style="text-align: center; border: 1px solid #ddd"
+                >
+                  Debit
+                </th>
+                <th
+                  width="10%"
+                  style="text-align: center; border: 1px solid #ddd"
+                >
+                  Credit
+                </th>
+                <th
+                  width="15%"
+                  style="text-align: center; border: 1px solid #ddd"
+                >
+                  Balance
+                </th>
+              </tr>
+            </thead>
 
-                        <tbody>
-                            <tr>
-                                <td class="fontBig" colspan="3"
-                                    style="border-right:none;border-left:none;background-color: #f8f8f8;font-weight:normal;">
-                                </td>
-                                <td class="fontBig bold" class="fontBig bold"
-                                    style="text-align:right;border-right:1px solid #E5E5E5;border-left:none">
-                                    Opening Balance:</td>
-                                <td class="fontBig" colspan="2" style="border-right:none;border-left:none">
-                                </td>
-                                <td class="fontBig bold" style="border-left:none;border-right:none;text-align:right">
-                                    0 CR </td>
-                            </tr>
-                            <tr>
-                                <td class="fontBig" style="text-align:center">
-                                    CP#
-                                </td>
-                                <td class="fontBig" style="text-align:center">
-                                    <a href="voucher-print.php?id=56" target="_blank">55</a>
-                                </td>
-                                <td align="left">
-                                    18-03-2021 </td>
-                                <td class="fontBig" align="left" style="text-decoration: none; color:black !important;">
-                                    Amount paid in
-                                    cash </td>
-                                <td class="fontBig" style="text-align:right" class="debitColumn">
-                                    144,665.00 </td>
-                                <td class="fontBig" style="text-align:right;" class="creditColumn">
-                                </td>
-                                <td class="fontBig" style="text-align: right; background-color:">144,665.00
-                                    DR</td>
-                            </tr>
-                            <tr>
-                                <td class="fontBig" style="text-align:center">
-                                    JV#
-                                </td>
-                                <td class="fontBig" style="text-align:center">
-                                    <a href="voucher-print.php?id=237" target="_blank">230</a>
-                                </td>
-                                <td align="left">
-                                    31-03-2021 </td>
-                                <td class="fontBig" align="left" style="text-decoration: none; color:black !important;">
-                                    BILL </td>
-                                <td class="fontBig" style="text-align:right" class="debitColumn">
-                                </td>
-                                <td class="fontBig" style="text-align:right;" class="creditColumn">
-                                    144,665.00 </td>
-                                <td class="fontBig" style="text-align: right; background-color:">0.00 CR
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="fontBig" style="text-align:center">
-                                    PV#
-                                </td>
-                                <td class="fontBig" style="text-align:center">
-                                    <a href="voucher-print.php?id=409" target="_blank">395</a>
-                                </td>
-                                <td align="left">
-                                    02-05-2021 </td>
-                                <td class="fontBig" align="left" style="text-decoration: none; color:black !important;">
-                                    <a class="text-warning urdu-font"
-                                        style="text-decoration: none; color: black !important;" target="_blank"
-                                        href="purchase-invoice.php?id=3">Bill#3 VBill#
-                                        CHIFOON TotalKG:0 qty:1000 @100 </a>
-                                </td>
-                                <td class="fontBig" style="text-align:right" class="debitColumn">
-                                </td>
-                                <td class="fontBig" style="text-align:right;" class="creditColumn">
-                                    100,000.00 </td>
-                                <td class="fontBig" style="text-align: right; background-color:">100,000.00
-                                    CR</td>
-                            </tr>
-                            <tr>
-                                <td class="fontBig" style="text-align:center">
-                                    PV#
-                                </td>
-                                <td class="fontBig" style="text-align:center">
-                                    <a href="voucher-print.php?id=3796" target="_blank">3642</a>
-                                </td>
-                                <td align="left">
-                                    23-02-2022 </td>
-                                <td class="fontBig" align="left" style="text-decoration: none; color:black !important;">
-                                    <a class="text-warning urdu-font"
-                                        style="text-decoration: none; color: black !important;" target="_blank"
-                                        href="purchase-invoice.php?id=371">Bill#366
-                                        TotQty:2302 VBill#1121 Pre qty:2302 @16 </a>
-                                </td>
-                                <td class="fontBig" style="text-align:right" class="debitColumn">
-                                </td>
-                                <td class="fontBig" style="text-align:right;" class="creditColumn">
-                                    36,832.00 </td>
-                                <td class="fontBig" style="text-align: right; background-color:">136,832.00
-                                    CR</td>
-                            </tr>
-                            <tr>
-                                <td class="fontBig" style="text-align:center">
-                                    PV#
-                                </td>
-                                <td class="fontBig" style="text-align:center">
-                                    <a href="voucher-print.php?id=3797" target="_blank">3643</a>
-                                </td>
-                                <td align="left">
-                                    23-02-2022 </td>
-                                <td class="fontBig" align="left" style="text-decoration: none; color:black !important;">
-                                    <a class="text-warning urdu-font"
-                                        style="text-decoration: none; color: black !important;" target="_blank"
-                                        href="purchase-invoice.php?id=372">Bill#367
-                                        TotQty:158 VBill#312 Post qty:158 @16 </a>
-                                </td>
-                                <td class="fontBig" style="text-align:right" class="debitColumn">
-                                </td>
-                                <td class="fontBig" style="text-align:right;" class="creditColumn">
-                                    2,528.00 </td>
-                                <td class="fontBig" style="text-align: right; background-color:">139,360.00
-                                    CR</td>
-                            </tr>
-                            <tr>
-                                <td class="fontBig" style="text-align:center">
-                                    PV#
-                                </td>
-                                <td class="fontBig" style="text-align:center">
-                                    <a href="voucher-print.php?id=3798" target="_blank">3644</a>
-                                </td>
-                                <td align="left">
-                                    23-02-2022 </td>
-                                <td class="fontBig" align="left" style="text-decoration: none; color:black !important;">
-                                    <a class="text-warning urdu-font"
-                                        style="text-decoration: none; color: black !important;" target="_blank"
-                                        href="purchase-invoice.php?id=373">Bill#368
-                                        TotQty:2453 VBill#1018 Post qty:2453 @16 </a>
-                                </td>
-                                <td class="fontBig" style="text-align:right" class="debitColumn">
-                                </td>
-                                <td class="fontBig" style="text-align:right;" class="creditColumn">
-                                    39,248.00 </td>
-                                <td class="fontBig" style="text-align: right; background-color:">178,608.00
-                                    CR</td>
-                            </tr>
-                            <tr>
-                                <td class="fontBig" style="text-align:center">
-                                    PV#
-                                </td>
-                                <td class="fontBig" style="text-align:center">
-                                    <a href="voucher-print.php?id=3799" target="_blank">3645</a>
-                                </td>
-                                <td align="left">
-                                    23-02-2022 </td>
-                                <td class="fontBig" align="left" style="text-decoration: none; color:black !important;">
-                                    <a class="text-warning urdu-font"
-                                        style="text-decoration: none; color: black !important;" target="_blank"
-                                        href="purchase-invoice.php?id=374">Bill#369
-                                        TotQty:5098 VBill#1017 Post qty:5098 @16 </a>
-                                </td>
-                                <td class="fontBig" style="text-align:right" class="debitColumn">
-                                </td>
-                                <td class="fontBig" style="text-align:right;" class="creditColumn">
-                                    81,568.00 </td>
-                                <td class="fontBig" style="text-align: right; background-color:">260,176.00
-                                    CR</td>
-                            </tr>
-                            <tr>
-                                <td class="fontBig" style="text-align:center">
-                                    PV#
-                                </td>
-                                <td class="fontBig" style="text-align:center">
-                                    <a href="voucher-print.php?id=3800" target="_blank">3646</a>
-                                </td>
-                                <td align="left">
-                                    23-02-2022 </td>
-                                <td class="fontBig" align="left" style="text-decoration: none; color:black !important;">
-                                    <a class="text-warning urdu-font"
-                                        style="text-decoration: none; color: black !important;" target="_blank"
-                                        href="purchase-invoice.php?id=375">Bill#370
-                                        TotQty:3688 VBill#1019 Post qty:3688 @16 </a>
-                                </td>
-                                <td class="fontBig" style="text-align:right" class="debitColumn">
-                                </td>
-                                <td class="fontBig" style="text-align:right;" class="creditColumn">
-                                    59,008.00 </td>
-                                <td class="fontBig" style="text-align: right; background-color:">319,184.00
-                                    CR</td>
-                            </tr>
-                            <tr style="background:none">
-                                <td class="fontBig" class="fontBig" colspan="4"
-                                    style="text-align:right;border:1px solid #e5e5e5;">Period Total:</td>
-                                <td class="fontBig" style="border:1px solid #e5e5e5;text-align:right">
-                                    144,665.00</td>
-                                <td class="fontBig" style="border:1px solid #e5e5e5;text-align:right">
-                                    463,849.00</td>
-                                <td class="fontBig" style="border-left:none;text-align:right">
+            <tbody>
+              <tr>
+                <td
+                  class="fontBig"
+                  colspan="3"
+                  style="
+                    border-right: none;
+                    border-left: none;
+                    background-color: #f8f8f8;
+                    font-weight: normal;
+                  "
+                ></td>
+                <td
+                  class="fontBig bold"
+                  class="fontBig bold"
+                  style="
+                    text-align: right;
+                    border-right: 1px solid #e5e5e5;
+                    border-left: none;
+                  "
+                >
+                  Opening Balance:
+                </td>
+                <td
+                  class="fontBig"
+                  colspan="2"
+                  style="border-right: none; border-left: none"
+                ></td>
+                <td
+                  class="fontBig bold"
+                  style="
+                    border-left: none;
+                    border-right: none;
+                    text-align: right;
+                  "
+                >
+                  0 CR
+                </td>
+              </tr>
+              <tr>
+                <% gls.forEach(g => { %>
+                 
+                <% g.transactions.forEach(e => { %>
+                
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="fontBig" colspan="4" style="text-align:right; font-weight:bold !important;">
-                                    Closing Balance:
-                                </td>
-                                <td class="fontBig" colspan="2" style=""></td>
-                                <td class="fontBig" style="text-align:right;font-weight:bold !important;"
-                                    class="closingBalance">
-                                    319,184.00 CR </td>
-                            </tr>
+                <td class="fontBig" style="text-align: center">JV</td>
+                <td class="fontBig" style="text-align: center">
+                  <a href="voucher-print.php?id=56" target="_blank"><%= g.jvNum  %> </a>
+                </td>
+                <td style="text-align: left"><%= getFullYear(g.jvDate) %> </td>
+                <td
+                  class="fontBig"
+                  style="text-decoration: none; color: black !important"
+                >
+                  <%= e.narration %> 
+                </td>
+                <td
+                  class="fontBig"
+                  style="text-align: right"
+                  class="debitColumn"
+                >
+                  <%= e.debit %> 
+                </td>
+                <td
+                  class="fontBig"
+                  style="text-align: right"
+                  class="creditColumn"
+                ><%= e.credit %> </td>
+                <td class="fontBig" style="text-align: right"><%= e.debit+=e.debit %>  DR</td>
+              </tr>
+              <% }) %>
+              <!-- TRANS.EACH -->
+              <% }) %> 
+              <!-- GLS.EACH -->
+            <!-- for pending cheques  -->
 
-                            <!-- for pending cheques  -->
-
-                            <!-- <tr>
+              <!-- <tr>
                                 <td colspan="4" style="text-align:right;">Closing Balance without Pending Cheques:</td>
                                 <td colspan="2" style=""></td>
                                 <td style="text-align:right" class="closingBalance">
                                                                                 </td>
                             </tr> -->
-
-                        </tbody>
-                    </table>
-                </div>
-
-                <div style="clear:both;"></div>
-                <div class="" style="margin-top: 50px;">
-                    <div>
-                        <span style="float:left;">Company Signature</span>
-                        <span style="float:right;">Party Signature</span>
-                    </div>
-
-                    <div class="clear" style="height:10px;"></div>
-                    <div class="text-center" style="border-top: 1px dotted lightgrey">
-                        WARISHA DIGITEX </div>
-                </div>
-
-
-            </div>
-            <!--bodyTab2-->
-
-
-
+            </tbody>
+          </table>
         </div>
+
+        <div style="clear: both"></div>
+        <div class="" style="margin-top: 50px">
+          <div>
+            <span style="float: left">Company Signature</span>
+            <span style="float: right">Party Signature</span>
+          </div>
+
+          <div class="clear" style="height: 10px"></div>
+          <div class="text-center" style="border-top: 1px dotted lightgrey">
+            <%= comp.companyName %> 
+          </div>
+        </div>
+      </div>
+      <!--bodyTab2-->
     </div>
-    <!--summery_body-->
+  </div>
+  <!--summery_body-->
 </div>
 
-
 <script>
-    $(document).ready(function () {
-        $("select").selectpicker();
-        $("input[name='jvReference']").focus();
-        $(".receiptNum,.amount").numericFloatOnly();
-        $("select.accCodeSelector").change(function () { });
-        $("select.accCodeSelector").change(function (e) {
-            setTimeout(function () {
-                if ($("select.accCodeSelector option:selected").val() != "") {
-                    var account_code = $("select.accCodeSelector option:selected").val();
-                    getAccountBalance(account_code, ".insertAccTitle");
-                    $(".narration").focus();
+  $(document).ready(function () {
+    $("select").selectpicker();
+    $("input[name='jvReference']").focus();
+    $(".receiptNum,.amount").numericFloatOnly();
+    $("select.accCodeSelector").change(function () {});
+    $("select.accCodeSelector").change(function (e) {
+      setTimeout(function () {
+        if ($("select.accCodeSelector option:selected").val() != "") {
+          var account_code = $("select.accCodeSelector option:selected").val();
+          getAccountBalance(account_code, ".insertAccTitle");
+          $(".narration").focus();
 
-                    // if ($("input.admin").val() == "Y") {
-                    //   getAccountBalance(account_code, ".insertAccTitle");
-                    // }
-                    // if (account_code.startsWith("010104") == true) {
-                    //   getBillsListOfAccounts(account_code);
-                    // }
-                    // if ($("select.billNoSelector").length) {
-                    //   $("select.billNoSelector").focus();
-                    //   $("select.billNoSelector").refresh();
-                    // } else {
-                    //   $(".narration").focus();
-                    // }
-                }
-            }, 100);
-        });
-        $("select.billNoSelector").change(function (e) {
-            var val = $("select.billNoSelector option:selected").html();
-            var array = val.split("Amt:");
-            $("input[name=billAmount]").val(array[1]);
-        });
-        $("input.narration").keyup(function (e) {
-            if (e.keyCode == 13 && $(this).val() != "") {
-                $("input.amount").focus();
-            }
-        });
-        $("input.amount").keyup(function (e) {
-            if (e.keyCode == 13 && $(this).val() != "") {
-                $(this).quickSubmitDrCr();
-            }
-        });
-        $(".saveJournal").click(function () {
-            $(this).saveJournal();
-        });
-        $(window).keyup(function (e) {
-            if (e.altKey == true && e.keyCode == 83) {
-                e.preventDefault();
-                $("#form").click();
-                $(".saveJournal").click();
-                return false;
-            }
-        });
-        $(".cdr_btn").on("click", function () {
-            $(this).quickSubmitDrCr();
-        });
-        $(".cdr_btn").on("keydown", function (e) {
-            if (e.keyCode == 13) {
-                $(this).quickSubmitDrCr();
-            }
-        });
-        getCashBalance();
-        $("select.cash_accounts_list").change(getCashBalance);
+          // if ($("input.admin").val() == "Y") {
+          //   getAccountBalance(account_code, ".insertAccTitle");
+          // }
+          // if (account_code.startsWith("010104") == true) {
+          //   getBillsListOfAccounts(account_code);
+          // }
+          // if ($("select.billNoSelector").length) {
+          //   $("select.billNoSelector").focus();
+          //   $("select.billNoSelector").refresh();
+          // } else {
+          //   $(".narration").focus();
+          // }
+        }
+      }, 100);
     });
+    $("select.billNoSelector").change(function (e) {
+      var val = $("select.billNoSelector option:selected").html();
+      var array = val.split("Amt:");
+      $("input[name=billAmount]").val(array[1]);
+    });
+    $("input.narration").keyup(function (e) {
+      if (e.keyCode == 13 && $(this).val() != "") {
+        $("input.amount").focus();
+      }
+    });
+    $("input.amount").keyup(function (e) {
+      if (e.keyCode == 13 && $(this).val() != "") {
+        $(this).quickSubmitDrCr();
+      }
+    });
+    $(".saveJournal").click(function () {
+      $(this).saveJournal();
+    });
+    $(window).keyup(function (e) {
+      if (e.altKey == true && e.keyCode == 83) {
+        e.preventDefault();
+        $("#form").click();
+        $(".saveJournal").click();
+        return false;
+      }
+    });
+    $(".cdr_btn").on("click", function () {
+      $(this).quickSubmitDrCr();
+    });
+    $(".cdr_btn").on("keydown", function (e) {
+      if (e.keyCode == 13) {
+        $(this).quickSubmitDrCr();
+      }
+    });
+    getCashBalance();
+    $("select.cash_accounts_list").change(getCashBalance);
+  });
 </script>
