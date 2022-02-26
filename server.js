@@ -36,6 +36,7 @@ const indexRouter = require('./routes/index')
 const authorRouter = require('./routes/authors')
 const bookRouter = require('./routes/books')
 const jvRouter = require('./routes/jvs')
+const cbRouter = require('./routes/cbs')
 const cpRouter = require('./routes/cps')
 const crRouter = require('./routes/crs')
 const glRouter = require('./routes/gls')
@@ -126,6 +127,7 @@ app.use('/jvs', jvRouter)
 app.use('/gls', glRouter)
 app.use('/cps', cpRouter)
 app.use('/crs', crRouter)
+app.use('/cbs', cbRouter)
 app.use('/level1', level1Router)
 app.use('/level2', level2Router)
 app.use('/level3', level3Router)
@@ -138,6 +140,6 @@ app.use('/db', dbRouter)
 var server = app.listen(process.env.PORT || 3000, () => {
   console.log("Calling app.listen's callback function.");
   var port = server.address().port;
-  console.log('Example app listening at http://localhost:%s/gls', port);
+  console.log('Example app listening at http://localhost:%s/cbs', port);
 
 })
