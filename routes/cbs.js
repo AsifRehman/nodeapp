@@ -42,9 +42,43 @@ router.get("/", async (req, res) => {
 
 // Create Author Route
 router.post("/", async (req, res) => {
-    console.log(req.body)
-    res.send(req.body)
-});
+
+    try {
+      if (req.body.jvNum > 0) {
+        const cb = await CB.findOne({ jvNum: req.body.jvNum }).exec();
+        //console.log(cb)
+        cb.jvNum = req.body.jvNum;
+        cb.jvDate = req.body.jvDate;
+        cb.transactions = req.body.transactions;
+  
+        const freshCb = await cb.save();
+        console.log(freshCb);
+        res.json({ "ID": freshCb.cbNum, "MSG": "Saved Successfully" })
+  
+      }
+      else {
+        const newJvNum = await shared.getNewJvNum();
+  
+        console.log(newJvNum);
+  
+        const cb = new CB({
+          jvNum: newJvNum,
+          jvDate: req.body.jvDate,
+          transactions: req.body.transactions,
+        });
+  
+        const freshCb = await cb.save();
+        res.json({ "ID": freshCb.cbNum, "MSG": "Updated Successfully" })
+      }
+  
+    } catch (err) {
+      console.log(err);
+      res.json({ "ID": 0, "MSG": err.message })
+    }
+  });
+  
+
+
 
 router.get("/:id", async (req, res) => {
     try {
@@ -86,7 +120,7 @@ router.delete("/:id", async (req, res) => {
         if (cb == null) {
             res.redirect("/");
         } else {
-            res.redirect(`/cps/${cb.id}`);
+            res.redirect(`/cbs/${cb.id}`);
         }
     }
 });

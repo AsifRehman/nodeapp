@@ -108,12 +108,6 @@ $(document).ready(function () {
     var jvRef = $("input[name='jvReference']").val();
   //cr
 
-  var cr_id = $(".jVoucher_id").val();
-    var crNum = $("input[name='crNum']").val();
-    var crDate = $("input[name='crDate']").val();
-    var crRef = $("input[name='crReference']").val();
-
-
     var config_pnl_date = $("input.config_pnl_date").val();
     var jvDateProcess = jvDate.split("-");
     jvDate = jvDateProcess[2] + "-" + jvDateProcess[1] + "-" + jvDateProcess[0];
@@ -123,9 +117,6 @@ $(document).ready(function () {
     }
 
     var refDate = "";
-    if (jv_id > 0) {
-      //return false;
-    }
     if (jvDate == "") {
       displayMessage("Error! voucher date is missing.");
       $(".save_voucher").prop("disabled", false);
@@ -181,7 +172,6 @@ $(document).ready(function () {
         transactions: transaction,
       },
       function (data) {
-        //data = $.parseJSON(data);
         if (data["ID"] == 0) {
           $(".save_voucher").prop("disabled", false);
           $("#screenLocked").modal("hide");
