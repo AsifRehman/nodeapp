@@ -35,7 +35,7 @@ router.get("/", async (req, res) => {
             searchOptions: req.query,
         });
     } catch (err) {
-        console.log(err.message);
+        //console.log(err.message);
         res.redirect("/");
     }
 });
@@ -53,7 +53,7 @@ router.post("/", async (req, res) => {
   
         const freshCb = await cb.save();
         console.log(freshCb);
-        res.json({ "ID": freshCb.cbNum, "MSG": "Saved Successfully" })
+        res.json({ "ID": freshCb.jvNum, "MSG": "Saved Successfully" })
   
       }
       else {
@@ -68,7 +68,7 @@ router.post("/", async (req, res) => {
         });
   
         const freshCb = await cb.save();
-        res.json({ "ID": freshCb.cbNum, "MSG": "Updated Successfully" })
+        res.json({ "ID": freshCb.jvNum, "MSG": "Updated Successfully" })
       }
   
     } catch (err) {
@@ -84,17 +84,8 @@ router.get("/:id", async (req, res) => {
     try {
         const cbs = await CB.findOne({ jvNum: req.params.id }).exec();
         console.log(cbs);
-        if (cbs == null) {
-            res.render("cbs")
-            return;
-        }
-        const level5s = await Level5.find().select({
-            level5_code: 1,
-            level5_title: 1,
-            _id: 0,
-        });
 
-        const cashAcs = await Level5.find({ level4_code: 24502 }).select({
+        const level5s = await Level5.find().select({
             level5_code: 1,
             level5_title: 1,
             _id: 0,
@@ -102,7 +93,6 @@ router.get("/:id", async (req, res) => {
 
         res.render("cbs/cbv", {
             cbs: cbs,
-            cashAcs: cashAcs,
             level5: level5s,
         });
     } catch {
