@@ -136,8 +136,8 @@ $(document).ready(function () {
     var accCode, accTitle, narration, debit, credit, row_id;
     $(".amountRow").each(function (index, element) {
       accCode = $(this).children(".accCode").text();
-      accTitle = $(this).children(".accTitle").text();
-      narration = $(this).children(".narration").text();
+      accTitle = $(this).children(".accTitle").text().trim();
+      narration = $(this).children(".narration").text().trim();
       debit = $(this).children(".debitColumn").text();
       credit = $(this).children(".creditColumn").text();
       row_id = $(this).attr("row-id");

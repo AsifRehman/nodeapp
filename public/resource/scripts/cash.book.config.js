@@ -113,6 +113,10 @@ $(document).ready(function () {
       $("#screenLocked").modal("hide");
       return false;
     }
+
+    var jvDateProcess = jvDate.split("-");
+    jvDate = jvDateProcess[2] + "-" + jvDateProcess[1] + "-" + jvDateProcess[0];
+
     if ($(".amountRow").length == 0) {
       displayMessage("No Transaction Exists!");
       // $(".save_voucher").prop("disabled",false);

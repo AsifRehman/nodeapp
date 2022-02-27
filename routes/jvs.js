@@ -56,16 +56,6 @@ router.post("/", async (req, res) => {
         jvDate: req.body.jvDate,
         transactions: req.body.transactions,
       });
-      if (data["ID"] == 0) {
-        $(".save_voucher").prop("disabled", false);
-        $("#screenLocked").modal("hide");
-        displayMessage(data["MSG"]);
-      } else {
-        //$(".save_voucher").prop("disabled",false);
-        displayMessage(data["MSG"]);
-        $("#screenLocked").modal("hide");
-        window.location.href = "/jvs/" + data["ID"];
-      }
 
       const freshJv = await jv.save();
       res.json({ "ID": freshJv.jvNum, "MSG": "Updated Successfully" })
