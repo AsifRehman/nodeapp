@@ -69,16 +69,39 @@
                                     class="insertAccTitle"></td>
                             </tr>
                         </tbody>
-                        <tbody>
-                            <tr class="transactions" style="display:none;"></tr>
-                            <tr style="background-color:#F8F8F8;height: 30px;">
-                                <td colspan="3" style="text-align:center;"> Total/Difference </td>
-                                <td class="debitTotal" style="text-align:center;color:#042377;" title="Debit">0.00</td>
-                                <td class="creditTotal" style="text-align:center;color:#042377;" title="Credit">0.00
-                                </td>
-                                <td class="drCrDiffer" style="text-align:center;color:#042377;" title="Diffrence"></td>
-                            </tr>
-                        </tbody>
+                        <tr class="transactions" style="display: none"></tr>
+
+                        <% if (cbs.jvNum !==0) { %>
+                            <% cbs.transactions.forEach(t=> { %>
+                                <tr class="transactions amountRow" row-id="0">
+                                    <td style="text-align: right" class="accCode">
+                                        <%= t.account_code %>
+                                    </td>
+                                    <td style="text-align: left" class="accTitle">
+                                        <%= t.account_title %>
+                                    </td>
+                                    <td style="text-align: left" class="narration">
+                                        <%= t.narration %>
+                                    </td>
+                                    <td style="text-align: center" class="creditColumn">
+                                        <%= t.credit %>
+                                    </td>
+                                    <td style="text-align: center" class="creditColumn">
+                                        <%= t.debit %>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <a class="pointer" title="Delete">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                                    <% } %>
+                                        <tr style="background-color: #f8f8f8; height: 30px">
+                                            <td colspan="3" class="text-center">Total:</td>
+                                            <td class="creditTotal" style="text-align: center; color: #bd0a0d"></td>
+                                            <td></td>
+                                        </tr>
                     </table>
                     <div class="underTheTable pull-right" style="padding:10px;margin:10px;">
 
