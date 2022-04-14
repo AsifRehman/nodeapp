@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const GL = require("../models/gl");
 const JV = require("../models/jv");
+const CP = require("../models/cp");
 const Level5 = require("../models/level5");
 const shared = require("./shared")
 const COMP = require("../models/company");
@@ -29,12 +30,55 @@ router.get("/", async (req, res) => {
             level5 = await Level5.findOne({level5_code: opt.account_code}).exec();
 
 //            gls = await JV.find({});
-            gls = await JV.find({
+            glss = await JV.find({
                 'transactions.account_code': opt.account_code,
                 'jvDate': {$gte: shared.revDate(opt.fromDate), $lte: shared.revDate(opt.toDate)}
 
             });
 
+            cps = await CP.find({
+                'transactions.account_code': opt.account_code,
+                'jvDate': {$gte: shared.revDate(opt.fromDate), $lte: shared.revDate(opt.toDate)}
+
+            });
+
+            filt = {
+                'transactions.account_code':  parseInt(opt.account_code),
+//                'jvDate': {$gte: shared.revDate(opt.fromDate), $lte: shared.revDate(opt.toDate)}
+            }
+
+            //abc = JV.aggregate().project({jvNum: 1, _id: 0}).unionWith({coll: CP})
+            gls = await JV.aggregate([
+                {$set: { tt: 'JV' }},
+                { $match: filt },
+                { $unionWith: { coll: "cps", pipeline: [{$set: { tt: 'CP' }}, { $match: filt }]}
+                },
+                { $unionWith: { coll: "crs", pipeline: [{$set: { tt: 'CR' }},{ $match: filt }]},
+                },
+                {
+                    $unionWith: { coll: "cbs", pipeline: [{$set: { tt: 'CB' }},{ $match: filt }] }
+                },
+                {
+                  $project: {
+                    _id: 0,
+                    jvNum: 1,
+                    jvDate: 1,
+                    'transactions.account_code': 1,
+                    'transactions.narration': 1,
+                    'transactions.narration': 1,
+                    'transactions.debit': 1,
+                    'transcations.credit': 1
+                  },
+                },
+                { $sort: { jvNum: -1 } },
+                { $limit: 1120 },
+            ]);                
+            console.log(gls)
+
+
+            //console.log(cps)
+
+            //gls = glss.concat(cps);
             
         }
         else {
