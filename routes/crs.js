@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   try {
     const cr = {};
     if (searchOptions.jvNum > 0) crs = await CR.find(searchOptions);
-    else crs = new CR([{ jvNum:0, crNum: 0, crDate: Date.now(), transactions: [] }]);
+    else crs = new CR([{ jvNum: 0, crNum: 0, crDate: Date.now(), transactions: [] }]);
 
     const level5s = await Level5.find().select({
       level5_code: 1,
@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
     });
 
 
-    const cashAcs = await Level5.find({level4_code: 24502}).select({
+    const cashAcs = await Level5.find({ level4_code: 24502 }).select({
       level5_code: 1,
       level5_title: 1,
       _id: 0,
@@ -54,8 +54,8 @@ router.post("/", async (req, res) => {
 
       const freshCr = await cr.save();
       console.log(freshCr);
-      res.json({"ID": freshCr.jvNum, "MSG": "Saved Successfully" })
-      
+      res.json({ "ID": freshCr.jvNum, "MSG": "Saved Successfully" })
+
     }
     else {
       let newCrNum = await shared.getNewCrNum();
@@ -70,12 +70,12 @@ router.post("/", async (req, res) => {
       });
 
       const freshCr = await cr.save();
-      res.json({"ID": freshCr.jvNum, "MSG": "Updated Successfully" })
+      res.json({ "ID": freshCr.jvNum, "MSG": "Updated Successfully" })
     }
 
   } catch (err) {
     console.log(err);
-    res.json({"ID": 0, "MSG": err.message })
+    res.json({ "ID": 0, "MSG": err.message })
   }
 });
 
@@ -83,7 +83,7 @@ router.get("/:id", async (req, res) => {
   try {
     const crs = await CR.findOne({ jvNum: req.params.id }).exec();
     console.log(crs);
-    if(crs == null) {
+    if (crs == null) {
       res.render("crs")
       return;
     }
@@ -93,7 +93,7 @@ router.get("/:id", async (req, res) => {
       _id: 0,
     });
 
-    const cashAcs = await Level5.find({level4_code: 24502}).select({
+    const cashAcs = await Level5.find({ level4_code: 24502 }).select({
       level5_code: 1,
       level5_title: 1,
       _id: 0,

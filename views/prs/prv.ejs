@@ -1,0 +1,346 @@
+<script type="text/javascript" src="/resource/scripts/inventory.configuration.js"></script>
+<div class="content-box-top">
+    <div class="summery_body">
+        <div class="content-box-header">
+            <p>Purchased Details</p>
+            <span id="tabPanel">
+                <div class="tabPanel">
+                    <a href="purchased-list.php?tab=list">
+                        <div class="tab">List</div>
+                    </a>
+                    <a href="purchased-list.php?tab=search">
+                        <div class="tab">Search</div>
+                    </a>
+                    <div class="tabSelected">Details</div>
+                </div>
+            </span>
+            <div class="clear"></div>
+        </div> <!-- End .content-box-header -->
+
+        <div class="content-box-content" style="padding: 5px;">
+            <div id="bodyTab1">
+                <div id="form" style="margin: 20px auto;">
+                    <div class="myCat"></div>
+
+                    <div class="pull-right" style="margin-right:25px;padding:5px;">
+                        <div class="pull-left" style="margin-right:25px;">Discount Type : </div>
+                        <input id="cmn-toggle-discount" name="disc_type" value="P" class="css-checkbox discount_type"
+                            onclick="return discount_type_change(this);" type="radio">
+                        <label for="cmn-toggle-discount" class="css-label-radio">Percentage</label>
+                        <input id="cmn-toggle-discount-amount" name="disc_type" value="R"
+                            class="css-checkbox discount_type" onclick="return discount_type_change(this);" type="radio"
+                            checked>
+                        <label for="cmn-toggle-discount-amount" class="css-label-radio">Amount</label>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="caption" style="width:120px;margin-left:0px;padding: 0px;">Date</div>
+                    <div class="field" style="width:150px;margin-left:0px;padding: 0px;">
+                        <input type="text" name="rDate"
+                            value="<%= prs.jvDate == null ? new Date().getDate().toString().padStart(2,'0') + '-' + (new Date().getMonth()+1).toString().padStart(2,'0') + '-' + new Date().getFullYear().toString(): prs.jvDate.getDate().toString().padStart(2,'0') + '-' + (prs.jvDate.getMonth()+1).toString().padStart(2,'0') + '-' + prs.jvDate.getFullYear().toString() %>"
+                            class="form-control datepicker purchaseDate" style="width:150px" />
+                    </div>
+
+
+                    <div class="pull-left">
+                        <div class="caption" style="width:70px;margin-left:0px;padding: 0px;">Bill#</div>
+                        <div class="field" style="width: 100px;">
+                            <input type="text" name="billNum" value="<%= prs.jvNum || 0 %>" class="form-control"
+                                style="width:100px" readonly />
+                        </div>
+                    </div>
+
+                    <div class="caption" style="width:70px;margin-left:0px; ">V.Bill#</div>
+                    <div class="field" style="width:100px;">
+                        <input type="text" name="vendorBillNum" value="<%= prs.vbNum || 0 %>" class="form-control"
+                            style="text-align:center" />
+                    </div>
+
+
+
+
+
+
+
+                    <!-- <div class="pull-left hide" 
+                    style="margin-left:30px;">
+                    <div class="field">
+                        <input id="cmn-toggle-unreg" value="Y" class="css-checkbox unregistered_tax" type="checkbox"  />
+                        <label for="cmn-toggle-unreg" class="css-label" style="margin-top:5px;margin-right: 20px;">Unregistered(FBR)</label>
+                    </div>
+                </div> -->
+
+                    <div class="hide">
+                        <div class="field text-right" style="width:120px; padding-top:6px;">
+                            <input id="cmn-toggle-taxinvoice" value="Y" class="css-checkbox tax_invoice"
+                                type="checkbox" />
+                            <label for="cmn-toggle-taxinvoice" class="css-label"
+                                style="margin-top:5px; margin-right:-25px; color:black;">TAX Invoice</label>
+                        </div>
+                        <div class="field text-right" style="width:120px; padding-top:6px;display:block">
+                            <input id="cmn-toggle-registeredtax" value="Y" class="css-checkbox registered_tax"
+                                type="checkbox" />
+                            <label for="cmn-toggle-registeredtax" class="css-label"
+                                style="margin-top:5px; margin-right:-25px; color:black;">Registered</label>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="pull-left">
+                        <div class="caption" style="width:120px;margin-left:0px;">Account:</div>
+                        <div class="field" style="width:270px;position:relative;" type="text"
+                            class="text-center form-control item_description">
+                            <%- include('../partials/_level5s', { level5: level5 }) %>
+                        </div>
+                    </div>
+
+                    <div class="field" style="width:100px;">
+                        <input type="text" class="customer-balance-top form-control text-center" value=""
+                            placeholder="Party Bal" style="background-color:lightgreen;font-weight:700; color:black" />
+                    </div>
+
+                    <div class="caption" style="width:80px;margin-left:0px;">
+                        <input type="checkbox" id="mor1" onchange="makeItCash(this);"
+                            class="trasactionType css-checkbox" value="010101001" title="Cash In Hand" />
+                        <label id="mor1" for="mor1" class="css-label" title="Ctrl+Space"><small>Cash</small></label>
+                    </div>
+
+                    <input type="text" name="supplier_name" value="" class="field form-control pull-left"
+                        style="width:190px; display: none;" placeholder="Supplier Name" />
+
+
+
+
+
+                    <div class="clear"></div>
+
+                    <div class="clear"></div>
+                    <div class="clear" style="height:30px;"></div>
+                    <div class="col-xs-12" style="padding:0px !important;">
+                        <table class="table min-1024 tableStyle" style="margin-bottom:0px !important;">
+                            <thead>
+                                <tr>
+                                    <th width="10%" style="font-size:12px;font-weight:normal;text-align:left">
+                                        Item
+                                        <a href="item-details.php" target="_blank"><i
+                                                class="fa fa-plus pull-right"></i></a>
+                                        <a href="#" class="reload_item"><i class="fa fa-refresh pull-right"></i></a>
+                                    </th>
+
+
+                                    <th width="10%">Description</th>
+
+
+
+
+
+
+                                    <th width="6%">qty</th>
+
+
+
+
+
+                                    <th width="6%">Rate</th>
+
+                                    <th width="8%">
+                                        <span class="discountTypeTitle">Disc
+                                            Rs. </span>
+                                        <span>
+                                            <input type="text" class="text-center discount_dom" value=""
+                                                style="width: 50px;" />
+                                        </span>
+                                        <!-- <span><input type="text" class="form-control text-right whole_discount"  value="" /></span> -->
+                                    </th>
+
+
+                                    <th width="7%">
+                                        Amount(Rs.)
+                                    </th>
+                                    <th width="5%">Stock</th>
+                                    <th width="6%">Action</th>
+                                </tr>
+                            </thead>
+                            <input type="hidden" class="discount_type" value="R" />
+                            <tbody>
+                                <tr class="quickSubmit" style="">
+                                    <td type="text" class="text-center form-control item_description">
+                                        <%- include('../partials/_level5s', { level5: level5 }) %>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" class="text-center form-control item_description" />
+                                    </td>
+
+
+
+
+
+
+                                    <td><input type="text" class="quantity text-center form-control" /></td>
+
+
+
+
+
+                                    <td><input type="text" class="unitPrice text-center form-control" /></td>
+
+
+                                    <td><input type="text" class="discount text-center form-control" /></td>
+
+
+
+
+                                    <td>
+                                        <input type="text" class="totalAmount text-center form-control"
+                                            data-sub-amount="" value="0" readonly />
+                                    </td>
+
+                                    <td><input type="text" class="inStock text-center form-control" theStock="0"
+                                            readonly /></td>
+                                    <td><input type="button" class="insert_row" value="Enter" id="clear_filter" /></td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <!--doNotRemoveThisLine-->
+                                <tr style="display:none;" class="calculations"></tr>
+                                <!--doNotRemoveThisLine-->
+
+                                <!-- FOR BOOKING ORDER -->
+                                <!-- CURRENT WORKING -->
+                                <!-- FOR BOOKING ORDER END -->
+
+                                <tr class="totals">
+                                    <td>Total</td>
+                                    <td>- - -</td>
+
+
+
+
+                                    <td style="background-color:#f5f5f5;" class="qtyTotal"></td>
+
+
+
+
+                                    <td>- - -</td>
+
+                                    <td style="background-color:#f5f5f5;" class="discountAmount"></td>
+                                    <td style="background-color:#f5f5f5;" class="amountTotal">
+                                        0.00 </td>
+                                    <td>- - -</td>
+                                    <td>- - -</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="amountInWords" style="border:1px lightgrey solid; font-weight:700;"></div>
+                    </div>
+
+                    <div class="clear"></div>
+                    <div style="height:10px;"></div>
+
+                    <div class="panel panel-default pull-left" style="width:550px;">
+                        <div class="panel-heading">Notes : </div>
+                        <textarea class="form-control inv_notes" style="height:130px;border-radius:0px;"
+                            class="inv_notes"></textarea>
+                    </div>
+                    <div class="pull-right" style="padding: 0em 1em;width:450px;">
+                        <div class="pull-right">
+
+                            <div class="caption hide" style="padding: 5px;width: 180px;height: 30px;">Discount :
+                            </div>
+                            <div class="caption hide" style="width: 170px;margin-left:0px;">
+                                <input type="text" class="form-control text-right whole_discount" value="" />
+                            </div>
+                            <div class="clear"></div>
+
+                            <div style="display:none">
+                                <div class="caption" style="padding: 5px;width: 180px;height: 30px;">Total
+                                    Discount :</div>
+                                <div class="caption" style="width: 170px;margin-left:0px;">
+                                    <input type="text" class="form-control text-right total_discount" value="" />
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div style="display:none">
+                                <div class="caption" style="padding: 5px;width: 180px;height: 30px;">Tax Amount
+                                    :</div>
+                                <div class="caption" style="width: 170px;margin-left:0px;">
+                                    <input type="text" class="form-control text-right whole_tax" readonly value="0" />
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="deliveryPanel" style="display:none">
+                                <div class="caption" style="padding: 5px;width: 180px;height: 30px;">Freight
+                                    Exp/Company:</div>
+                                <div class="caption" style="width: 170px;margin-left:0px;">
+                                    <input type="text" class="form-control text-right inv_charges" value="" />
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="deliveryPanel" style="display:none">
+                                <div class="caption" style="padding: 5px;width: 180px;height: 30px;">Freight
+                                    Exp/By Us:</div>
+                                <div class="caption" style="width: 170px;margin-left:0px;">
+                                    <input type="text" class="form-control text-right inv_charges_by_us" value="" />
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="deliveryPanel" style="display:none">
+                                <div class="caption" style="padding: 5px;width: 180px;height: 30px;">Freight
+                                    Exp/By Others:</div>
+                                <div class="caption" style="width: 170px;margin-left:0px;">
+                                    <input type="text" class="form-control text-right inv_charges_by_other" value="" />
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+
+
+
+                            <div class="caption" style="padding: 5px;width: 180px;height: 30px;">Net Total:
+                            </div>
+                            <div class="caption" style="width: 170px;margin-left:0px;">
+                                <input type="text" class="form-control text-right grand_total" readonly="readonly"
+                                    value="" />
+                            </div>
+                            <input type="hidden" value="" class="bildiscountamount" />
+                            <div class="clear"></div>
+
+
+                            <div class="clear"></div>
+
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div style="height:30px;"></div>
+                    <div class="clear"></div>
+                    <div class="hide">
+                        <div class="popover-content"></div>
+                    </div>
+                    <div class="underTheTable col-md-4 pull-right text-center">
+
+
+                        <div class="button pull-right ml-10 savePurchase">
+                            Save </div>
+
+
+                        <div class="button ml-10 pull-right new_form_button"
+                            onclick="window.location.href='purchase-details.php';">New Form</div>
+                    </div>
+                    <!--underTheTable-->
+                    <div class="clear"></div>
+                    <div style="margin-top:10px"></div>
+                </div> <!-- End form -->
+            </div> <!-- End #tab1 -->
+        </div> <!-- End .content-box-content -->
+    </div> <!-- End .summary_body -->
+</div>
+
+<script>
+    type = "text/javascript" > $(document).ready(function () { $('select').selectpicker(); setTimeout($("div.itemSelector").attr({ 'data-original-title': 'Purchase History', 'data-placement': 'bottom' }), 400); $(document).calculateColumnTotals(); $("input[name='billNum']").numericOnly(); $("input.quantity").numericFloatOnly(); $("input.unitPrice").numericFloatOnly(); $("input.discount").numericFloatOnly(); $("#datepicker").setFocusTo("input[name='billNum']"); $("input[name='vendorBillNum']").setFocusTo("input[name='gpNum']"); $("input[name='gpNum']").setFocusTo("div.supplierSelector button"); $("input[name='vendorBillNum']").focus(); $("select.supplierSelector").change(function () { $(this).getAccountBalance(); }); $(".orderNo").on('blur', function () { var orderNo = $(this).val(); alert(orderNo); var mode = "bookingOrderNoExist"; }); $("input.purchase_commission").keyup(function (e) { var grand_total = $("input.grand_total").val(); var purchase_commission = $("input.purchase_commission").val(); var final_total = grand_total - purchase_commission; $("input.final_total").val(final_total.toFixed(2)); }); $(".box").keydown(function (e) { var item_id = $("select.itemSelector option:selected").val(); var box = $(".box").val(); $.post('db/get-item-details.php', { get_tiles_info: 'yes', itemId: item_id }, function (data) { data = $.parseJSON(data); var pices = (box * data['METERS']).toFixed(2); var meters = (box * data['PIECES']).toFixed(2); $(".picesInBox").val(parseFloat(box * data['PIECES']).toFixed(2)); $(".quantity").val(parseFloat(box * data['METERS']).toFixed(2)); }); }); $(".picesInBox").keydown(function (e) { var item_id = $("select.itemSelector option:selected").val(); var picesInBox = $(".picesInBox").val(); $.post('db/get-item-details.php', { get_tiles_info: 'yes', itemId: item_id }, function (data) { data = $.parseJSON(data); var box = (picesInBox / data['PIECES']).toFixed(2); var meters = (box * data['METERS']).toFixed(2); $(".box").val(parseFloat(box).toFixed(2)); $(".quantity").val(parseFloat(meters).toFixed(2)); }); }); $("select.supplierSelector").change(function () { if ($("input[name=subject]").length) { $("input[name=subject]").focus(); } else { $("div.itemSelector button").focus(); } }); $("input[name=subject]").keydown(function (e) { if (e.keyCode == 13) { $("div.itemSelector button").focus(); } }); $('select.itemSelector').change(function () { $(this).getItemDetails(); }); $('div.itemSelector button').keydown(function (e) { if (e.keyCode == 13) { $("div.itemSelector").popover('destroy'); } if (e.keyCode == 13 && $('.itemSelector option:selected').val() != '') { if ($(".updateMode").length == 0) { $(this).getItemDetails(); } if ($("input.item_description").length) { $("input.item_description").focus(); } else if ($("input.color").length) { $("input.color").focus(); } else if ($("input.width").length) { $("input.width").focus(); } else if ($("input.cubeLength").length) { $("input.cubeLength").focus(); } else if ($("input.cartons").length) { $("input.cartons").focus(); } else if ($("input.ltr").length) { $("input.ltr").focus(); } else if ($("input.qtyFormula").length) { $("input.qtyFormula").focus(); } else { $("input.quantity").focus(); } } }); $("input.item_description").keydown(function (e) { if (e.keyCode == 13) { $(this).parent().next('td').find("input").focus(); } }); $(".width,.height").on('blur change keyup', function () { var w = parseFloat($(".width").val()) || 0; var h = parseFloat($(".height").val()) || 0; var sqf = w * h; $(".sq_feet").val(sqf); }); $(".pices").on('blur change keyup', function () { var sqf = parseFloat($(".sq_feet").val()) || 0; var pices = parseFloat($(".pices").val()) || 1; $(".quantity").val(sqf * pices); }); $("input.width").keydown(function (e) { if (e.keyCode == 13) { $("input.height").focus(); } }); $("input.height").keydown(function (e) { if (e.keyCode == 13) { $("input.pices").focus(); } }); $("input.pices").keydown(function (e) { if (e.keyCode == 13) { $("input.quantity").focus(); } }); $("input.cubeLength").keydown(function (e) { if (e.keyCode == 13) { $("input.cubeWidth").focus(); } }); $("input.cubeLength").keyup(function (e) { cubeCalculate(); }); $("input.cubeWidth").keydown(function (e) { if (e.keyCode == 13) { $("input.cubeHeight").focus(); } }); $("input.cubeWidth").keyup(function (e) { cubeCalculate(); }); $("input.cubeHeight").keydown(function (e) { cubeCalculate(); if (e.keyCode == 13) { $("input.quantity").focus(); } }); $("input.cubeHeight").keyup(function (e) { cubeCalculate(); }); $("input.color").keydown(function (e) { if (e.keyCode == 13) { $(this).parent().next('td').find("input").focus(); } }); $("input.cartons").keydown(function (e) { if (e.keyCode == 13) { if ($("input.cartons").val() == "") { $("input.cartons").val('0'); } $("input.carton_rate").focus(); } }); $("input.carton_rate").keydown(function (e) { if (e.keyCode == 13) { $("input.quantity").focus(); } }); $("input.scheme").keydown(function (e) { if (e.keyCode == 13) { $("input.unitPrice").focus(); } }); $("input.tax_invoice").change(function () { var use_tax = $(this).is(":checked") ? "Y" : "N"; if (use_tax == 'Y') { $("input.registered_tax").prop('checked', true); } else { $("input.registered_tax").prop('checked', false); } }); $("input.box").keydown(function (e) { if (e.keyCode == 13) { $("input.unitPrice").focus(); } }); $("input.picesInBox").keydown(function (e) { if (e.keyCode == 13) { $("input.unitPrice").focus(); } }); $("input.per_carton").keydown(function (e) { if (e.keyCode == 13) { $("input.quantity").focus(); } }); $("input.ltr").keydown(function (e) { if (e.keyCode == 13) { $("input.fat").focus(); } }); $("input.fat").keydown(function (e) { if (e.keyCode == 13) { $("input.lr").focus(); } }); $("input.lr").keydown(function (e) { if (e.keyCode == 13) { var ltr = parseFloat($("input.ltr").val()) || 0; var fat = parseFloat($("input.fat").val()) || 0; var lr = parseFloat($("input.lr").val()) || 0; var snf = (0.22 * fat + 0.72) + (lr / 4); $("input.snf").val(snf.toFixed(3)); $("input.ts").focus(); } }); $("input.ts").keydown(function (e) { if (e.keyCode == 13) { var ltr = parseFloat($("input.ltr").val()) || 0; var fat = parseFloat($("input.fat").val()) || 0; var snf = parseFloat($("input.snf").val()) || 0; var ts = parseFloat($("input.ts").val()) || 0; var quantityCal = ltr * (fat + snf) / ts; $("input.quantity").val(quantityCal.toFixed(2)); $("input.quantity").focus(); } }); $(document).keydown(function (e) { if (e.keyCode == 32 && e.ctrlKey) { $(".trasactionType").click(); $(".customer_mobile").focus(); } }); $("input.quantity").keyup(function () { stockOs(); }); $("input.quantity").keydown(function (e) { if (e.keyCode == 13) { calculateBoxPiecesInBox(); if ($("input.scheme").length) { $("input.scheme").focus(); } else if ($("input.weight").length) { $("input.weight").focus(); } else if ($("input.initialRate").length) { $("input.initialRate").focus(); } else { $("input.unitPrice").focus(); } } }); $("input.weight").keydown(function (e) { if (e.keyCode == 13) { $("input.unitPrice").focus(); } }); $("input.initialRate").keydown(function (e) { if (e.keyCode == 13) { $("input.item_expense").focus(); } }); $("input.item_expense").keydown(function (e) { if (e.keyCode == 13) { $("input.unitPrice").focus(); } }); $("input.initialRate").keyup(function (e) { $(this).calculateInitialRate(); }); $("input.item_expense").keyup(function (e) { $(this).calculateInitialRate(); }); $("input.unitPrice").keydown(function (e) { if (e.keyCode == 13) { if ($("input.discount").length) { $("input.discount").focus(); } else { $("input.insert_row").focus(); } } }); $("input.discount").keydown(function (e) { if (e.keyCode == 13) { $(this).calculateRowTotal(); if ($("td.taxTd").find("input.taxRate").length) { $("td.taxTd").find("input.taxRate").focus(); } else if ($("input.batch_no").length) { $("input.batch_no").focus(); } else if ($("input.freight").length) { $("input.freight").focus(); } else { $("input.insert_row").focus(); } } }); $("input.batch_no").keydown(function (e) { if (e.keyCode == 13) { $("input.expiry_date").focus(); } }); $("input.expiry_date").keydown(function (e) { if (e.keyCode == 13) { $("input.insert_row").focus(); } }); $("td.taxTd").find("input.taxRate").keydown(function (e) { if (e.keyCode == 13) { $(this).calculateRowTotal(); if ($("input.batch_no").length > 0) { $("input.batch_no").focus(); } else { $("input.insert_row").focus(); } } }); $(".sendSMS").on('click', function () { var purchase_id = $(this).attr('purchase-id'); var mode = 'SMS'; $.post('db/purchase-sms-process.php', { mode: mode, purchase_id: purchase_id }, function (data) { data = $.parseJSON(data); displayMessage(data['MSG']); }); }); $("input.quantity").multiplyTwoFloatsCheckTax("input.unitPrice", "input.totalAmount", "input.subAmount", "input.taxAmount"); $("input.unitPrice").multiplyTwoFloatsCheckTax("input.quantity", "input.totalAmount", "input.subAmount", "input.taxAmount"); $("input.insert_row").keydown(function (e) { if (e.keyCode == 13) { $(this).quickSave(); $(this).calculateRowTotal(); } }); $("input.insert_row").click(function () { $(this).quickSave(); $(this).calculateRowTotal(); }); $(".savePurchase").click(function () { savePurchase(); }); $(".reload_item").click(function () { var selectItemsListFetched = ''; var mode = 'getItemsList'; $.post('db/local-storage.db.php', { mode: mode }, function (data) { $('select.itemSelector').html(''); sessionStorage.setItem('myLocalData', data); myLocalData = sessionStorage.getItem('myLocalData'); var myLocalDataParsed = $.parseJSON(myLocalData); myLocalDataParsed.forEach(myFunctionFetch); $('select.itemSelector').append(selectItemsListFetched); $("select.itemSelector").selectpicker('refresh'); }); function myFunctionFetch(item, index) { var values = item.split('::'); selectItemsListFetched += '<option data-type="I" value="' + values[0] + '">' + values[1] + '</option>'; } }); $(".whole_discount").on('keyup change', function () { $(this).calculateColumnTotals(); }); $(".discount_dom").on('blur change', function () { var item_discount, total_sub_amount, dominate_discount, discount_type; $(this).calculateColumnTotals(); discount_type = $("input.discount_type:checked").val(); total_sub_amount = parseFloat($("td.amountSub").text()) || 0; dominate_discount = $(this).val(); if (dominate_discount == '') { } $("tr.transactions").each(function () { var taxRate = $(this).find("td.taxRate").text(); var taxType = ($(".taxType").is(":checked")) ? "I" : "E"; var thisVal = parseFloat($(this).find("td.quantity").text()) || 0; var thatVal = parseFloat($(this).find("td.unitPrice").text()) || 0; var amount = thisVal * thatVal; var discountAvail = parseFloat($(this).find("td.discount").text()) || 0; item_discount = (amount * dominate_discount) / total_sub_amount; if (discount_type == 'R') { $(this).find("td.discount").text((item_discount).toFixed(0)); } else { $(this).find("td.discount").text(dominate_discount); } var discountPerCentage = 0; if (discount_type == 'R') { discountPerCentage = discountAvail; } else if (discount_type == 'P') { discountPerCentage = amount * (discountAvail / 100); } amount -= discountPerCentage; if (taxRate > 0) { if (taxType == 'I') { taxAmount = amount * (taxRate / 100); } else if (taxType == 'E') { taxAmount = amount * (taxRate / 100); } } else { taxAmount = 0; } var finalAmount = amount + taxAmount; if (taxType == 'I') { amount -= taxAmount; finalAmount -= taxAmount; } $(this).find("td.subAmount").text((amount).toFixed(2)); $(this).find("td.taxAmount").text((taxAmount).toFixed(2)); $(this).find("td.totalAmount").text((finalAmount).toFixed(2)); }); $(this).calculateColumnTotals(); }); $("input.inv_charges").on('change keyup', function (e) { $(this).calculateColumnTotals(); }); $("input.income_tax_percent").on('change keyup', function (e) { $(this).calculateColumnTotals(); }); $("input.freight").keydown(function (e) { if (e.keyCode == 13) { $(this).calculateRowTotal(); $("input.insert_row").focus(); } }); $("input.qtyFormula").keydown(function (e) { if (e.keyCode == 13) { $("input.quantity").focus(); } }); $(".qtyFormula").on('blur', function () { var value = $(this).val(); var formula = $(this).attr('formula'); var myFormula = value + '' + formula; var qtyAfterFarmula = eval(myFormula); $("input.quantity").val(qtyAfterFarmula); }); $(window).keydown(function (e) { if (e.altKey == true && e.keyCode == 73) { e.preventDefault(); $("#form").click(); $("div.itemSelector button").click(); return false; } if (e.altKey == true && e.keyCode == 65) { e.preventDefault(); $("#form").click(); $("div.supplierSelector button").click(); return false; } if (e.altKey == true && e.keyCode == 66) { e.preventDefault(); $("#form").click(); $("input.barcode_input").focus(); return false; } if (e.altKey == true && e.keyCode == 67) { e.preventDefault(); $("#form").click(); $("input.supplier_name").focus(); return false; } if (e.altKey == true && e.keyCode == 77) { e.preventDefault(); $("#form").click(); $("input.customer_mobile").focus(); return false; } if (e.altKey == true && e.keyCode == 68) { e.preventDefault(); $("#form").click(); $("input.whole_discount").focus(); return false; } if (e.altKey == true && e.keyCode == 79) { e.preventDefault(); $("#form").click(); $("input.inv_charges").focus(); return false; } if (e.altKey == true && e.keyCode == 83) { e.preventDefault(); $("#form").click(); savePurchase(); return false; } if (e.altKey == true && e.keyCode == 80) { e.preventDefault(); $("#form").click(); print_method = 'Y'; savePurchase(); return false; } if (e.altKey == true && e.keyCode == 78) { e.preventDefault(); $(".new_form_button").click(); return false; } if (e.altKey == true && e.keyCode == 69) { e.preventDefault(); $("#form").click(); $("input[name='rDate']").focus(); return false; } if (e.altKey == true && e.keyCode == 82) { e.preventDefault(); $("#form").click(); $("input[name='vendorBillNum']").focus(); return false; } if (e.altKey == true && e.keyCode == 71) { e.preventDefault(); $("#form").click(); $("input[name='gpNum']").focus(); return false; } if (e.altKey == true && e.keyCode == 81) { e.preventDefault(); $("#form").click(); $("input.quantity").focus(); return false; } }); }); $(document).ready(function () { calculateDate(); }); $("input[name=recoveryDate]").change(function () { calculateDate(); }); function calculateDate() { var invDate = $(".purchaseDate").val(); var recDate = $("input[name=recoveryDate]").val() || "0000-00-00"; if (recDate == '0000-00-00') { return; } var date1 = getDateObject(invDate); var date2 = getDateObject(recDate); var days = (date2 - date1) / 86400000; $("input[name=noOfDays]").val(days); } function getDateObject(str) { var arr = str.split("-"); return new Date(arr[2], arr[1], arr[0]); }</script>
+
+</script>

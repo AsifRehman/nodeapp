@@ -1,0 +1,326 @@
+<script type="text/javascript" src="/resource/scripts/open.inventory.return.configuration.js"></script>
+
+
+<div class="content-box-top">
+    <div class="content-box-header">
+        <p>Purchase Return</p>
+        <span id="tabPanel">
+            <div class="tabPanel">
+                <a href="purchase-return-list.php?tab=list">
+                    <div class="tab">List</div>
+                </a>
+                <a href="purchase-return-list.php?tab=search">
+                    <div class="tab">Search</div>
+                </a>
+                <div class="tabSelected">Return</div>
+            </div>
+        </span>
+        <div class="clear"></div>
+    </div> <!-- End .content-box-header -->
+    <div class="content-box-content" style="padding: 5px;">
+        <div id="bodyTab1">
+            <div id="form" style="margin: 20px auto;">
+                <div class="myCat" onClick="letMeGo(this);"></div>
+
+                <input type="hidden" value="N" class="stock_check" />
+                <input type="hidden" class="use_cartons" value="N">
+                <input type="hidden" class="config_cubic" value="N">
+                <input type="hidden" class="config_pnl_date" value="2020-04-02">
+                <input type="hidden" class="config_loadItems" value="N" />
+                <input type="hidden" class="config_w_h_cal" value="N" />
+
+                <div class="caption" style="width:100px;margin-left:0px;padding: 0px;">Date</div>
+                <div class="field" style="width:150px;margin-left:0px;padding: 0px;">
+                    <input type="text" name="rDate" id="datepicker" value="14-04-2022" class="form-control datepicker"
+                        style="width:150px" />
+                </div>
+
+                <div class="pull-left">
+                    <div class="caption" style="width:70px;margin-left:0px;padding: 0px;">Bill#</div>
+                    <div class="field" style="width: 100px;">
+                        <input type="text" value="1" class="bill_number form-control" style="width:100px" readonly />
+                    </div>
+                </div>
+
+
+                <div class="clear"></div>
+
+                <div class="caption" style="width:100px;margin-left:0px;padding: 0px;">Account</div>
+                <div class="field" style="width:200px;position:relative;">
+                    <select class="supplierSelector form-control " data-style="btn-default" data-hide-disabled='true'
+                        data-live-search="true" style="border:none">
+                        <option selected value=""></option>
+                        <option data-subtext="0401010012" value="0401010012">
+                            AA DAYEING </option>
+                        <option data-subtext="0401010002" value="0401010002">
+                            AFZAL BHOLA SB </option>
+                        <option data-subtext="0401010062" value="0401010062">
+                            AHMAD ABUBAKAR DYEING </option>
+                        <option data-subtext="0401010017" value="0401010017">
+                            Ahmad Embroidery Warisha Textiles </option>
+                        <option data-subtext="0401010067" value="0401010067">
+                            Ahsan Mudasir Grey </option>
+                        <option data-subtext="0401010015" value="0401010015">
+                            AKS (Malik Ayaz Sb) </option>
+                        <option data-subtext="0401010018" value="0401010018">
+                            AL REYAN EMB </option>
+                        <option data-subtext="0401010079" value="0401010079">
+                            Al-Jilani Textile Industries </option>
+                        <option data-subtext="0401010060" value="0401010060">
+                            Aqsa Arts Rainbow Ink </option>
+                        <option data-subtext="0401010037" value="0401010037">
+                            AR SONS (PURCHASES) </option>
+                        <option data-subtext="0401010041" value="0401010041">
+                            Ashraf Computers </option>
+                        <option data-subtext="0401010031" value="0401010031">
+                            Ashraf Zia Tex Ind </option>
+                        <option data-subtext="0401010038" value="0401010038">
+                            ASIF FEBRICS (PURCHASE A/C) </option>
+                        <option data-subtext="0401010076" value="0401010076">
+                            ATM EXPORTS </option>
+                        <option data-subtext="0401010048" value="0401010048">
+                            Aymen Impex </option>
+                        <option data-subtext="0401010045" value="0401010045">
+                            Bao Gee Textile </option>
+                        <option data-subtext="0401010027" value="0401010027">
+                            BEST EMB </option>
+                        <option data-subtext="0401010057" value="0401010057">
+                            Bilal Sagheer Sb </option>
+                        <option data-subtext="0401010073" value="0401010073">
+                            Bin Ijaz Purchase </option>
+                        <option data-subtext="0401010077" value="0401010077">
+                            Bin Maryam 2022 P A/c </option>
+                        <option data-subtext="0401010043" value="0401010043">
+                            BIN MARYAM PURCHASE A/C </option>
+                        <option data-subtext="0401010054" value="0401010054">
+                            Bismillah Dyeing </option>
+                        <option data-subtext="0401010003" value="0401010003">
+                            BRAVO INK </option>
+                        <option data-subtext="0401010050" value="0401010050">
+                            City Cafe </option>
+                        <option data-subtext="0401010044" value="0401010044">
+                            DANYAL SHAFIQUE PURCHASE A/C </option>
+                        <option data-subtext="0401010083" value="0401010083">
+                            Digi Tech Services </option>
+                        <option data-subtext="0401010074" value="0401010074">
+                            Elahi Traders </option>
+                        <option data-subtext="0401010071" value="0401010071">
+                            Eman Dyeing </option>
+                        <option data-subtext="0401010056" value="0401010056">
+                            Evelyn Water </option>
+                        <option data-subtext="0401010032" value="0401010032">
+                            Ever Green </option>
+                        <option data-subtext="0401010022" value="0401010022">
+                            GULZAR KAMOKA RIKSHA DRIVER </option>
+                        <option data-subtext="0401010051" value="0401010051">
+                            H.A.R. Fibers </option>
+                        <option data-subtext="0401010046" value="0401010046">
+                            HASEEB ARTS PURCHASE A/C </option>
+                        <option data-subtext="0401010025" value="0401010025">
+                            HASEEB COMPUTER </option>
+                        <option data-subtext="0401010020" value="0401010020">
+                            Hilal Fabrics </option>
+                        <option data-subtext="0401010024" value="0401010024">
+                            IMRAN ISHAQ </option>
+                        <option data-subtext="0401010058" value="0401010058">
+                            Irfan Suleman </option>
+                        <option data-subtext="0401010070" value="0401010070">
+                            Jubilee Textiles </option>
+                        <option data-subtext="0401010026" value="0401010026">
+                            KASHIF SB </option>
+                        <option data-subtext="0401010052" value="0401010052">
+                            M Tariq Grey </option>
+                        <option data-subtext="0401010023" value="0401010023">
+                            MA </option>
+                        <option data-subtext="0401010004" value="0401010004">
+                            MF BRO </option>
+                        <option data-subtext="0401010085" value="0401010085">
+                            Miscellaneous Ink Purcahse </option>
+                        <option data-subtext="0401010080" value="0401010080">
+                            MSRAH TRADERS </option>
+                        <option data-subtext="0401010021" value="0401010021">
+                            MUBASHAR NASEEM </option>
+                        <option data-subtext="0401010016" value="0401010016">
+                            Musaddiq Embroidery </option>
+                        <option data-subtext="0401010007" value="0401010007">
+                            NADEEM LOADER </option>
+                        <option data-subtext="0401010040" value="0401010040">
+                            Nadeem Waseem Lahore Purchase </option>
+                        <option data-subtext="0401010082" value="0401010082">
+                            National Silk & Rayon Mills </option>
+                        <option data-subtext="0401010029" value="0401010029">
+                            ONYX (SECURITY COMPANY) </option>
+                        <option data-subtext="0401010086" value="0401010086">
+                            Power Petroleum </option>
+                        <option data-subtext="0401010053" value="0401010053">
+                            Purchase Jalal Arts </option>
+                        <option data-subtext="0401010005" value="0401010005">
+                            Rainbow Inks Pvt Ltd </option>
+                        <option data-subtext="0401010019" value="0401010019">
+                            REHAN IBRAHIM EMB </option>
+                        <option data-subtext="0401010065" value="0401010065">
+                            Rikshaw Ather </option>
+                        <option data-subtext="0401010010" value="0401010010">
+                            Rikshaw Faisal </option>
+                        <option data-subtext="0401010035" value="0401010035">
+                            Rikshaw Haider </option>
+                        <option data-subtext="0401010069" value="0401010069">
+                            Rikshaw Sajjad Khan </option>
+                        <option data-subtext="0401010084" value="0401010084">
+                            RizTex Bravo Ink-2022 </option>
+                        <option data-subtext="0401010047" value="0401010047">
+                            RIZWAN USMAN TRADERS </option>
+                        <option data-subtext="0401010059" value="0401010059">
+                            Salman Yousaf Rizwan Arts </option>
+                        <option data-subtext="0401010011" value="0401010011">
+                            SAMI ASHRAF </option>
+                        <option data-subtext="0401010068" value="0401010068">
+                            Shahbaz Sb Grey </option>
+                        <option data-subtext="0401010055" value="0401010055">
+                            Sheikh Ahmad Raza Grey </option>
+                        <option data-subtext="0401010061" value="0401010061">
+                            Shuja-ud-Din UPS </option>
+                        <option data-subtext="0401010075" value="0401010075">
+                            Sohni Arts P A/c </option>
+                        <option data-subtext="0401010042" value="0401010042">
+                            SS TRADERS (UMAIR SB) PURCHASE A/C </option>
+                        <option data-subtext="0401010030" value="0401010030">
+                            SUSPENSE ACCOUNT </option>
+                        <option data-subtext="0401010036" value="0401010036">
+                            Tehreem Collection Purchases </option>
+                        <option data-subtext="0401010006" value="0401010006">
+                            UTM </option>
+                        <option data-subtext="0401010034" value="0401010034">
+                            Wahab Fabrics C/o Nouman Shuakat </option>
+                        <option data-subtext="0401010063" value="0401010063">
+                            Waqas Islam Grey </option>
+                        <option data-subtext="0401010009" value="0401010009">
+                            WARISHA 1 </option>
+                        <option data-subtext="0401010008" value="0401010008">
+                            WARISHA 2 </option>
+                        <option data-subtext="0401010039" value="0401010039">
+                            WARISHA 2 (PURCHASE A/C) </option>
+                        <option data-subtext="0401010049" value="0401010049">
+                            Wasif Chemical </option>
+                        <option data-subtext="0401010028" value="0401010028">
+                            YASEEN AMEEN DYEING </option>
+                        <option data-subtext="0401010072" value="0401010072">
+                            Zainab Fatima Arts </option>
+                        <option selected data-subtext="0101010003" value="0101010003">Cash In Hand A/c Tayab Account
+                        </option>
+                    </select>
+                </div>
+                <div class="caption">
+                    <input type="checkbox" id="mor1" onchange="makeItCash(this);" class="trasactionType css-checkbox"
+                        value="010101001" title="Cash In Hand" />
+                    <label id="mor1" for="mor1" class="css-label" title="Ctrl+Space"><small>Cash
+                            Transaction</small></label>
+                </div>
+                <div class="supplier_name_div" style="display: none;">
+                    <div class="field" style="width:195px;margin-left:10px;">
+                        <input class="form-control supplier_name" placeholder="Name" value="" />
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <input type="hidden" class="prid" value="0" />
+                <div style="height: 10px;"></div>
+                <table class="prom tableStyle">
+                    <thead>
+                        <tr>
+                            <th width="15%" style="font-size:12px">Item</th>
+
+
+
+
+
+                            <th width="6%">qty</th>
+                            <th width="6%">Rate</th>
+                            <th width="6%">Disc</th>
+
+
+                            <th width="7%">Total Amt</th>
+                            <th width="7%">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr class="quickSubmit" style="background:none">
+                            <td>
+                                <select class="itemSelector show-tick form-control" data-style="btn-default"
+                                    data-live-search="true" style="border:none">
+                                    <option selected value=""></option>
+                                </select>
+                            </td>
+
+
+
+
+
+                            <td><input type="text" class="quantity form-control" /></td>
+                            <td><input type="text" class="unitPrice form-control" /></td>
+
+                            <td><input type="text" class="discount form-control" /></td>
+
+
+                            <td><input type="text" readonly value="0" class="totalAmount form-control" /></td>
+                            <td style="text-align:center;background-color:#f5f5f5;">
+                                <input type="button" class="addDetailRow" value="Enter" id="clear_filter" />
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <!--doNotRemoveThisLine-->
+                        <tr style="display:none;" class="calculations"></tr>
+                        <!--doNotRemoveThisLine-->
+                        <tr class="totals">
+                            <td>Total</td>
+
+                            <td style="text-align:center;background-color:#f5f5f5;" class="qtyTotal"></td>
+                            <td>- - -</td>
+
+                            <td style="text-align:center;background-color:#f5f5f5;" class="discountAmount"></td>
+
+
+                            <td style="text-align:right;background-color:#f5f5f5;" class="amountTotal"></td>
+                            <td>- - -</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="clear mt-20"></div>
+                <div class="col-xs-4 pull-right">
+                    <div class="caption" style="padding: 5px;width: 180px;height: 30px;">Income Tax Percent</div>
+                    <div class="caption" style="width: 170px;margin-left:0px;">
+                        <input type="text" class="form-control text-right income_tax_percent" value="" />
+                    </div>
+                    <div class="clear"></div>
+                    <div class="caption" style="padding: 5px;width: 180px;height: 30px;">Income Tax Amount</div>
+                    <div class="caption" style="width: 170px;margin-left:0px;">
+                        <input type="text" class="form-control text-right income_tax" value="" readonly />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+
+
+                <div class="col-xs-4 pull-right" style="margin:20px 30px;">
+
+                    <div class="button pull-right" onclick="window.location.href='purchase-return-details.php';"
+                        style="margin-left:3px;">New Form</div>
+
+
+                    <div class="button savePurchase pull-right" style="margin-right:3px;">Save</div>
+
+                </div>
+                <!--underTheTable-->
+
+                <div class="clear"></div>
+                <div style="margin-top:10px"></div>
+            </div> <!-- End form -->
+        </div> <!-- End #tab1 -->
+    </div> <!-- End .content-box-content -->
+</div>
+
+
+
+<script
+    type="text/javascript">$(document).ready(function () { $(window).keyup(function (e) { if (e.altKey == true && e.keyCode == 83) { e.preventDefault(); $("#form").click(); savePurchase(); return false; } }); $('.supplierSelector').selectpicker(); $('.itemSelector').selectpicker(); $(".billSelector").selectpicker(); $('input.bill_number').focus(); $("input.quantity").numericOnly(); $("input.unitPrice").numericFloatOnly(); $("input.discount").numericFloatOnly(); $("#datepicker").setFocusTo("div.supplierSelector button"); $("div.supplierSelector button").keyup(function (e) { var supp = $("select.supplierSelector option:selected").val(); if (e.keyCode == 13 && supp != '') { if ($("select.supplierSelector option:selected[value^='010101']").length) { $(".supplier_name_div").show(); $(".supplier_name_div input").focus(); } else { $(".supplier_name_div").hide(); $('div.itemSelector button').focus(); } } }); $("input.bill_number").setFocusTo("div.supplierSelector button"); $("input.supplier_name").setFocusTo("div.itemSelector button"); $('select.itemSelector').change(function () { $(this).getItemDetails(); if ($("input.batch_no").length) { $("input.batch_no").focus(); } else if ($("input.cubeLength").length) { $("input.cubeLength").focus(); } else if ($("input.cartons").length) { $("input.cartons").focus(); } else if ($("input.width").length) { $("input.width").focus(); } else { $("input.quantity").focus(); } }); $('.itemSelector').parent('td').find(".dropdown-toggle").keyup(function (e) { if (e.keyCode == 13 && $('.itemSelector option:selected').val() != '') { if ($(".updateMode").length == 0) { $(this).getItemDetails(); } $("input.quantity").focus(); } }); $("input.income_tax_percent").on('change keyup', function (e) { $(this).calculateColumnTotals(); }); $("input.cubeLength").keydown(function (e) { if (e.keyCode == 13) { $("input.cubeWidth").focus(); } }); $("input.cubeLength").keyup(function (e) { cubeCalculate(); }); $("input.cubeWidth").keydown(function (e) { if (e.keyCode == 13) { $("input.cubeHeight").focus(); } }); $("input.cubeWidth").keyup(function (e) { cubeCalculate(); }); $("input.cubeHeight").keydown(function (e) { if (e.keyCode == 13) { $("input.quantity").focus(); } }); $("input.cubeHeight").keyup(function (e) { cubeCalculate(); }); $(".width,.height").on('blur change keyup', function () { var w = parseFloat($(".width").val()) || 0; var h = parseFloat($(".height").val()) || 0; var sqf = w * h; $(".sq_feet").val(sqf); }); $(".pices").on('blur change keyup', function () { var sqf = parseFloat($(".sq_feet").val()) || 0; var pices = parseFloat($(".pices").val()) || 1; $(".quantity").val(sqf * pices); }); $("input.width").keydown(function (e) { if (e.keyCode == 13) { $("input.height").focus(); } }); $("input.height").keydown(function (e) { if (e.keyCode == 13) { $("input.pices").focus(); } }); $("input.pices").keydown(function (e) { if (e.keyCode == 13) { $("input.quantity").focus(); } }); $("input.cartons").keydown(function (e) { if (e.keyCode == 13) { if ($("input.cartons").val() == "") { $("input.cartons").val('0'); } $("input.carton_rate").focus(); } }); $("input.batch_no").keydown(function (e) { if (e.keyCode == 13) { $("input.quantity").focus(); } }); $("input.carton_rate").keydown(function (e) { if (e.keyCode == 13) { $("input.quantity").focus(); } }); $("input.quantity").keydown(function (e) { if (e.keyCode == 13) { if ($("input.quantity").val() == "") { $("input.quantity").val('0'); } $("input.unitPrice").focus(); } }); $("input.unitPrice").keydown(function (e) { if (e.keyCode == 13) { $("input.discount").focus(); } }); $("input.discount").keydown(function (e) { if (e.keyCode == 13) { $(this).calculateRowTotal(); $(".taxRate").focus(); } }); $(".taxRate").keydown(function (e) { if (e.keyCode == 13) { $(this).calculateRowTotal(); $(".addDetailRow").focus(); } }); $("input.taxRate").change(function () { $(this).calculateRowTotal(); $(".addDetailRow").focus(); }); $("input.quantity").multiplyTwoFloatsCheckTax("input.unitPrice", "input.totalAmount", "input.subAmount", "input.taxAmount"); $("input.unitPrice").multiplyTwoFloatsCheckTax("input.quantity", "input.totalAmount", "input.subAmount", "input.taxAmount"); $(".addDetailRow").keydown(function (e) { if (e.keyCode == 13) { $(this).quickSave(); } }); $(".addDetailRow").click(function () { $(this).quickSave(); }); $(".savePurchase").click(function () { savePurchase(); }); });</script>
