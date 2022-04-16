@@ -16,12 +16,20 @@ router.get("/", async (req, res) => {
     if (req.query.accountCode != null && req.query.accountCode !== "") {
         opt.account_code = req.query.accountCode;
     }
-    if (req.query.fromDate != null && req.query.fromDate !== "") {
-        opt.fromDate = req.query.fromDate;
-    }
-    if (req.query.toDate != null && req.query.toDate !== "") {
+    if (req.query.fromDate != null && req.query.fromDate !== "") 
+        opt.fromDate = req.query.fromDate.trim();
+    else
+        opt.fromDate = '01-01-2001'
+
+    if (req.query.toDate != null && req.query.toDate !== "")
         opt.toDate = req.query.toDate;
-    }
+    else
+        opt.toDate = shared.getToday();
+
+    opt.bal = 0
+    opt.drcr = "CR"
+
+    opt.today = shared.getToday()
 
     try {
         let level5 = {};
@@ -29,25 +37,14 @@ router.get("/", async (req, res) => {
         if (opt.account_code > 0) {
             level5 = await Level5.findOne({level5_code: opt.account_code}).exec();
 
-//            gls = await JV.find({});
-            glss = await JV.find({
-                'transactions.account_code': opt.account_code,
-                'jvDate': {$gte: shared.revDate(opt.fromDate), $lte: shared.revDate(opt.toDate)}
-
-            });
-
-            cps = await CP.find({
-                'transactions.account_code': opt.account_code,
-                'jvDate': {$gte: shared.revDate(opt.fromDate), $lte: shared.revDate(opt.toDate)}
-
-            });
-
             filt = {
                 'transactions.account_code':  parseInt(opt.account_code),
-//                'jvDate': {$gte: shared.revDate(opt.fromDate), $lte: shared.revDate(opt.toDate)}
+                'jvDate': {$gte: shared.dated(opt.fromDate), $lte: shared.dated(opt.toDate)}
             }
+            
+            console.log(shared.dated(opt.toDate))
+            
 
-            //abc = JV.aggregate().project({jvNum: 1, _id: 0}).unionWith({coll: CP})
             gls = await JV.aggregate([
                 {$set: { tt: 'JV' }},
                 { $match: filt },
@@ -55,31 +52,16 @@ router.get("/", async (req, res) => {
                 },
                 { $unionWith: { coll: "crs", pipeline: [{$set: { tt: 'CR' }},{ $match: filt }]},
                 },
-                {
-                    $unionWith: { coll: "cbs", pipeline: [{$set: { tt: 'CB' }},{ $match: filt }] }
+                { $unionWith: { coll: "cbs", pipeline: [{$set: { tt: 'CB' }},{ $match: filt }] }
                 },
-                {
-                  $project: {
-                    _id: 0,
-                    jvNum: 1,
-                    jvDate: 1,
-                    'transactions.account_code': 1,
-                    'transactions.narration': 1,
-                    'transactions.narration': 1,
-                    'transactions.debit': 1,
-                    'transcations.credit': 1
-                  },
+                { $project: { tt: 1, _id: 0, jvNum: 1, jvDate: 1, 
+                    'transactions.account_code': 1, 'transactions.narration': 1, 'transactions.narration': 1, 'transactions.debit': 1, 'transactions.credit': 1,
+                    'bal': {$sum : '$credit'}
+                 },
                 },
-                { $sort: { jvNum: -1 } },
-                { $limit: 1120 },
+                { $sort: { jvDate: 1, jvNum: 1 } },
+//                { $limit: 1120 },
             ]);                
-            console.log(gls)
-
-
-            //console.log(cps)
-
-            //gls = glss.concat(cps);
-            
         }
         else {
             gls = [];

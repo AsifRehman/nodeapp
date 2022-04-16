@@ -38,10 +38,22 @@ function revDate(dt) {
     return dt.split("-").reverse().join("-")
 }
 
+function getToday() {
+    return new Date().getDate().toString().padStart(2,'0') + '-' + (new Date().getMonth()+1).toString().padStart(2,'0') + '-' + new Date().getFullYear().toString();
+}
+
+function dated(dt) {
+    a = dt.split("-").reverse()
+    console.log(a)
+    return new Date(a[0], a[1] - 1, parseInt(a[2])+1)
+}
+
 module.exports = {
     getNewCrNum: getNewCrNum,
     getNewCpNum: getNewCpNum,
     getNewJvNum: getNewJvNum,
     getNewCbNum: getNewCbNum,
-    revDate: revDate
+    revDate: revDate,
+    dated: dated,
+    getToday: getToday
 }
