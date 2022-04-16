@@ -1,3 +1,7 @@
+<script type="text/javascript" src="/resource/scripts/printThis.js"></script>
+<script type="text/javascript" src="/resource/scripts/towords.js"></script>
+<script>$(document).ready(function () { var amount = parseFloat($("th.debitTotal").text().replace(',', '')) || 0; amount = toWords(amount); $("th.towords").text(amount + " Rupees only"); $(".printThis").click(function () { $(".printTable").printThis({ debug: false, importCSS: false, printContainer: true, loadCSS: '/resource/css/invoiceStyle.css', pageTitle: "Software Powered By SIT Solution", removeInline: false, printDelay: 500, header: null }); }); });</script>
+
 <div class="content-box-top">
   <div class="summery_body">
     <div class="content-box-header">
@@ -37,13 +41,13 @@
                   <input
                     type="text"
                     name="fromDate"
-                    value="<%=  %> "
+                    value="<%= opt.fromDate %> "
                     class="form-control datepicker"
                     style="width: 145px"
                   />
                   <!-- <input type="date" name="fromDate" value="" class="form-control" style="width:160px;"> -->
                 </div>
-              </div>
+              </div> 
             </div>
 
             <div class="col-6">
@@ -53,7 +57,7 @@
                   <input
                     type="text"
                     name="toDate"
-                    value="23-02-2022"
+                    value="<%= opt.toDate %>"
                     class="form-control datepicker"
                     style="width: 145px"
                   />
@@ -131,7 +135,7 @@
             <span class="pull-left">
               LedgerFrom: <u> <%= opt.fromDate %> </u> TO: <u> <%= opt.toDate %>  </u>
             </span>
-            <span class="pull-right"> ReportGenerated Date: 23-Feb 2022 </span>
+            <span class="pull-right"> ReportGenerated Date: <%= opt.today %>  </span>
           </p>
 
           <!-- <p style="float:left; margin-left:0px; font-size:14px" class="repoGen">
@@ -222,11 +226,11 @@
                 <% g.transactions.forEach(e => { %>
                 
 
-                <td class="fontBig" style="text-align: center">JV</td>
+                <td class="fontBig" style="text-align: center"><%= g.tt  %></td>
                 <td class="fontBig" style="text-align: center">
-                  <a href="voucher-print.php?id=56" target="_blank"><%= g.jvNum  %> </a>
+                  <a href="printv/<%= g.jvNum %> " target="_blank"><%= g.jvNum  %> </a>
                 </td>
-                <td style="text-align: left"><%= g.jvDate %> </td>
+                <td style="text-align: left"><%= g.jvDate.getDate().toString().padStart(2,'0') + '-' + (g.jvDate.getMonth()+1).toString().padStart(2,'0') + '-' + g.jvDate.getFullYear().toString() %> </td>
                 <td
                   class="fontBig"
                   style="text-decoration: none; color: black !important"
@@ -245,7 +249,16 @@
                   style="text-align: right"
                   class="creditColumn"
                 ><%= e.credit %> </td>
-                <td class="fontBig" style="text-align: right"><%= e.debit+=e.debit %>  DR</td>
+                <% opt.bal += typeof(e.debit) == "number" ? e.debit : 0  %> 
+                <% opt.bal -= typeof(e.credit) == "number" ? e.credit : 0 %>
+                <% if (opt.bal<=0) { %>
+                  <% opt.drcr = "CR" %> 
+                <% } %>
+                <% if (opt.bal>0) { %>
+                  <% opt.drcr = "DR" %> 
+                <% } %>
+                
+                <td class="fontBig" style="text-align: right"><%= Math.abs(opt.bal) %> <%= opt.drcr %> </td>
               </tr>
               <% }) %>
               <!-- TRANS.EACH -->
