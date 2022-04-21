@@ -138,7 +138,7 @@
                       <%= t.narration %>
                     </td>
                     <td style="text-align: center" class="creditColumn">
-                      <%= t.credit %>
+                      <%= t.debit %>
                     </td>
                     <td style="text-align: center">
                       <a class="pointer" title="Delete">
@@ -157,7 +157,7 @@
           </table>
           <div class="underTheTable" style="padding: 10px">
             <button class="button pull-right  saveJournal">Post</button>
-            <button class="button pull-right mr-10" onclick="window.location.href='/printv/';">Print</button>
+            <button class="button pull-right mr-10" onclick="window.location.href='/printv/<%= cps.jvNum || 0 %>';">Print</button>
             <button class="button pull-right mr-10" onclick="window.location.href='/cps/';">
               New Voucher
             </button>

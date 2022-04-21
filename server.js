@@ -47,6 +47,7 @@ const level3Router = require('./routes/level3')
 const level4Router = require('./routes/level4')
 const level5Router = require('./routes/level5')
 const printvRouter = require('./routes/printv')
+const acmgmtRouter = require('./routes/acmgmt')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -134,6 +135,7 @@ app.use('/level3', level3Router)
 app.use('/level4', level4Router)
 app.use('/level5', level5Router)
 app.use('/printv', printvRouter)
+app.use('/acmgmt', acmgmtRouter)
 
 app.use('/db', dbRouter)
 
