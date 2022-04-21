@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const CR = require("../models/cr");
+const GL = require("../models/gl");
 const CP = require("../models/cp");
 const JV = require("../models/jv");
 const COMP = require("../models/company");

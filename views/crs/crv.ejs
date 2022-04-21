@@ -1,3 +1,7 @@
+<script type="text/javascript" src="/resource/scripts/printThis.js"></script>
+<script type="text/javascript" src="/resource/scripts/towords.js"></script>
+<script>$(document).ready(function () { var amount = parseFloat($("th.debitTotal").text().replace(',', '')) || 0; amount = toWords(amount); $("th.towords").text(amount + " Rupees only"); $(".printThis").click(function () { $(".printTable").printThis({ debug: false, importCSS: false, printContainer: true, loadCSS: '/resource/css/invoiceStyle.css', pageTitle: "Software Powered By SIT Solution", removeInline: false, printDelay: 500, header: null }); }); });</script>
+
 <script type="text/javascript" src="/resource/scripts/cash.receipt.configuration.js"></script>
 
 <div class="content-box-top" style="overflow: visible">
@@ -157,7 +161,7 @@
           </table>
           <div class="underTheTable" style="padding: 10px">
             <button class="button pull-right  saveJournal">Post</button>
-            <button class="button pull-right mr-10" onclick="window.location.href='/printv/';">Print</button>
+            <button class="button printThis"> Print</button>
             <button class="button pull-right mr-10" onclick="window.location.href='/crs/';">
               New Voucher
             </button>

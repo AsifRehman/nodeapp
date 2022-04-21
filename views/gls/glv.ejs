@@ -1,3 +1,7 @@
+<script type="text/javascript" src="/resource/scripts/printThis.js"></script>
+<script type="text/javascript" src="/resource/scripts/towords.js"></script>
+<script>$(document).ready(function () { var amount = parseFloat($("th.debitTotal").text().replace(',', '')) || 0; amount = toWords(amount); $("th.towords").text(amount + " Rupees only"); $(".printThis").click(function () { $(".printTable").printThis({ debug: false, importCSS: false, printContainer: true, loadCSS: '/resource/css/invoiceStyle.css', pageTitle: "Software Powered By SIT Solution", removeInline: false, printDelay: 500, header: null }); }); });</script>
+
 <div class="content-box-top">
   <div class="summery_body">
     <div class="content-box-header">
@@ -34,13 +38,8 @@
               <div style="width: 400px; float: left">
                 <div class="caption" style="width: 120px">Start Date:</div>
                 <div class="field" style="width: 150px">
-                  <input
-                    type="text"
-                    name="fromDate"
-                    value="<%=  %> "
-                    class="form-control datepicker"
-                    style="width: 145px"
-                  />
+                  <input type="text" name="fromDate" value="<%= opt.fromDate %> " class="form-control datepicker"
+                    style="width: 145px" />
                   <!-- <input type="date" name="fromDate" value="" class="form-control" style="width:160px;"> -->
                 </div>
               </div>
@@ -50,13 +49,8 @@
               <div style="width: 400px; float: left">
                 <div class="caption" style="width: 120px">End Date:</div>
                 <div class="field" style="width: 150px">
-                  <input
-                    type="text"
-                    name="toDate"
-                    value="23-02-2022"
-                    class="form-control datepicker"
-                    style="width: 145px"
-                  />
+                  <input type="text" name="toDate" value="<%= opt.toDate %>" class="form-control datepicker"
+                    style="width: 145px" />
 
                   <!-- <input type="date" name="toDate" value="2022-02-23" class="form-control" style="width:160px;"> -->
                 </div>
@@ -69,12 +63,7 @@
               <div style="width: 400px; float: left">
                 <div class="caption" style="width: 120px"></div>
                 <div class="field" style="width: 120px">
-                  <input
-                    type="submit"
-                    value="Generate"
-                    name="generalReport"
-                    class="button"
-                  />
+                  <input type="submit" value="Generate" name="generalReport" class="button" />
                 </div>
               </div>
             </div>
@@ -95,29 +84,22 @@
     <div class="content-box-content">
       <span style="float: right">
         <button class="button printThis">Print</button>
-        <a
-          target="_blank"
+        <a target="_blank"
           href="ledger-details.php?accountCode=0401010012&po_no=&fromDate=01-01-2001&toDate=23-02-2022&generalReport=Generate&&csv"
-          class="button"
-          >Export CSV</a
-        >
+          class="button">Export CSV</a>
       </span>
       <div id="bodyTab" class="printTable" style="margin: 0 auto">
         <div class="LogoPanel">
-          <img
-            class="logo pull-left"
-            src=""
-            data-pagespeed-url-hash="1247871539"
-            onload="pagespeed.CriticalImages.checkImageForCriticality(this);"
-          />
+          <img class="logo pull-left" src="" data-pagespeed-url-hash="1247871539"
+            onload="pagespeed.CriticalImages.checkImageForCriticality(this);" />
         </div>
         <div class="partyTitle" style="text-align: left">
           <div style="font-size: 26px; line-height: 40px">
             <%= comp.companyName %>
           </div>
           <%= comp.address %> <br />
-          <%= comp.mobile %> <br />
-          <%= comp.email %>
+            <%= comp.mobile %> <br />
+              <%= comp.email %>
         </div>
 
         <div style="clear: both"></div>
@@ -129,9 +111,13 @@
 
           <p style="font-size: 12px; padding: 0; text-align: center">
             <span class="pull-left">
-              LedgerFrom: <u> <%= opt.fromDate %> </u> TO: <u> <%= opt.toDate %>  </u>
+              LedgerFrom: <u>
+                <%= opt.fromDate %>
+              </u> TO: <u>
+                <%= opt.toDate %>
+              </u>
             </span>
-            <span class="pull-right"> ReportGenerated Date: 23-Feb 2022 </span>
+            <span class="pull-right"> ReportGenerated Date: <%= opt.today %> </span>
           </p>
 
           <!-- <p style="float:left; margin-left:0px; font-size:14px" class="repoGen">
@@ -140,38 +126,21 @@
         <div style="clear: both; height: 1"></div>
 
         <div class="table-responsive">
-          <table
-            style="margin: 0 0px; width: 100%"
-            cellspacing="0"
-            class="tableBreak tableStyle"
-          >
+          <table style="margin: 0 0px; width: 100%" cellspacing="0" class="tableBreak tableStyle">
             <thead class="tHeader">
               <tr>
-                <th
-                  width="8%"
-                  colspan="2"
-                  style="text-align: center; border: 1px solid #ddd"
-                >
+                <th width="8%" colspan="2" style="text-align: center; border: 1px solid #ddd">
                   Ref
                 </th>
                 <th width="10%" style="border: 1px solid #ddd">Date</th>
                 <th width="45%" style="border: 1px solid #ddd">Description</th>
-                <th
-                  width="10%"
-                  style="text-align: center; border: 1px solid #ddd"
-                >
+                <th width="10%" style="text-align: center; border: 1px solid #ddd">
                   Debit
                 </th>
-                <th
-                  width="10%"
-                  style="text-align: center; border: 1px solid #ddd"
-                >
+                <th width="10%" style="text-align: center; border: 1px solid #ddd">
                   Credit
                 </th>
-                <th
-                  width="15%"
-                  style="text-align: center; border: 1px solid #ddd"
-                >
+                <th width="15%" style="text-align: center; border: 1px solid #ddd">
                   Balance
                 </th>
               </tr>
@@ -179,81 +148,76 @@
 
             <tbody>
               <tr>
-                <td
-                  class="fontBig"
-                  colspan="3"
-                  style="
+                <td class="fontBig" colspan="3" style="
                     border-right: none;
                     border-left: none;
                     background-color: #f8f8f8;
                     font-weight: normal;
-                  "
-                ></td>
-                <td
-                  class="fontBig bold"
-                  class="fontBig bold"
-                  style="
+                  "></td>
+                <td class="fontBig bold" class="fontBig bold" style="
                     text-align: right;
                     border-right: 1px solid #e5e5e5;
                     border-left: none;
-                  "
-                >
+                  ">
                   Opening Balance:
                 </td>
-                <td
-                  class="fontBig"
-                  colspan="2"
-                  style="border-right: none; border-left: none"
-                ></td>
-                <td
-                  class="fontBig bold"
-                  style="
+                <td class="fontBig" colspan="2" style="border-right: none; border-left: none"></td>
+                <td class="fontBig bold" style="
                     border-left: none;
                     border-right: none;
                     text-align: right;
-                  "
-                >
+                  ">
                   0 CR
                 </td>
               </tr>
               <tr>
-                <% gls.forEach(g => { %>
-                 
-                <% g.transactions.forEach(e => { %>
-                
+                <% gls.forEach(g=> { %>
 
-                <td class="fontBig" style="text-align: center">JV</td>
-                <td class="fontBig" style="text-align: center">
-                  <a href="voucher-print.php?id=56" target="_blank"><%= g.jvNum  %> </a>
-                </td>
-                <td style="text-align: left"><%= g.jvDate %> </td>
-                <td
-                  class="fontBig"
-                  style="text-decoration: none; color: black !important"
-                >
-                  <%= e.narration %> 
-                </td>
-                <td
-                  class="fontBig"
-                  style="text-align: right"
-                  class="debitColumn"
-                >
-                  <%= e.debit %> 
-                </td>
-                <td
-                  class="fontBig"
-                  style="text-align: right"
-                  class="creditColumn"
-                ><%= e.credit %> </td>
-                <td class="fontBig" style="text-align: right"><%= e.debit+=e.debit %>  DR</td>
+                  <% g.transactions.forEach(e=> { %>
+
+
+                    <td class="fontBig" style="text-align: center">
+                      <%= g.tt %>
+                    </td>
+                    <td class="fontBig" style="text-align: center">
+                      <a href="printv/<%= g.jvNum %> " target="_blank">
+                        <%= g.jvNum %>
+                      </a>
+                    </td>
+                    <td style="text-align: left">
+                      <%= g.jvDate.getDate().toString().padStart(2,'0') + '-' +
+                        (g.jvDate.getMonth()+1).toString().padStart(2,'0') + '-' + g.jvDate.getFullYear().toString() %>
+                    </td>
+                    <td class="fontBig" style="text-decoration: none; color: black !important">
+                      <%= e.narration %>
+                    </td>
+                    <td class="fontBig" style="text-align: right" class="debitColumn">
+                      <%= e.debit %>
+                    </td>
+                    <td class="fontBig" style="text-align: right" class="creditColumn">
+                      <%= e.credit %>
+                    </td>
+                    <% opt.bal +=typeof(e.debit)=="number" ? e.debit : 0 %>
+                      <% opt.bal -=typeof(e.credit)=="number" ? e.credit : 0 %>
+                        <% if (opt.bal<=0) { %>
+                          <% opt.drcr="CR" %>
+                            <% } %>
+                              <% if (opt.bal>0) { %>
+                                <% opt.drcr="DR" %>
+                                  <% } %>
+
+                                    <td class="fontBig" style="text-align: right">
+                                      <%= Math.abs(opt.bal) %>
+                                        <%= opt.drcr %>
+                                    </td>
               </tr>
               <% }) %>
-              <!-- TRANS.EACH -->
-              <% }) %> 
-              <!-- GLS.EACH -->
-            <!-- for pending cheques  -->
+                <!-- TRANS.EACH -->
+                <% }) %>
+                  <!-- GLS.EACH -->
+                  <!-- for pending cheques  -->
 
-              <!-- <tr>
+                  <!-- <tr>
                                 <td colspan="4" style="text-align:right;">Closing Balance without Pending Cheques:</td>
                                 <td colspan="2" style=""></td>
                                 <td style="text-align:right" class="closingBalance">
@@ -272,7 +236,7 @@
 
           <div class="clear" style="height: 10px"></div>
           <div class="text-center" style="border-top: 1px dotted lightgrey">
-            <%= comp.companyName %> 
+            <%= comp.companyName %>
           </div>
         </div>
       </div>
@@ -287,7 +251,7 @@
     $("select").selectpicker();
     $("input[name='jvReference']").focus();
     $(".receiptNum,.amount").numericFloatOnly();
-    $("select.accCodeSelector").change(function () {});
+    $("select.accCodeSelector").change(function () { });
     $("select.accCodeSelector").change(function (e) {
       setTimeout(function () {
         if ($("select.accCodeSelector option:selected").val() != "") {
