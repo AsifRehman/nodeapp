@@ -38,19 +38,39 @@
               <div style="width: 400px; float: left">
                 <div class="caption" style="width: 120px">Start Date:</div>
                 <div class="field" style="width: 150px">
+<<<<<<< HEAD
                   <input type="text" name="fromDate" value="<%= opt.fromDate %> " class="form-control datepicker"
                     style="width: 145px" />
+=======
+                  <input
+                    type="text"
+                    name="fromDate"
+                    value="<%= opt.fromDate %> "
+                    class="form-control datepicker"
+                    style="width: 145px"
+                  />
+>>>>>>> dc260da0be681b9ae38646c581585624a7abb984
                   <!-- <input type="date" name="fromDate" value="" class="form-control" style="width:160px;"> -->
                 </div>
-              </div>
+              </div> 
             </div>
 
             <div class="col-6">
               <div style="width: 400px; float: left">
                 <div class="caption" style="width: 120px">End Date:</div>
                 <div class="field" style="width: 150px">
+<<<<<<< HEAD
                   <input type="text" name="toDate" value="<%= opt.toDate %>" class="form-control datepicker"
                     style="width: 145px" />
+=======
+                  <input
+                    type="text"
+                    name="toDate"
+                    value="<%= opt.toDate %>"
+                    class="form-control datepicker"
+                    style="width: 145px"
+                  />
+>>>>>>> dc260da0be681b9ae38646c581585624a7abb984
 
                   <!-- <input type="date" name="toDate" value="2022-02-23" class="form-control" style="width:160px;"> -->
                 </div>
@@ -117,7 +137,11 @@
                 <%= opt.toDate %>
               </u>
             </span>
+<<<<<<< HEAD
             <span class="pull-right"> ReportGenerated Date: <%= opt.today %> </span>
+=======
+            <span class="pull-right"> ReportGenerated Date: <%= opt.today %>  </span>
+>>>>>>> dc260da0be681b9ae38646c581585624a7abb984
           </p>
 
           <!-- <p style="float:left; margin-left:0px; font-size:14px" class="repoGen">
@@ -173,6 +197,7 @@
               <tr>
                 <% gls.forEach(g=> { %>
 
+<<<<<<< HEAD
                   <% g.transactions.forEach(e=> { %>
 
 
@@ -210,6 +235,41 @@
                                       <%= Math.abs(opt.bal) %>
                                         <%= opt.drcr %>
                                     </td>
+=======
+                <td class="fontBig" style="text-align: center"><%= g.tt  %></td>
+                <td class="fontBig" style="text-align: center">
+                  <a href="printv/<%= g.jvNum %> " target="_blank"><%= g.jvNum  %> </a>
+                </td>
+                <td style="text-align: left"><%= g.jvDate.getDate().toString().padStart(2,'0') + '-' + (g.jvDate.getMonth()+1).toString().padStart(2,'0') + '-' + g.jvDate.getFullYear().toString() %> </td>
+                <td
+                  class="fontBig"
+                  style="text-decoration: none; color: black !important"
+                >
+                  <%= e.narration %> 
+                </td>
+                <td
+                  class="fontBig"
+                  style="text-align: right"
+                  class="debitColumn"
+                >
+                  <%= e.debit %> 
+                </td>
+                <td
+                  class="fontBig"
+                  style="text-align: right"
+                  class="creditColumn"
+                ><%= e.credit %> </td>
+                <% opt.bal += typeof(e.debit) == "number" ? e.debit : 0  %> 
+                <% opt.bal -= typeof(e.credit) == "number" ? e.credit : 0 %>
+                <% if (opt.bal<=0) { %>
+                  <% opt.drcr = "CR" %> 
+                <% } %>
+                <% if (opt.bal>0) { %>
+                  <% opt.drcr = "DR" %> 
+                <% } %>
+                
+                <td class="fontBig" style="text-align: right"><%= Math.abs(opt.bal) %> <%= opt.drcr %> </td>
+>>>>>>> dc260da0be681b9ae38646c581585624a7abb984
               </tr>
               <% }) %>
                 <!-- TRANS.EACH -->
