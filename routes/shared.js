@@ -60,15 +60,23 @@ function revDate(dt) {
 }
 
 function getToday() {
+<<<<<<< HEAD
     return new Date().getDate().toString().padStart(2, '0') + '-' + (new Date().getMonth
 
         () + 1).toString().padStart(2, '0') + '-' + new Date().getFullYear().toString();
+=======
+    return new Date().getDate().toString().padStart(2,'0') + '-' + (new Date().getMonth()+1).toString().padStart(2,'0') + '-' + new Date().getFullYear().toString();
+>>>>>>> dc260da0be681b9ae38646c581585624a7abb984
 }
 
 function dated(dt) {
     a = dt.split("-").reverse()
     console.log(a)
+<<<<<<< HEAD
     return new Date(a[0], a[1] - 1, parseInt(a[2]) + 1)
+=======
+    return new Date(a[0], a[1] - 1, parseInt(a[2])+1)
+>>>>>>> dc260da0be681b9ae38646c581585624a7abb984
 }
 
 module.exports = {

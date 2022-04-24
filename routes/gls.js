@@ -16,7 +16,11 @@ router.get("/", async (req, res) => {
     if (req.query.accountCode != null && req.query.accountCode !== "") {
         opt.account_code = req.query.accountCode;
     }
+<<<<<<< HEAD
     if (req.query.fromDate != null && req.query.fromDate !== "")
+=======
+    if (req.query.fromDate != null && req.query.fromDate !== "") 
+>>>>>>> dc260da0be681b9ae38646c581585624a7abb984
         opt.fromDate = req.query.fromDate.trim();
     else
         opt.fromDate = '01-01-2001'
@@ -42,6 +46,7 @@ router.get("/", async (req, res) => {
                 'jvDate': { $gte: shared.dated(opt.fromDate), $lte: shared.dated(opt.toDate) }
             }
 
+<<<<<<< HEAD
             console.log(shared.dated(opt.toDate))
 
 
@@ -67,6 +72,33 @@ router.get("/", async (req, res) => {
                 { $sort: { jvDate: 1, jvNum: 1 } },
                 //                { $limit: 1120 },
             ]);
+=======
+            filt = {
+                'transactions.account_code':  parseInt(opt.account_code),
+                'jvDate': {$gte: shared.dated(opt.fromDate), $lte: shared.dated(opt.toDate)}
+            }
+            
+            console.log(shared.dated(opt.toDate))
+            
+
+            gls = await JV.aggregate([
+                {$set: { tt: 'JV' }},
+                { $match: filt },
+                { $unionWith: { coll: "cps", pipeline: [{$set: { tt: 'CP' }}, { $match: filt }]}
+                },
+                { $unionWith: { coll: "crs", pipeline: [{$set: { tt: 'CR' }},{ $match: filt }]},
+                },
+                { $unionWith: { coll: "cbs", pipeline: [{$set: { tt: 'CB' }},{ $match: filt }] }
+                },
+                { $project: { tt: 1, _id: 0, jvNum: 1, jvDate: 1, 
+                    'transactions.account_code': 1, 'transactions.narration': 1, 'transactions.narration': 1, 'transactions.debit': 1, 'transactions.credit': 1,
+                    'bal': {$sum : '$credit'}
+                 },
+                },
+                { $sort: { jvDate: 1, jvNum: 1 } },
+//                { $limit: 1120 },
+            ]);                
+>>>>>>> dc260da0be681b9ae38646c581585624a7abb984
         }
         else {
             gls = [];
