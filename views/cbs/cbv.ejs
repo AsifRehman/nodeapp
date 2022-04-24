@@ -1,3 +1,24 @@
+<link rel="stylesheet" type="text/css" href="/resource/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/invalid.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/form.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/tabs.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/reports.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/scrollbar.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/font-awesome.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/bootstrap-select.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/lightbox.css" />
+<link rel="stylesheet" type="text/css" href="/resource/css/jquery-ui/jquery-ui.min.css" />
+<link href="/resource/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resource/css/bootstrap-nav-wizard.css" rel="stylesheet">
+
+
+
+
+
+
+
 <script type="text/javascript" src="/resource/scripts/cash.book.config.js"></script>
 <script
     type="text/javascript">var refresh_accounts = function () { $.get("cash-book-voucher.php", {}, function (html) { var options = $(html).find('select.accCodeSelector').html(); $("select.accCodeSelector").html(options); $("select.accCodeSelector").selectpicker("refresh"); }); }; var edit_row = function (elm) { var acc_code, narration, amount_dr, amount_cr; $(".updateMode").removeClass("updateMode"); $(elm).parent().parent().addClass("updateMode"); acc_code = $(elm).parent().siblings('td.accCode').text(); narration = $(elm).parent().siblings('td.narration').text(); amount_dr = $(elm).parent().siblings('td.debitColumn').text().replace(',', ''); amount_cr = $(elm).parent().siblings('td.creditColumn').text().replace(',', ''); $("select.accCodeSelector option[value='" + acc_code + "']").prop("selected", true).parent().selectpicker('refresh'); $("input.narration").val(narration); $("input.debit").val(amount_dr); $("input.credit").val(amount_cr); $("div.accCodeSelector").focus(); };</script>
