@@ -158,7 +158,7 @@ $(document).ready(function () {
 				if (data["OK"] !== "xxxx") {
 					$(".saveJournal").hide();
 					var $print_button =
-						'<a class="button pull-right" target="_blank" href="voucher-cash-received.php?id=' +
+						'<a class="button pull-right" target="_blank" href="voucher-cash-received.html?id=' +
 						data["ID"] +
 						'"><i class="fa fa-print"></i> Print </a>';
 					$($print_button).insertAfter($(".saveJournal"));
@@ -197,7 +197,7 @@ $(document).ready(function () {
 		$("#fade").fadeIn("slow");
 		$("#popUpDel").fadeIn();
 		$(".dodelete").click(function () {
-			$.post("db/del-jvoucher-details.php", { jvid: idValue }, function (data) {
+			$.post("db/del-jvoucher-details.html", { jvid: idValue }, function (data) {
 				if (data == 1) {
 					$("#popUpDel")
 						.children(".confirm")
@@ -303,7 +303,7 @@ var getAccountBalance = function (account_code, element) {
 var getBillsListOfAccounts = function (account_code) {
 	var mode = "getUnpaidBillsList";
 	$.post(
-		"db/cash-receive.db.php",
+		"db/cash-receive.db.html",
 		{ mode: mode, customerAccCode: account_code },
 		function (data) {
 			data = $.parseJSON(data);

@@ -53,7 +53,7 @@ $(document).ready(function() {
         var $thisElm = $(this);
         var item_id = parseInt($("input[name=itemID]").val()) || 0;
         $(this).on('keyup blur', function(e) {
-            $.get('db/compare-barcode.php', { q: $(this).val(), id: item_id }, function(data) {
+            $.get('db/compare-barcode.html', { q: $(this).val(), id: item_id }, function(data) {
                 if (data > 0) {
                     $("#popUpBox input:submit").prop('disabled', true);
                     $($thisElm).addClass('error');
@@ -184,7 +184,7 @@ $(document).ready(function() {
             $(writeProductToElmNoTax).val(amount);
         });
     };
-    //inventory.php end
+    //inventory.html end
     $.fn.setFocusTo = function(Elm) {
         $(this).keydown(function(e) {
             if (e.keyCode == 13) {
@@ -197,7 +197,7 @@ $(document).ready(function() {
         
         var item_id = $(".itemSelector option:selected").val();
         if (item_id != '') {
-            $.post('db/get-item-details.php', { p_item_id: item_id }, function(data) {
+            $.post('db/get-item-details.html', { p_item_id: item_id }, function(data) {
                 data = $.parseJSON(data);
                 var itemStock  = data['STOCK'];
                 var itemPrice  = data['P_PRICE'];
@@ -657,7 +657,7 @@ $(document).ready(function() {
 
     $.fn.getAccountBalance = function(){
         var acc_code = $("select.supplierSelector option:selected").val();
-        $.post("db/get-account-balance.php",{supplierAccCode:acc_code},function(data){
+        $.post("db/get-account-balance.html",{supplierAccCode:acc_code},function(data){
             data = $.parseJSON(data);
             $("input.customer-balance").val(data['AMOUNT']);
             $("input.customer-balance-top").val(data['AMOUNT']);
@@ -963,7 +963,7 @@ var savePurchase = function()
     //console.log(jSonString);
     //return;
 
-    $.post("db/savePurchase.php",{
+    $.post("db/savePurchase.html",{
         purchase_id: purchase_id,
         purchaseDate: purchaseDate,
         recoveryDate:recoveryDate,
@@ -1014,8 +1014,8 @@ var savePurchase = function()
             if(print_method == 'Y'){
                 print_opt = "&print"
             }
-            // window.location.href='purchase-details.php?id=' + data['ID'] + msg_type + print_opt;
-            window.location.href='purchase-details.php?'+msg_type;
+            // window.location.href='purchase-details.html?id=' + data['ID'] + msg_type + print_opt;
+            window.location.href='purchase-details.html?'+msg_type;
 
         }else{
             $("#xfade").hide();
@@ -1099,7 +1099,7 @@ var add_supplier = function() {
         if (e.keyCode == 13) {
             $(".categoryName").blur();
             if (name != '') {
-                $.post('supplier-details.php', { supp_name: name }, function(data) {
+                $.post('supplier-details.html', { supp_name: name }, function(data) {
                     data = $.parseJSON(data);
                     if (data['OK'] == 'Y') {
                         $("select.supplierSelector").append('<option ' + disabled + ' data-subtext="' + data['ACC_CODE'] + '" value="' + data['ACC_CODE'] + '">' + data['ACC_TITLE'] + '</option>');
@@ -1119,7 +1119,7 @@ var add_supplier = function() {
 };
 var add_new_item_submit = function() {
     var formData = $("#popUpBox form").serializeObject();
-    $.post('item-details.php', formData, function(data) {
+    $.post('item-details.html', formData, function(data) {
         hidePopUpBox();
         $(".reload_item").click();
     });
@@ -1127,7 +1127,7 @@ var add_new_item_submit = function() {
 var add_new_item = function() {
     $("body").append('<div id="popUpBox"><button class="btn btn-danger btn-xs pull-right" onclick="hidePopUpBox();"><i class="fa fa-times"></i></button></div>');
     $("#popUpBox").append('<form action="" method="post"></form>');
-    $.get('item-details.php', {}, function(html) {
+    $.get('item-details.html', {}, function(html) {
         var formContent = $(html).find(".popup_content_nostyle").html();
         formContent += $(html).find(".form-submiters").html();
         $("#popUpBox form").append(formContent);
@@ -1156,7 +1156,7 @@ var discount_type_change = function(thiss) {
         $(".discountTypeTitle").html('Discount Rs.');
     }
 
-    $.get('sale-details.php', { discount: this_val });
+    $.get('sale-details.html', { discount: this_val });
 };
 var get_history = function(){
   var item_id = parseInt($("select.itemSelector option:selected").val())||0;
@@ -1194,7 +1194,7 @@ var calculateBoxPiecesInBox = function(){
     var quantity = $(".quantity").val();
 
 
-    $.post('db/get-item-details.php',{get_tiles_info:'yes',itemId:item_id},function(data){
+    $.post('db/get-item-details.html',{get_tiles_info:'yes',itemId:item_id},function(data){
           data = $.parseJSON(data);
 
           var box = (quantity/data['METERS']).toFixed(2);

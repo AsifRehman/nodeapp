@@ -189,7 +189,7 @@ $(document).ready(function () {
   $.fn.showUpdateFox = function () {
     var idValue = $(this).attr("do");
     $.post(
-      "pop-up-form/update-voucher-detail.php",
+      "pop-up-form/update-voucher-detail.html",
       { jid: idValue },
       function (data) {
         $("#popUpForm").html(data);
@@ -247,7 +247,7 @@ $(document).ready(function () {
     $("#popUpDel").fadeIn();
     $(".dodelete").click(function () {
       var floatOrSuper = $(".super").length ? "super" : "float";
-      window.location.href = "journal-voucher.php?delete=" + idValue;
+      window.location.href = "journal-voucher.html?delete=" + idValue;
     });
     $(".nodelete").click(function () {
       $("#fade").fadeOut();
@@ -423,7 +423,7 @@ var jvFunctions = {
     if (row_id != "") {
       $("body").append('<div id="popUpForm"></div>');
       $.post(
-        "pop-up-form/update-voucher-detail.php",
+        "pop-up-form/update-voucher-detail.html",
         { jDetail: row_id },
         function (data) {
           if (data != "") {
@@ -608,7 +608,7 @@ var crFunctions = {
     if (row_id != "") {
       $("body").append('<div id="popUpForm"></div>');
       $.post(
-        "pop-up-form/update-voucher-detail.php",
+        "pop-up-form/update-voucher-detail.html",
         { jDetail: row_id },
         function (data) {
           if (data != "") {

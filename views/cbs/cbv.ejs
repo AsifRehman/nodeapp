@@ -21,7 +21,7 @@
 
 <script type="text/javascript" src="/resource/scripts/cash.book.config.js"></script>
 <script
-    type="text/javascript">var refresh_accounts = function () { $.get("cash-book-voucher.php", {}, function (html) { var options = $(html).find('select.accCodeSelector').html(); $("select.accCodeSelector").html(options); $("select.accCodeSelector").selectpicker("refresh"); }); }; var edit_row = function (elm) { var acc_code, narration, amount_dr, amount_cr; $(".updateMode").removeClass("updateMode"); $(elm).parent().parent().addClass("updateMode"); acc_code = $(elm).parent().siblings('td.accCode').text(); narration = $(elm).parent().siblings('td.narration').text(); amount_dr = $(elm).parent().siblings('td.debitColumn').text().replace(',', ''); amount_cr = $(elm).parent().siblings('td.creditColumn').text().replace(',', ''); $("select.accCodeSelector option[value='" + acc_code + "']").prop("selected", true).parent().selectpicker('refresh'); $("input.narration").val(narration); $("input.debit").val(amount_dr); $("input.credit").val(amount_cr); $("div.accCodeSelector").focus(); };</script>
+    type="text/javascript">var refresh_accounts = function () { $.get("cash-book-voucher.html", {}, function (html) { var options = $(html).find('select.accCodeSelector').html(); $("select.accCodeSelector").html(options); $("select.accCodeSelector").selectpicker("refresh"); }); }; var edit_row = function (elm) { var acc_code, narration, amount_dr, amount_cr; $(".updateMode").removeClass("updateMode"); $(elm).parent().parent().addClass("updateMode"); acc_code = $(elm).parent().siblings('td.accCode').text(); narration = $(elm).parent().siblings('td.narration').text(); amount_dr = $(elm).parent().siblings('td.debitColumn').text().replace(',', ''); amount_cr = $(elm).parent().siblings('td.creditColumn').text().replace(',', ''); $("select.accCodeSelector option[value='" + acc_code + "']").prop("selected", true).parent().selectpicker('refresh'); $("input.narration").val(narration); $("input.debit").val(amount_dr); $("input.credit").val(amount_cr); $("div.accCodeSelector").focus(); };</script>
 
 
 
@@ -64,7 +64,7 @@
                                 G/L Account
                                 <a href="#" onclick="refresh_accounts();" class="btn btn-default btn-xs"><i
                                         class="fa fa-refresh" style="color:#06C;margin:0px;padding:0px;"></i></a>
-                                <a href="accounts-management.php" target="_blank" class="btn btn-default btn-xs"><i
+                                <a href="accounts-management.html" target="_blank" class="btn btn-default btn-xs"><i
                                         class="fa fa-plus" style="color:#06C;margin:0px;padding:0px;"></i></a>
                             </th>
                             <th class="bg-color col-xs-6">Narration</th>
@@ -132,7 +132,7 @@
 
                         <button class="button pull-right save_voucher mr-10">Save</button>
                         <input type="button" class="button pull-right mr-10"
-                            onclick="window.location.href = 'cash-book-voucher.php';" value="New Voucher">
+                            onclick="window.location.href = 'cash-book-voucher.html';" value="New Voucher">
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -145,5 +145,5 @@
 </div>
 
 
-<script type="text/javascript">$(document).on("click", ".sendSMS", function () { var vid = $(this).attr('vid'); var mode = 'SMS'; $.post('/db/cash-process-sms.php', { mode: mode, vid: vid }, function (data) { data = $.parseJSON(data); displayMessage(data['MSG']); }); }); $(window).load(function () { $('.accCodeSelector').selectpicker(); $("div.accCodeSelector button").focus(); $(".narration").setFocusTo(".debit"); $(".debit").setFocusToIfVal(".credit"); $(".narration").escFocusTo("button.dropdown-toggle"); $(".debit").escFocusTo(".narration"); $(".credit").escFocusTo(".debit"); $(".debit").keyup(function (e) { if (e.keyCode == 13) { $(this).quickSubmitDrCr(); } }); $(".credit").keyup(function (e) { if (e.keyCode == 13) { $(this).quickSubmitDrCr(); } }); $(".cdr_btn").on('click', function (e) { $(this).quickSubmitDrCr(); }); $("div.accCodeSelector button").keyup(function (e) { if (e.keyCode == 13) { if ($("select.accCodeSelector option:selected").val() != 0) { var account_code = $("select.accCodeSelector option:selected").val(); getAccountBalance(account_code, "insertAccTitle"); $(".insertAccTitle").fadeIn(); $(".narration").focus(); } } }); $(".save_voucher").click(function () { $(this).saveJournal(); }); $(window).keyup(function (e) { if (e.altKey == true && e.keyCode == 83) { e.preventDefault(); $("#form").click(); $(".save_voucher").click(); return false; } }); $("#datepicker").setFocusTo("div.accCodeSelector button"); $(document).showDifference(); $(".deleteVoucher").click(function () { $(this).deleteVoucher(); }); });
+<script type="text/javascript">$(document).on("click", ".sendSMS", function () { var vid = $(this).attr('vid'); var mode = 'SMS'; $.post('/db/cash-process-sms.html', { mode: mode, vid: vid }, function (data) { data = $.parseJSON(data); displayMessage(data['MSG']); }); }); $(window).load(function () { $('.accCodeSelector').selectpicker(); $("div.accCodeSelector button").focus(); $(".narration").setFocusTo(".debit"); $(".debit").setFocusToIfVal(".credit"); $(".narration").escFocusTo("button.dropdown-toggle"); $(".debit").escFocusTo(".narration"); $(".credit").escFocusTo(".debit"); $(".debit").keyup(function (e) { if (e.keyCode == 13) { $(this).quickSubmitDrCr(); } }); $(".credit").keyup(function (e) { if (e.keyCode == 13) { $(this).quickSubmitDrCr(); } }); $(".cdr_btn").on('click', function (e) { $(this).quickSubmitDrCr(); }); $("div.accCodeSelector button").keyup(function (e) { if (e.keyCode == 13) { if ($("select.accCodeSelector option:selected").val() != 0) { var account_code = $("select.accCodeSelector option:selected").val(); getAccountBalance(account_code, "insertAccTitle"); $(".insertAccTitle").fadeIn(); $(".narration").focus(); } } }); $(".save_voucher").click(function () { $(this).saveJournal(); }); $(window).keyup(function (e) { if (e.altKey == true && e.keyCode == 83) { e.preventDefault(); $("#form").click(); $(".save_voucher").click(); return false; } }); $("#datepicker").setFocusTo("div.accCodeSelector button"); $(document).showDifference(); $(".deleteVoucher").click(function () { $(this).deleteVoucher(); }); });
 </script>

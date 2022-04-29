@@ -131,7 +131,7 @@ $(document).ready(function() {
     };
     $.fn.getUnitPriceOfItem = function(insertPriceToElement) {
         var itemCode = $(this).val();
-        $.post('db/get-unit-price.php', { itemCode: itemCode }, function(data) {
+        $.post('db/get-unit-price.html', { itemCode: itemCode }, function(data) {
             data = $.parseJSON(data);
             var price = (data[0] == null) ? 0 : data[0];
             $(insertPriceToElement).val(price);
@@ -294,7 +294,7 @@ var displayMessagePageParam = function(message, pageNumber) {
     $("#xfade").fadeIn('slow');
     $("#popUpDel").fadeIn();
     $(".nodelete").click(function() {
-        window.location.href = 'stock-taking.php?page=' + pageNumber;
+        window.location.href = 'stock-taking.html?page=' + pageNumber;
     });
 };
 var displayMessageReport = function(message, location) {
@@ -349,7 +349,7 @@ var miniTextBlurFunction = function(thisElm, thatElement) {
         return false;
     }
     $("#xfade").fadeIn();
-    $.post('db/saveAccTitle.php', { acc_id: acc_code_id, new_title: newTitle, acc_code: this_acc_code }, function(data) {
+    $.post('db/saveAccTitle.html', { acc_id: acc_code_id, new_title: newTitle, acc_code: this_acc_code }, function(data) {
         if (data != '') {
             data = $.parseJSON(data);
             if (data['OK'] == 'Y') {
@@ -367,7 +367,7 @@ var miniTextBlurFunction = function(thisElm, thatElement) {
     });
 };
 var doSearch = function() {
-    $.get('pop-up-form/search-stock-taking.php', {}, function(data) {
+    $.get('pop-up-form/search-stock-taking.html', {}, function(data) {
         $("#popUpForm").html(data);
 
         $(".datepicker").datepicker({

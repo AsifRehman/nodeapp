@@ -316,7 +316,7 @@ document.getElementsByTagName('head')[0].appendChild(meta);
 * Examples at: http://malsup.com/jquery/block/
 * Copyright (c) 2007-2013 M. Alsup
 * Dual licensed under the MIT and GPL licenses:
-* http://www.opensource.org/licenses/mit-license.php
+* http://www.opensource.org/licenses/mit-license.html
 * http://www.gnu.org/licenses/gpl.html
 *
 * Thanks to Amir-Hossein Sobhi for some excellent contributions!
@@ -967,7 +967,7 @@ var lockScreen = function () {
 	$.blockUI({ message: null });
 };
 function get_msg_unread() {
-	$.get('db/get-unread-count.php', {}, function (data) {
+	$.get('db/get-unread-count.html', {}, function (data) {
 		data = parseInt(data) || 0;
 		data = data==0?"":data;
 		$(".message-notificaiton span.msg_count").text(data);

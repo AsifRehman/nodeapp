@@ -245,7 +245,7 @@ $(document).ready(function() {
 			'left': win_width
 		});
 	};
-	//inventory.php end
+	//inventory.html end
 	$.fn.setFocusTo = function(Elm){
 		$(this).keydown(function(e){
 			if(e.keyCode==13){
@@ -268,7 +268,7 @@ $(document).ready(function() {
 	$.fn.getItemDetails = function(){
 		var item_id = $(".itemSelector option:selected").val();
 		if(item_id != ''){
-			$.post('db/get-item-details.php',{p_item_id:item_id,get_item_cost:true},function(data){
+			$.post('db/get-item-details.html',{p_item_id:item_id,get_item_cost:true},function(data){
 				data = $.parseJSON(data);
 				var itemStock = data['STOCK'];
 				var rateCarton = data['RATE_CARTON'];
@@ -286,7 +286,7 @@ $(document).ready(function() {
 		var item_id = $(".itemSelector option:selected").val();
 		var purchase_id = parseInt($("input.purchase_id").val())||0;
 		if(item_id != ''&&purchase_id>0){
-			$.post('db/getItemReturnDetails.php',{p_item_id:item_id,purchase_id:purchase_id},function(data){
+			$.post('db/getItemReturnDetails.html',{p_item_id:item_id,purchase_id:purchase_id},function(data){
 				data = $.parseJSON(data);
 				var itemStock = data['STOCK'];
 				var itemPrice = data['P_PRICE'];
@@ -629,7 +629,7 @@ $(document).ready(function() {
 		if(item_id == 0){
 			return false;
 		}
-		$.post('db/get-item-details.php',{p_item_id:item_id},function(data){
+		$.post('db/get-item-details.html',{p_item_id:item_id},function(data){
 			data = $.parseJSON(data);
 			var itemStock = data['STOCK'];
 			// $("input.inStock").attr('thestock',itemStock).val(itemStock);
@@ -737,7 +737,7 @@ $(document).ready(function() {
 
 		$("#xfade").fadeIn();
 
-		$.post("db/savePurchaseReturn.php",{purchase_id:purchase_id,
+		$.post("db/savePurchaseReturn.html",{purchase_id:purchase_id,
 									  purchase_return_id:purchase_return_id,
 									  purchaseDate:purchaseDate,
 									  billNum:billNum,
@@ -756,7 +756,7 @@ $(document).ready(function() {
 					}else{
 						msg_type = "&updated";
 					}
-					window.location.href = 'purchase-return-details.php?id='+data['ID']+msg_type;
+					window.location.href = 'purchase-return-details.html?id='+data['ID']+msg_type;
 				}else{
 					$("#xfade").fadeOut();
 					displayMessage(data['MSG']);
@@ -817,7 +817,7 @@ $(document).ready(function() {
 			$("div.supplierSelector button").focus();
 			return false;
 		}
-		$.post('db/getBillListBySupplerCode.php',{supplierCode:supplierCode},function(data){
+		$.post('db/getBillListBySupplerCode.html',{supplierCode:supplierCode},function(data){
 			if(data != ''){
 				$("select.billSelector").find("option").first().nextAll().remove();
 				$("select.billSelector").append(data);
@@ -851,7 +851,7 @@ $(document).ready(function() {
 		if(bill_number == 0 && supplier_code == ''){
 			return false;
 		}
-		$.post('db/getPurchaseBill.php',{purchase_id:purchase_id,supplier_code:supplier_code,bill_num:bill_number},function(data){
+		$.post('db/getPurchaseBill.html',{purchase_id:purchase_id,supplier_code:supplier_code,bill_num:bill_number},function(data){
 			$("tr.calculations").first().nextAll(".calculations").remove();
 			$(data).insertAfter($("tr.calculations").first());
 			$(this).calculateColumnTotals();

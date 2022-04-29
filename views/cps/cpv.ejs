@@ -87,7 +87,7 @@
                   <span style="float:left;margin:10px;">G/L Account</span>
                   <a href="#" onclick="refresh_accounts();" class="btn btn-default pull-right"><i class="fa fa-refresh"
                       style="color:#06C;margin:0px;padding:0px;"></i></a>
-                  <a href="accounts-management.php" target="_blank" class="btn btn-default pull-right"><i
+                  <a href="accounts-management.html" target="_blank" class="btn btn-default pull-right"><i
                       class="fa fa-plus" style="color:#06C;margin:0px;padding:0px;"></i></a>
                 </th>
                 <th class="bg-color" width="35%">Narration</th>
@@ -175,7 +175,8 @@
           </table>
           <div class="underTheTable" style="padding: 10px">
             <button class="button pull-right  saveJournal">Post</button>
-            <button class="button pull-right mr-10" onclick="window.location.href='/printv/<%= cps.jvNum || 0 %>';">Print</button>
+            <button class="button pull-right mr-10"
+              onclick="window.location.href='/printv/<%= cps.jvNum || 0 %>';">Print</button>
             <button class="button pull-right mr-10" onclick="window.location.href='/cps/';">
               New Voucher
             </button>
