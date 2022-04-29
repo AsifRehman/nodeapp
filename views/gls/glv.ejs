@@ -1,22 +1,3 @@
-<link rel="stylesheet" type="text/css" href="/resource/css/reset.css" />
-<link rel="stylesheet" type="text/css" href="/resource/css/style.css" />
-<link rel="stylesheet" type="text/css" href="/resource/css/invalid.css" />
-<link rel="stylesheet" type="text/css" href="/resource/css/form.css" />
-<link rel="stylesheet" type="text/css" href="/resource/css/tabs.css" />
-<link rel="stylesheet" type="text/css" href="/resource/css/reports.css" />
-<link rel="stylesheet" type="text/css" href="/resource/css/scrollbar.css" />
-<link rel="stylesheet" type="text/css" href="/resource/css/font-awesome.css" />
-<link rel="stylesheet" type="text/css" href="/resource/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/resource/css/bootstrap-select.css" />
-<link rel="stylesheet" type="text/css" href="/resource/css/lightbox.css" />
-<link rel="stylesheet" type="text/css" href="/resource/css/jquery-ui/jquery-ui.min.css" />
-<link href="/resource/css/bootstrap.min.css" rel="stylesheet">
-<link href="/resource/css/bootstrap-nav-wizard.css" rel="stylesheet">
-
-
-
-
-
 <script type="text/javascript" src="/resource/scripts/printThis.js"></script>
 <script type="text/javascript" src="/resource/scripts/towords.js"></script>
 <script>$(document).ready(function () { var amount = parseFloat($("th.debitTotal").text().replace(',', '')) || 0; amount = toWords(amount); $("th.towords").text(amount + " Rupees only"); $(".printThis").click(function () { $(".printTable").printThis({ debug: false, importCSS: false, printContainer: true, loadCSS: '/resource/css/invoiceStyle.css', pageTitle: "Software Powered By SIT Solution", removeInline: false, printDelay: 500, header: null }); }); });</script>
@@ -24,10 +5,6 @@
 <div class="content-box-top">
   <div class="summery_body">
     <div class="content-box-header">
-      <ul class="nav nav-wizard" style="float:left">
-        <li><a href="financial-reports.html"><i class="fa fa-database"></i> Reports</a></li>
-        <li class="active"><a href="#">General Ledger Reporting</a></li>
-      </ul>
       <div class="clear"></div>
     </div>
     <!-- End .content-box-header -->
@@ -61,12 +38,8 @@
               <div style="width: 400px; float: left">
                 <div class="caption" style="width: 120px">Start Date:</div>
                 <div class="field" style="width: 150px">
-                  <<<<<<< HEAD <input type="text" name="fromDate" value="<%= opt.fromDate %> "
-                    class="form-control datepicker" style="width: 145px" />
-                  =======
                   <input type="text" name="fromDate" value="<%= opt.fromDate %> " class="form-control datepicker"
                     style="width: 145px" />
-                  >>>>>>> dc260da0be681b9ae38646c581585624a7abb984
                   <!-- <input type="date" name="fromDate" value="" class="form-control" style="width:160px;"> -->
                 </div>
               </div>
@@ -76,12 +49,8 @@
               <div style="width: 400px; float: left">
                 <div class="caption" style="width: 120px">End Date:</div>
                 <div class="field" style="width: 150px">
-                  <<<<<<< HEAD <input type="text" name="toDate" value="<%= opt.toDate %>"
-                    class="form-control datepicker" style="width: 145px" />
-                  =======
                   <input type="text" name="toDate" value="<%= opt.toDate %>" class="form-control datepicker"
                     style="width: 145px" />
-                  >>>>>>> dc260da0be681b9ae38646c581585624a7abb984
 
                   <!-- <input type="date" name="toDate" value="2022-02-23" class="form-control" style="width:160px;"> -->
                 </div>
@@ -116,7 +85,7 @@
       <span style="float: right">
         <button class="button printThis">Print</button>
         <a target="_blank"
-          href="ledger-details.html?accountCode=0401010012&po_no=&fromDate=01-01-2001&toDate=23-02-2022&generalReport=Generate&&csv"
+          href="ledger-details.php?accountCode=0401010012&po_no=&fromDate=01-01-2001&toDate=23-02-2022&generalReport=Generate&&csv"
           class="button">Export CSV</a>
       </span>
       <div id="bodyTab" class="printTable" style="margin: 0 auto">
@@ -148,10 +117,7 @@
                 <%= opt.toDate %>
               </u>
             </span>
-            <<<<<<< HEAD <span class="pull-right"> ReportGenerated Date: <%= opt.today %> </span>
-                =======
-                <span class="pull-right"> ReportGenerated Date: <%= opt.today %> </span>
-                >>>>>>> dc260da0be681b9ae38646c581585624a7abb984
+            <span class="pull-right"> ReportGenerated Date: <%= opt.today %> </span>
           </p>
 
           <!-- <p style="float:left; margin-left:0px; font-size:14px" class="repoGen">
@@ -207,7 +173,7 @@
               <tr>
                 <% gls.forEach(g=> { %>
 
-                  <<<<<<< HEAD <% g.transactions.forEach(e=> { %>
+                  <% g.transactions.forEach(e=> { %>
 
 
                     <td class="fontBig" style="text-align: center">
@@ -244,43 +210,6 @@
                                       <%= Math.abs(opt.bal) %>
                                         <%= opt.drcr %>
                                     </td>
-                                    =======
-                                    <td class="fontBig" style="text-align: center">
-                                      <%= g.tt %>
-                                    </td>
-                                    <td class="fontBig" style="text-align: center">
-                                      <a href="printv/<%= g.jvNum %> " target="_blank">
-                                        <%= g.jvNum %>
-                                      </a>
-                                    </td>
-                                    <td style="text-align: left">
-                                      <%= g.jvDate.getDate().toString().padStart(2,'0') + '-' +
-                                        (g.jvDate.getMonth()+1).toString().padStart(2,'0') + '-' +
-                                        g.jvDate.getFullYear().toString() %>
-                                    </td>
-                                    <td class="fontBig" style="text-decoration: none; color: black !important">
-                                      <%= e.narration %>
-                                    </td>
-                                    <td class="fontBig" style="text-align: right" class="debitColumn">
-                                      <%= e.debit %>
-                                    </td>
-                                    <td class="fontBig" style="text-align: right" class="creditColumn">
-                                      <%= e.credit %>
-                                    </td>
-                                    <% opt.bal +=typeof(e.debit)=="number" ? e.debit : 0 %>
-                                      <% opt.bal -=typeof(e.credit)=="number" ? e.credit : 0 %>
-                                        <% if (opt.bal<=0) { %>
-                                          <% opt.drcr="CR" %>
-                                            <% } %>
-                                              <% if (opt.bal>0) { %>
-                                                <% opt.drcr="DR" %>
-                                                  <% } %>
-
-                                                    <td class="fontBig" style="text-align: right">
-                                                      <%= Math.abs(opt.bal) %>
-                                                        <%= opt.drcr %>
-                                                    </td>
-                                                    >>>>>>> dc260da0be681b9ae38646c581585624a7abb984
               </tr>
               <% }) %>
                 <!-- TRANS.EACH -->
