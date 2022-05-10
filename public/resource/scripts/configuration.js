@@ -342,6 +342,7 @@ var miniEdit = function(thisElement) {
 var miniTextBlurFunction = function(thisElm, thatElement) {
     var newTitle = $(thisElm).val();
     var this_acc_code = $(thisElm).parent().parent().find('td.acc_code').text();
+    var acc_level = $(thisElm).parent().parent().find('td.acc_level').text();
     var acc_code_id = parseInt($(thisElm).attr('data-id')) || 0;
     var prevTitle = $(thatElement).text();
     if (newTitle == prevTitle || newTitle == '') {
@@ -349,9 +350,10 @@ var miniTextBlurFunction = function(thisElm, thatElement) {
         return false;
     }
     $("#xfade").fadeIn();
-    $.post('db/saveAccTitle.php', { acc_id: acc_code_id, new_title: newTitle, acc_code: this_acc_code }, function(data) {
+    $.post('/acmgmt/update', { acc_level: acc_level, new_title: newTitle, acc_code: this_acc_code }, function(data) {
         if (data != '') {
-            data = $.parseJSON(data);
+            //data = $.parseJSON(data);
+            console.log(data)
             if (data['OK'] == 'Y') {
                 displayMessage(newTitle + ' Saved Successfully!');
                 $(thatElement).text(newTitle);
