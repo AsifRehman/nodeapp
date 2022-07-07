@@ -65,16 +65,6 @@ const db = mongoose.connection
 db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Mongoose'))
 
-mongoose.createView('abc', {
-  "viewOn": "level1",
-  pipeline: [
-    {$project: {level1_code: 1 }
-    }
-  ]
-});
-
-app.use('/', indexRouter)
-
 app.get('/login', checkNotAuthenticated, (req, res) => {
   console.log(users)
   res.render('login.ejs', { layout: 'layouts/layout2' })
